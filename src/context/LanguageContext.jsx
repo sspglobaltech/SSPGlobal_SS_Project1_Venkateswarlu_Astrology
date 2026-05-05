@@ -13,7 +13,7 @@ const translations = {
       testimonials: 'Testimonials',
       contact: 'Contact',
       bookNow: 'Book Now',
-      brandName: 'Acharya Venkateshwarlu',
+      brandName: 'Acharya Venkateswarlu',
       brandSubtitle: 'Astrologer',
     },
     // Hero
@@ -30,8 +30,8 @@ const translations = {
     // About
     about: {
       sectionTag: 'Our Legacy',
-      title: 'About Acharya Venkateshwarlu',
-      profileName: 'Acharya Venkateshwarlu',
+      title: 'About Acharya Venkateswarlu',
+      profileName: 'Acharya Venkateswarlu',
       profileTitle: 'Hereditary Astrologer',
       profileSubtitle: 'Jyotisha Acharya',
       description: 'Astrology has been practiced in our family for generations, passed down from our revered ancestors and forefathers. This sacred knowledge of Jyotisha Shastra has been preserved and refined through each generation, combining the timeless wisdom of Vedic astrology with modern analytical approaches.',
@@ -120,6 +120,11 @@ const translations = {
           title: 'Dosha Analysis',
           description: 'Identification and remedies for Mangal Dosha, Kaal Sarp Dosha, Sade Sati, and other planetary afflictions.',
           icon: '⚡',
+        },
+        {
+          title: 'Muhurtham Fixing',
+          description: 'Auspicious timing selection for weddings, griha pravesh, business inaugurations, and other important life events.',
+          icon: '🌿',
         },
         {
           title: 'Personal Consultation',
@@ -219,7 +224,7 @@ const translations = {
       testimonials: 'అభిప్రాయాలు',
       contact: 'సంప్రదించండి',
       bookNow: 'బుక్ చేయండి',
-      brandName: 'ఆచార్య వెంకటేశ్వర్లు',
+      brandName: 'ఆచార్య వేంకటేశ్వర్లు',
       brandSubtitle: 'జ్యోతిష్కులు',
     },
     // Hero
@@ -236,12 +241,12 @@ const translations = {
     // About
     about: {
       sectionTag: 'మా వారసత్వం',
-      title: 'ఆచార్య వెంకటేశ్వర్లు గురించి',
-      profileName: 'ఆచార్య వెంకటేశ్వర్లు',
+      title: 'ఆచార్య వేంకటేశ్వర్లు గురించి',
+      profileName: 'ఆచార్య వేంకటేశ్వర్లు',
       profileTitle: 'వంశపారంపర్య జ్యోతిష్కులు',
       profileSubtitle: 'జ్యోతిష ఆచార్య',
       description: 'జ్యోతిష శాస్త్రం మా కుటుంబంలో తరతరాలుగా ఆచరించబడుతోంది, మా పూజ్యులైన పూర్వీకులు మరియు తాతలు నుండి అందించబడింది. జ్యోతిష శాస్త్రం యొక్క ఈ పవిత్ర జ్ఞానం ప్రతి తరంలో సంరక్షించబడి మరియు మెరుగుపరచబడింది, వేద జ్యోతిషం యొక్క కాలాతీత జ్ఞానాన్ని ఆధునిక విశ్లేషణ విధానాలతో కలుపుతూ.',
-      description2: '15 సంవత్సరాలకు పైగా అంకితభావంతో ఆచరిస్తూ, జ్యోతిష్కులు వెంకటేష్ వేలాది కుటుంబాలను మరియు వ్యక్తులను జీవితంలోని అతి ముఖ్యమైన నిర్ణయాలలో - వివాహ అనుకూలత మరియు వృత్తి ఎంపికల నుండి గ్రహ దోషాల పరిష్కారం మరియు వాస్తు సంప్రదింపుల వరకు - మార్గదర్శనం చేశారు.',
+      description2: '15 సంవత్సరాలకు పైగా అంకితభావంతో ఆచరిస్తూ, జ్యోతిష్కులు వేంకటేశ్వర్లు వేలాది కుటుంబాలను మరియు వ్యక్తులను జీవితంలోని అతి ముఖ్యమైన నిర్ణయాలలో - వివాహ అనుకూలత మరియు వృత్తి ఎంపికల నుండి గ్రహ దోషాల పరిష్కారం మరియు వాస్తు సంప్రదింపుల వరకు - మార్గదర్శనం చేశారు.',
       stat1Title: '15+',
       stat1Label: 'సంవత్సరాల అనుభవం',
       stat2Title: '10000+',
@@ -328,6 +333,11 @@ const translations = {
           icon: '⚡',
         },
         {
+          title: 'ముహూర్త నిర్ణయం',
+          description: 'వివాహాలు, గృహ ప్రవేశాలు, వ్యాపార ప్రారంభాలు మరియు ఇతర ముఖ్యమైన జీవిత సంఘటనల కోసం అనుకూల సమయ ఎంపిక.',
+          icon: '🌿',
+        },
+        {
           title: 'వ్యక్తిగత సంప్రదింపు',
           description: 'ఆరోగ్యం, సంబంధాలు, ఆర్ధికం మరియు ఆధ్యాత్మిక వృద్ధితో సహా నిర్దిష్ట జీవిత ఆందోళనల కోసం ఒంటరి సంప్రదింపు.',
           icon: '🙏',
@@ -343,13 +353,13 @@ const translations = {
         {
           name: 'రమేష్ కుమార్',
           location: 'హైదరాబాద్',
-          text: 'నా వృత్తి మార్పు గురించి వెంకటేష్ గారు చేసిన అంచనాలు పూర్తిగా ఖచ్చితమైనవి. ఆయన నన్ను కష్టమైన మార్పులో మార్గదర్శనం చేశారు మరియు ఇప్పుడు నేను నా కొత్త పాత్రలో అభివృద్ధి చెందుతున్నాను.',
+          text: 'నా వృత్తి మార్పు గురించి వేంకటేశ్వర్లు గారు చేసిన అంచనాలు పూర్తిగా ఖచ్చితమైనవి. ఆయన నన్ను కష్టమైన మార్పులో మార్గదర్శనం చేశారు మరియు ఇప్పుడు నేను నా కొత్త పాత్రలో అభివృద్ధి చెందుతున్నాను.',
           rating: 5,
         },
         {
           name: 'లక్ష్మి దేవి',
           location: 'విజయవాడ',
-          text: 'మా అమ్మాయి వివాహ అనుకూలత కోసం వెంకటేష్ గారిని సంప్రదించాము. ఆయన సమగ్ర విశ్లేషణ మరియు ఖచ్చితమైన అంచనాలు మాకు పూర్తి విశ్వాసాన్ని ఇచ్చాయి.',
+          text: 'మా అమ్మాయి వివాహ అనుకూలత కోసం వేంకటేశ్వర్లు గారిని సంప్రదించాము. ఆయన సమగ్ర విశ్లేషణ మరియు ఖచ్చితమైన అంచనాలు మాకు పూర్తి విశ్వాసాన్ని ఇచ్చాయి.',
           rating: 5,
         },
         {
@@ -361,13 +371,13 @@ const translations = {
         {
           name: 'ప్రియ శర్మ',
           location: 'బెంగళూరు',
-          text: 'నేను సాడే సాతిలో ఉన్నాను మరియు చాలా ఆందోళన చెందాను. వెంకటేష్ గారు ప్రభావాలను స్పష్టంగా వివరించడమే కాకుండా సమర్థవంతమైన పరిహారాలను అందించారు.',
+          text: 'నేను సాడే సాతిలో ఉన్నాను మరియు చాలా ఆందోళన చెందాను. వేంకటేశ్వర్లు గారు ప్రభావాలను స్పష్టంగా వివరించడమే కాకుండా సమర్థవంతమైన పరిహారాలను అందించారు.',
           rating: 4,
         },
         {
           name: 'ఆనంద్ రావు',
           location: 'చెన్నై',
-          text: 'చాలా మంది జ్యోతిషులను సంప్రదించిన తర్వాత, వెంకటేష్ గారు ప్రత్యేకంగా నిలబడతారని చెప్పగలను. ఆయన వంశపారంపర్య జ్ఞానం మరియు శాస్త్రీయ విధానం ఆయన చదువులను అద్భుతంగా ఖచ్చితంగా చేస్తాయి.',
+          text: 'చాలా మంది జ్యోతిషులను సంప్రదించిన తర్వాత, వేంకటేశ్వర్లు గారు ప్రత్యేకంగా నిలబడతారని చెప్పగలను. ఆయన వంశపారంపర్య జ్ఞానం మరియు శాస్త్రీయ విధానం ఆయన చదువులను అద్భుతంగా ఖచ్చితంగా చేస్తాయి.',
           rating: 5,
         },
       ],
@@ -396,7 +406,7 @@ const translations = {
     share: {
       button: 'వెబ్‌సైట్ షేర్ చేయండి',
       copied: 'లింక్ కాపీ చేయబడింది!',
-      title: 'జ్యోతిష్కులు వెంకటేష్',
+      title: 'జ్యోతిష్కులు వేంకటేశ్వర్లు',
       text: 'ప్రాచీన జ్యోతిష జ్ఞానాన్ని అన్వేషించండి.',
     },
     // Events
@@ -408,7 +418,7 @@ const translations = {
     // Footer
     footer: {
       quote: '"ఆకాశంలో నక్షత్రాలు మనకు మార్గదర్శనం చేయడానికి ప్రకాశిస్తాయి, జ్యోతిష జ్ఞానం మార్గాన్ని ప్రకాశింపజేస్తుంది."',
-      copyright: '© 2026 జ్యోతిష్కులు వెంకటేష్. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి.',
+      copyright: '© 2026 జ్యోతిష్కులు వేంకటేశ్వర్లు. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి.',
       quickLinks: 'త్వరిత లింకులు',
       services: 'సేవలు',
       followUs: 'మమ్ములను ఫాలో అవ్వండి',

@@ -14,25 +14,46 @@ function ServiceIcon({ title }) {
     case 'జాతక చదవడం':
       return (
         <svg {...common}>
-          <circle cx="12" cy="12" r="8" strokeWidth="1.2" />
-          <circle cx="12" cy="12" r="3" strokeWidth="1.2" />
-          <path strokeWidth="1.2" strokeLinecap="round" d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7L4.9 19.1" />
+          <rect x="3" y="3" width="18" height="18" rx="1" strokeWidth="1.2" />
+          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M3 3l18 18M21 3L3 21" />
+          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M12 3l9 9-9 9-9-9z" />
+          <circle cx="12" cy="12" r="1.5" fill="currentColor" />
         </svg>
       );
     case 'Marriage Matching':
     case 'వివాహ అనుకూలత':
       return (
         <svg {...common}>
-          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M8.5 6.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm7 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M10.5 11.5 13.5 14.5M8 15.5l4 4 4-4" />
+          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M8 11c-2 1-3 3-2 6 1 2.5 4.5 3.5 6 3.5s5-1 6-3.5c1-3 0-5-2-6" />
+          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M9 11h6M8 9h8" />
+          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M12 3c-1.5 0-2.5 1.5-2.5 3s1 3 2.5 3 2.5-1.5 2.5-3-1-3-2.5-3z" />
+          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M9.5 6c-2-1.5-4-1-4.5 0-.5 1 1 3 3 3M14.5 6c2-1.5 4-1 4.5 0 .5 1-1 3-3 3" />
         </svg>
       );
     case 'Career Guidance':
     case 'వృత్తి మార్గదర్శనం':
       return (
-        <svg {...common}>
-          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M4 19h16M7 19V9.5l5-3 5 3V19M10 11.5h4" />
-          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M9.5 6.8V5a2.5 2.5 0 0 1 5 0v1.8" />
+        <svg {...common} viewBox="0 0 48 48" strokeWidth="2.5">
+          {/* Stairs - with a gap below feet */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 43h11v-6h11v-6h11v-6h6" />
+          
+          {/* Person Head */}
+          <circle cx="22" cy="10" r="4" />
+          
+          {/* Person Body */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M22 14v12" />
+          
+          {/* Legs */}
+          {/* Back leg */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M22 26l-5 8" />
+          {/* Front leg */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M22 26l6-4v6" />
+          
+          {/* Arms */}
+          {/* Front arm */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M22 16l6 3" />
+          {/* Back arm */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M22 16l-6 7" />
         </svg>
       );
     case 'Vastu Consultation':
@@ -47,16 +68,83 @@ function ServiceIcon({ title }) {
     case 'దోష విశ్లేషణ':
       return (
         <svg {...common}>
-          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M12 3.5c2 2.4 4.8 5.6 4.8 9a4.8 4.8 0 0 1-9.6 0c0-3.4 2.8-6.6 4.8-9Z" />
-          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M9.3 12.6c.8.2 1.6-.1 2.2-.8.8-.9 1.6-1.2 3-1" />
+          {/* Background Kundali */}
+          <g opacity="0.2" strokeWidth="1">
+            <rect x="2" y="2" width="20" height="20" rx="1" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2 2l20 20M22 2L2 22M12 2l10 10-10 10-10-10z" />
+          </g>
+
+
+
+          {/* Snake Tail */}
+          <path strokeWidth="1.2" strokeLinecap="round" d="M16 19.5c2 0 3.5-.5 3.5-1.5" />
+
+          {/* Cobra Profile Body */}
+          <path strokeWidth="1.2" strokeLinejoin="round" fill="#0a1122" d="M10 18 v-6 c0-3 -2-4 -2-6 c0-3 3-4 6-4 c2 0 3 1 3 3 c0 1 -2 2 -3 2 c-1 0 -2 1 -2 3 v8 z" />
+          
+          {/* Main Front Coil */}
+          <ellipse cx="12" cy="18" rx="6" ry="2.5" strokeWidth="1.2" fill="#0a1122" />
+          <path strokeWidth="1.2" strokeLinecap="round" d="M7 18c0 1.2 2 2 5 2s5-.8 5-2" />
+          
+          {/* Snake Eye */}
+          <circle cx="14" cy="4.5" r="0.6" fill="currentColor" />
+          
+          {/* Snake Tongue */}
+          <path strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" d="M17 5.5h1.5l1-1M18.5 5.5l1 1" />
+        </svg>
+      );
+    case 'Muhurtham Fixing':
+    case 'ముహూర్త నిర్ణయం':
+      return (
+        <svg {...common} viewBox="0 0 48 48" strokeWidth="2.5">
+          {/* Pot Rim */}
+          <rect x="12" y="22" width="24" height="4" rx="2" strokeLinejoin="round" />
+          
+          {/* Pot Body */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M14 26 C4 32, 10 46, 20 46 h8 C38 46, 44 32, 34 26" />
+          
+          {/* Coconut Top */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 22 C19 8, 24 2, 24 2 C24 8, 29 22, 29 22" />
+          
+          {/* Left Mango Leaves */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 14 Q14 8 8 10 Q14 14 19 18" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 18 Q12 16 4 20 Q10 22 14 22" />
+          
+          {/* Right Mango Leaves */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M29 14 Q34 8 40 10 Q34 14 29 18" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M29 18 Q36 16 44 20 Q38 22 34 22" />
+          
+          {/* Swastika */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M24 31 v8 M20 35 h8 M24 31 h4 M24 39 h-4 M28 35 v4 M20 35 v-4" />
+          
+          {/* Swastika Dots */}
+          <circle cx="21.5" cy="32.5" r="1.5" fill="currentColor" stroke="none" />
+          <circle cx="26.5" cy="32.5" r="1.5" fill="currentColor" stroke="none" />
+          <circle cx="21.5" cy="37.5" r="1.5" fill="currentColor" stroke="none" />
+          <circle cx="26.5" cy="37.5" r="1.5" fill="currentColor" stroke="none" />
         </svg>
       );
     case 'Personal Consultation':
     case 'వ్యక్తిగత సంప్రదింపు':
       return (
-        <svg {...common}>
-          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M12 5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-6 13c1-3 3-4.5 6-4.5s5 1.5 6 4.5" />
-          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M18 9h3M19.5 7.5v3M3 9h3" />
+        <svg {...common} viewBox="0 0 48 48" strokeWidth="2.5">
+          {/* Left person head */}
+          <circle cx="13" cy="28" r="4" />
+          {/* Left person body */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 44v-3c0-4.4 3.6-8 8-8c1.5 0 3 .4 4 1.2" />
+          
+          {/* Right person head */}
+          <circle cx="35" cy="28" r="4" />
+          {/* Right person body */}
+          <path strokeLinecap="round" strokeLinejoin="round" d="M43 44v-3c0-4.4-3.6-8-8-8c-1.5 0-3 .4-4 1.2" />
+          
+          {/* Chat bubble - well above */}
+          <rect x="15" y="2" width="18" height="12" rx="3" strokeLinejoin="round" />
+          <path strokeLinejoin="round" fill="#0a1122" d="M21 14l3 5 3-5" />
+          {/* Chat dots inside bubble */}
+          <circle cx="20" cy="8" r="1.2" fill="currentColor" />
+          <circle cx="24" cy="8" r="1.2" fill="currentColor" />
+          <circle cx="28" cy="8" r="1.2" fill="currentColor" />
         </svg>
       );
     default:
@@ -81,8 +169,8 @@ function ServiceCard({ service, index }) {
       style={{ transitionDelay: `${index * 150}ms` }}
     >
       <article className="group relative h-full flex flex-col rounded-[28px] bg-gradient-to-br from-[#0a1122]/80 to-[#040812]/90 backdrop-blur-xl border border-gold-500/20 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_50px_-12px_rgba(234,179,8,0.25)] hover:border-gold-500/50 hover:-translate-y-2 transition-all duration-500 overflow-hidden">
-        {/* Shine Animation */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-[150%] skew-x-[-30deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out pointer-events-none z-10" />
+        {/* Shimmer Animation */}
+        <div className="qualification-card-shimmer z-10" />
         
         {/* Sacred Glow */}
         <div className="absolute -inset-4 bg-gradient-to-br from-gold-500/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -159,8 +247,14 @@ export default function Services() {
           <div className="mx-auto mt-10 w-full flex justify-center items-center gap-4">
             <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-r from-transparent to-gold-500/50" />
             <svg viewBox="0 0 120 24" className="h-7 w-36 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor">
-              <path strokeWidth="1.5" strokeLinecap="round" d="M4 12h32m48 0h32M43 12c4-6 10-8 17-8s13 2 17 8c-4 6-10 8-17 8s-13-2-17-8Z" />
-              <circle cx="60" cy="12" r="3" strokeWidth="1.5" fill="currentColor" />
+              {/* Lines */}
+              <path strokeWidth="1.5" strokeLinecap="round" d="M4 12h34m44 0h34" />
+              {/* Center 4-pointed Star */}
+              <path strokeLinejoin="round" fill="currentColor" d="M60 2 c 2 8 2 8 8 10 c -6 2 -6 2 -8 10 c -2 -8 -2 -8 -8 -10 c 6 -2 6 -2 8 -10 z" />
+              {/* Left small diamond */}
+              <path strokeLinejoin="round" fill="currentColor" opacity="0.6" d="M44 12 l2 -2 l2 2 l-2 2 z" />
+              {/* Right small diamond */}
+              <path strokeLinejoin="round" fill="currentColor" opacity="0.6" d="M76 12 l-2 -2 l-2 2 l2 2 z" />
             </svg>
             <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-l from-transparent to-gold-500/50" />
           </div>

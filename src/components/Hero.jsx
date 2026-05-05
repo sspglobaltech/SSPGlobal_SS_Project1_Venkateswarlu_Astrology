@@ -136,8 +136,10 @@ function FloatingShloka({ text, style }) {
 }
 
 export default function Hero() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const heroRef = useRef(null);
+  
+  const langSuffix = language === 'te' ? 'tel' : 'eng';
 
   // Sacred symbol positions (memoized for stable render)
   const sacredPositions = useMemo(() => 
@@ -375,87 +377,128 @@ export default function Hero() {
 
           {/* Hero Image */}
           <div className="order-1 lg:order-2 flex justify-center animate-fade-in">
-            <div className="relative">
-              {/* Outer sacred geometry mandala */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] sm:w-[550px] sm:h-[550px] lg:w-[600px] lg:h-[600px] opacity-20">
-                <svg viewBox="0 0 200 200" className="w-full h-full animate-spin-slow" style={{ animationDuration: '40s' }}>
-                  {/* Outer circles */}
-                  <circle cx="100" cy="100" r="95" fill="none" stroke="url(#goldGrad)" strokeWidth="0.4" />
-                  <circle cx="100" cy="100" r="85" fill="none" stroke="url(#goldGrad)" strokeWidth="0.3" strokeDasharray="4 6" />
-                  <circle cx="100" cy="100" r="75" fill="none" stroke="url(#goldGrad)" strokeWidth="0.3" />
-                  {/* Sacred lines */}
-                  {Array.from({ length: 12 }).map((_, i) => (
-                    <line key={i} x1="100" y1="5" x2="100" y2="195" stroke="url(#goldGrad)" strokeWidth="0.15" transform={`rotate(${i * 30} 100 100)`} />
-                  ))}
-                  {/* Inner flower of life pattern */}
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <circle key={`flower-${i}`} cx={100 + 25 * Math.cos((i * 60 * Math.PI) / 180)} cy={100 + 25 * Math.sin((i * 60 * Math.PI) / 180)} r="25" fill="none" stroke="url(#goldGrad)" strokeWidth="0.2" />
-                  ))}
-                  <defs>
-                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFC526" />
-                      <stop offset="50%" stopColor="#FF9800" />
-                      <stop offset="100%" stopColor="#FFC526" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-
-              {/* Pulsing glow layers */}
-              <div className="absolute inset-0 -m-16 bg-gradient-radial from-gold-500/15 via-saffron-500/5 to-transparent rounded-full blur-3xl animate-pulse-slow" />
-              <div className="absolute inset-0 -m-8 bg-gradient-radial from-saffron-500/10 via-transparent to-transparent rounded-full blur-2xl animate-pulse-slow" style={{ animationDelay: '1s' }} />
-
-              {/* Animated glow ring */}
-              <div className="absolute inset-0 -m-4 rounded-full animate-spin-slow" style={{ animationDuration: '8s', background: 'conic-gradient(from 0deg, transparent, rgba(255,197,38,0.3), transparent, rgba(255,152,0,0.3), transparent)' }} />
-
-              {/* Decorative dotted rings */}
-              <div className="absolute inset-0 -m-10 border border-dashed border-gold-500/15 rounded-full animate-spin-slow" style={{ animationDuration: '25s' }} />
-              <div className="absolute inset-0 -m-16 border border-dotted border-saffron-500/10 rounded-full animate-spin-slow" style={{ animationDirection: 'reverse', animationDuration: '35s' }} />
-              
-              {/* Image container with double border */}
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[400px] lg:h-[400px] rounded-full overflow-hidden">
-                {/* Gradient border */}
-                <div className="absolute inset-0 rounded-full p-1" style={{ background: 'conic-gradient(from 45deg, #FFC526, #FF9800, #FFC526, #E6AA00, #FFC526)' }}>
-                  <div className="w-full h-full rounded-full overflow-hidden border-2 border-spiritual-dark">
-                    <img
-                      src="/images/venkateswarlu-spiritual.jpg"
-                      alt="Astrologer Venkateswarlu"
-                      className="w-full h-full object-cover object-top"
-                    />
-                    {/* Subtle vignette */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-spiritual-dark/30 via-transparent to-transparent" />
-                    <div className="absolute inset-0" style={{ boxShadow: 'inset 0 0 60px rgba(10,10,26,0.3)' }} />
-                  </div>
+            <style>
+              {`
+                @keyframes spinReverse {
+                  from { transform: rotate(0deg); }
+                  to { transform: rotate(-360deg); }
+                }
+                .wheel-wrapper {
+                  position: relative;
+                  width: 320px;
+                  height: 320px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  border-radius: 50%;
+                }
+                @media (min-width: 640px) {
+                  .wheel-wrapper { width: 450px; height: 450px; }
+                }
+                @media (min-width: 1024px) {
+                  .wheel-wrapper { width: 550px; height: 550px; }
+                }
+                .wheel-container {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                }
+                .wheel-layer {
+                  position: absolute;
+                  inset: 0;
+                  margin: auto;
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 50%;
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  background-size: contain;
+                  overflow: hidden;
+                }
+                .layer-inner {
+                  width: 95.8%;
+                  height: 95.8%;
+                  background-image: url("/images/up-sticker-${langSuffix}.png");
+                  background-size: cover;
+                  background-position: center center;
+                  opacity: 0.15;
+                  z-index: 1;
+                  mask-image: radial-gradient(circle at center, black 92%, transparent 100%);
+                  -webkit-mask-image: radial-gradient(circle at center, black 92%, transparent 100%);
+                }
+                .layer-zodiac {
+                  width: 88.7%;
+                  height: 88.7%;
+                  z-index: 3;
+                }
+                .zodiac-rotator {
+                  width: 100%;
+                  height: 100%;
+                  background-image: url("/images/up-sticker-clean-${langSuffix}.png");
+                  background-repeat: no-repeat;
+                  background-position: center center;
+                  background-size: contain;
+                  animation: spin 40s linear infinite;
+                  border-radius: 50%;
+                }
+                .layer-outer {
+                  width: 100%;
+                  height: 100%;
+                  background-image: url("/images/outer-ring.png");
+                  background-size: 100% 100%;
+                  background-position: center;
+                  z-index: 5;
+                  animation: spinReverse 40s linear infinite;
+                }
+                .layer-idol-person {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -38%) translateY(25.45%);
+                  z-index: 5;
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                }
+                .layer-idol-person img {
+                  max-height: 50%;
+                  transform: scale(1.06);
+                  object-fit: contain;
+                }
+                .layer-idol-person::before {
+                  content: "";
+                  position: absolute;
+                  top: 10%;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  width: 60%;
+                  height: 40%;
+                  background: radial-gradient(circle, rgba(255, 200, 0, 0.35), transparent 70%);
+                  filter: blur(25px);
+                  z-index: -1;
+                }
+              `}
+            </style>
+            
+            <div className="wheel-wrapper">
+                <div className="wheel-container">
+                    <div className="wheel-layer layer-inner"></div>
+                    <div className="wheel-layer layer-zodiac">
+                        <div className="zodiac-rotator"></div>
+                    </div>
+                    <div className="wheel-layer layer-outer"></div>
+                    <div className="wheel-layer layer-idol-person">
+                        <img src="/images/SSSS.png" alt="Astrologer Venkateswarlu" />
+                    </div>
                 </div>
-              </div>
-
-              {/* Corner accent glows */}
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-3 h-3 bg-gold-400 rounded-full blur-sm animate-pulse" />
-              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-3 h-3 bg-saffron-500 rounded-full blur-sm animate-pulse" style={{ animationDelay: '1s' }} />
-              <div className="absolute top-1/2 -left-3 -translate-y-1/2 w-3 h-3 bg-gold-400 rounded-full blur-sm animate-pulse" style={{ animationDelay: '0.5s' }} />
-              <div className="absolute top-1/2 -right-3 -translate-y-1/2 w-3 h-3 bg-saffron-500 rounded-full blur-sm animate-pulse" style={{ animationDelay: '1.5s' }} />
-
-              {/* Orbiting celestial bodies */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-orbit" style={{ animationDuration: '10s' }}>
-                <span className="text-2xl drop-shadow-lg" style={{ filter: 'drop-shadow(0 0 6px rgba(255,197,38,0.6))' }}>☉</span>
-              </div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-orbit" style={{ animationDuration: '16s', animationDelay: '-4s' }}>
-                <span className="text-xl text-gold-300" style={{ filter: 'drop-shadow(0 0 6px rgba(255,197,38,0.5))' }}>☽</span>
-              </div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-orbit" style={{ animationDuration: '22s', animationDelay: '-10s' }}>
-                <span className="text-lg text-saffron-400" style={{ filter: 'drop-shadow(0 0 4px rgba(255,152,0,0.5))' }}>✦</span>
-              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-gold-500/30 flex items-start justify-center p-1">
-          <div className="w-1.5 h-3 bg-gold-400 rounded-full animate-pulse" />
-        </div>
-      </div>
+
     </section>
   );
 }
