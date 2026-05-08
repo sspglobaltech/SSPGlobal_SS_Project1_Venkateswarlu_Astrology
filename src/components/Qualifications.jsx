@@ -11,21 +11,18 @@ function QualificationIcon({ icon, className = 'w-7 h-7' }) {
   };
 
   switch (icon) {
+    // AWARDS — common trophy icon
     case '🏆':
+    case '🌟':
       return (
         <svg {...commonProps}>
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 21h8M10 17h4M8 4h8v4a4 4 0 01-8 0V4Z" />
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M16 6h2a2 2 0 010 4h-2M8 6H6a2 2 0 000 4h2M12 12v5" />
         </svg>
       );
-    case '🌟':
-    case '⭐':
-      return (
-        <svg {...commonProps}>
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 3.75l2.16 4.38 4.84.7-3.5 3.41.83 4.81L12 14.9l-4.33 2.15.83-4.81-3.5-3.41 4.84-.7L12 3.75Z" />
-        </svg>
-      );
+    // APPRECIATION — common certificate/scroll icon
     case '📜':
+    case '🙏':
       return (
         <svg {...commonProps}>
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 5.5h8a3 3 0 013 3V17a2.5 2.5 0 01-2.5 2.5H9a3 3 0 010-6h8" />
@@ -33,20 +30,10 @@ function QualificationIcon({ icon, className = 'w-7 h-7' }) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M10.5 9.5h5M10.5 12.5h4M10.5 15.5h5" />
         </svg>
       );
-    case '🙏':
-      return (
-        <svg {...commonProps}>
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M10.5 4.5 9 9l1.5 7.5M13.5 4.5 15 9l-1.5 7.5M9.5 9H7.75A1.75 1.75 0 006 10.75v1.5A1.75 1.75 0 007.75 14H9m6-5h1.25A1.75 1.75 0 0118 10.75v1.5A1.75 1.75 0 0116.25 14H15M10.5 4.5c.3-.83.88-1.5 1.5-1.5s1.2.67 1.5 1.5" />
-        </svg>
-      );
+    // EDUCATION — common graduation cap icon
     case '📚':
-      return (
-        <svg {...commonProps}>
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M5.5 6.5A2.5 2.5 0 018 4h10.5v14H8a2.5 2.5 0 100 5h9.5" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 4v19M11 8h5M11 11h5" />
-        </svg>
-      );
     case '🎓':
+    case '⭐':
       return (
         <svg {...commonProps}>
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="m3 9 9-4 9 4-9 4-9-4Z" />
@@ -131,9 +118,9 @@ export default function Qualifications() {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
           {t.qualifications.items.map((item, i) => (
-            <div key={i} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]">
+            <div key={i} className="w-full">
               <QualificationCard item={item} index={i} onClick={() => setSelectedCert(item)} />
             </div>
           ))}
@@ -186,7 +173,7 @@ function QualificationCard({ item, index, onClick }) {
     >
       <div className="qualification-card relative h-full min-h-[290px] w-full flex flex-col overflow-hidden text-center">
         <div className="qualification-card-border" />
-        <div className="qualification-card-inner flex-1 w-full relative flex flex-col items-center justify-center rounded-2xl px-8 py-8">
+        <div className="qualification-card-inner flex-1 w-full relative flex flex-col items-center justify-start rounded-2xl px-8 pt-10 pb-8">
           <div className="qualification-card-shimmer" />
           <QualificationCertifiedBadge />
 

@@ -379,9 +379,17 @@ export default function Hero() {
           <div className="order-1 lg:order-2 flex justify-center animate-fade-in">
             <style>
               {`
-                @keyframes spinReverse {
+                @keyframes breathe {
+                  0%, 100% { transform: scale(1); }
+                  50% { transform: scale(1.02); }
+                }
+                @keyframes spin {
                   from { transform: rotate(0deg); }
-                  to { transform: rotate(-360deg); }
+                  to { transform: rotate(360deg); }
+                }
+                @keyframes spinReverseCentered {
+                  from { transform: translate(-50%, -50%) rotate(0deg); }
+                  to { transform: translate(-50%, -50%) rotate(-360deg); }
                 }
                 .wheel-wrapper {
                   position: relative;
@@ -391,6 +399,7 @@ export default function Hero() {
                   justify-content: center;
                   align-items: center;
                   border-radius: 50%;
+                  animation: breathe 6s ease-in-out infinite;
                 }
                 @media (min-width: 640px) {
                   .wheel-wrapper { width: 450px; height: 450px; }
@@ -442,13 +451,16 @@ export default function Hero() {
                   border-radius: 50%;
                 }
                 .layer-outer {
-                  width: 100%;
-                  height: 100%;
+                  width: 115%;
+                  height: 115%;
+                  top: 50%;
+                  left: 50%;
+                  margin: 0;
                   background-image: url("/images/outer-ring.png");
                   background-size: 100% 100%;
                   background-position: center;
-                  z-index: 5;
-                  animation: spinReverse 40s linear infinite;
+                  z-index: 2;
+                  animation: spinReverseCentered 40s linear infinite;
                 }
                 .layer-idol-person {
                   position: absolute;

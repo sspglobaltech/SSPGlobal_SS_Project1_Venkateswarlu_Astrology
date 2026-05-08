@@ -23,12 +23,11 @@ function ServiceIcon({ title }) {
     case 'Marriage Matching':
     case 'వివాహ అనుకూలత':
       return (
-        <svg {...common}>
-          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M8 11c-2 1-3 3-2 6 1 2.5 4.5 3.5 6 3.5s5-1 6-3.5c1-3 0-5-2-6" />
-          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M9 11h6M8 9h8" />
-          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M12 3c-1.5 0-2.5 1.5-2.5 3s1 3 2.5 3 2.5-1.5 2.5-3-1-3-2.5-3z" />
-          <path strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" d="M9.5 6c-2-1.5-4-1-4.5 0-.5 1 1 3 3 3M14.5 6c2-1.5 4-1 4.5 0 .5 1-1 3-3 3" />
-        </svg>
+        <img
+          src="/marriage-matching-icon.png"
+          alt="Marriage Matching"
+          className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_10px_rgba(234,179,8,0.6)]"
+        />
       );
     case 'Career Guidance':
     case 'వృత్తి మార్గదర్శనం':
