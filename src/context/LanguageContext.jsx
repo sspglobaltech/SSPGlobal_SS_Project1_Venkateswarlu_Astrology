@@ -57,11 +57,13 @@ const translations = {
           title: 'Jothisha Mani',
           issuer: 'Thiru Guruvarul Jothisha Welfare Association',
           icon: '🏆',
+          certificateImage: '/assets/jothisha_mani_certificate.jpg',
         },
         {
           title: 'Jyotish Visharada',
           issuer: 'NS Live Astro Company',
           icon: '🌟',
+          certificateImage: '/assets/jyothish_visharada_certificate.jpg',
         },
         {
           title: 'Certificate of Appreciation',
@@ -77,6 +79,7 @@ const translations = {
           title: 'Diploma in Jyotisha & Vastu',
           issuer: 'Rashtriya Sanskrit Vidyapeetha',
           icon: '📚',
+          certificateImage: '/assets/diploma_jyotisha_vastu_certificate.jpg',
         },
         {
           title: 'M.A. (Phalitha Jyotisha)',
@@ -268,11 +271,13 @@ const translations = {
           title: 'జ్యోతిష మణి',
           issuer: 'తిరు గురువారుళ్ జ్యోతిష వెల్ఫేర్ అసోసియేషన్',
           icon: '🏆',
+          certificateImage: '/assets/jothisha_mani_certificate.jpg',
         },
         {
           title: 'జ్యోతిష్ విశారద',
           issuer: 'NS లైవ్ ఆస్ట్రో కంపెనీ',
           icon: '🌟',
+          certificateImage: '/assets/jyothish_visharada_certificate.jpg',
         },
         {
           title: 'ప్రశంసా పత్రం',
@@ -288,6 +293,7 @@ const translations = {
           title: 'జ్యోతిష & వాస్తు డిప్లొమా',
           issuer: 'రాష్ట్రీయ సంస్కృత విద్యాపీఠం',
           icon: '📚',
+          certificateImage: '/assets/diploma_jyotisha_vastu_certificate.jpg',
         },
         {
           title: 'M.A. (ఫలిత జ్యోతిష)',

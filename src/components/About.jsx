@@ -82,21 +82,42 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="relative py-24 bg-cosmic overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+    <section id="about" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#030612] via-[#09152b] to-[#030612]">
+      {/* Premium Particles / Mandala Background Effect */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[100px] mix-blend-screen" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] mix-blend-screen" />
+      </div>
+
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#040815] via-[#091022]/70 to-transparent pointer-events-none" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         {/* Section header */}
         <div
           ref={sectionRef}
-          className={`text-center mb-16 lg:mb-20 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          className={`mx-auto mb-16 lg:mb-20 max-w-4xl text-center transition-all duration-1000 ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
           }`}
         >
-          <span className="inline-block px-6 py-2 rounded-full text-xs font-semibold tracking-[0.2em] uppercase border border-gold-500/40 text-gold-400 bg-gold-500/10 mb-6 shadow-[0_0_20px_rgba(234,179,8,0.15)]">
-            {t.about.sectionTag}
+          <span className="inline-flex flex-col items-center justify-center gap-4 mb-6">
+            <span className="px-6 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase border border-gold-500/40 text-gold-400 bg-gold-500/10 shadow-[0_0_20px_rgba(234,179,8,0.15)]">
+              {t.about.sectionTag}
+            </span>
           </span>
-          <h2 className="font-heading text-4xl sm:text-5xl lg:text-5xl font-bold gradient-text drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
-            {t.about.title}
+          <h2 className="font-heading text-4xl sm:text-5xl lg:text-5xl font-extrabold leading-tight tracking-wide mb-6">
+            <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300 bg-clip-text text-transparent drop-shadow-[0_2px_15px_rgba(234,179,8,0.3)]">
+              {t.about.title}
+            </span>
           </h2>
+          
+          <div className="mx-auto mt-8 w-full flex justify-center items-center gap-4">
+            <div className="h-[1px] w-16 sm:w-24 bg-gradient-to-r from-transparent to-gold-500/50" />
+            <svg viewBox="0 0 120 24" className="h-6 w-28 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor">
+              <path strokeWidth="1.5" strokeLinecap="round" d="M4 12h34m44 0h34" />
+              <path strokeLinejoin="round" fill="currentColor" d="M60 2 c 2 8 2 8 8 10 c -6 2 -6 2 -8 10 c -2 -8 -2 -8 -8 -10 c 6 -2 6 -2 8 -10 z" />
+            </svg>
+            <div className="h-[1px] w-16 sm:w-24 bg-gradient-to-l from-transparent to-gold-500/50" />
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">

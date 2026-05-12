@@ -78,44 +78,48 @@ export default function Qualifications() {
   const [selectedCert, setSelectedCert] = useState(null);
 
   return (
-    <section id="qualifications" className="relative py-24 overflow-hidden bg-cosmic">
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#040815] via-[#091022]/70 to-transparent pointer-events-none" />
-
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-[0.02]">
-        <svg viewBox="0 0 200 200" className="w-full h-full animate-spin-slow">
-          <circle cx="100" cy="100" r="90" fill="none" stroke="#FFC526" strokeWidth="0.5" />
-          <circle cx="100" cy="100" r="70" fill="none" stroke="#FFC526" strokeWidth="0.3" />
-          <circle cx="100" cy="100" r="50" fill="none" stroke="#FFC526" strokeWidth="0.3" />
-          {Array.from({ length: 12 }).map((_, i) => (
-            <line
-              key={i}
-              x1="100"
-              y1="10"
-              x2="100"
-              y2="190"
-              stroke="#FFC526"
-              strokeWidth="0.2"
-              transform={`rotate(${i * 30} 100 100)`}
-            />
-          ))}
-        </svg>
+    <section id="qualifications" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#030612] via-[#09152b] to-[#030612]">
+      {/* Premium Particles / Mandala Background Effect */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[100px] mix-blend-screen" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] mix-blend-screen" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#040815] via-[#091022]/70 to-transparent pointer-events-none" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         <div
           ref={sectionRef}
-          className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+          className={`mx-auto mb-16 max-w-4xl text-center transition-all duration-1000 ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+          }`}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border border-gold-500/30 text-gold-400 bg-gold-500/5 mb-4">
-            {t.qualifications.sectionTag}
+          <span className="inline-flex flex-col items-center justify-center gap-4 mb-6">
+            <span className="px-6 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase border border-gold-500/40 text-gold-400 bg-gold-500/10 shadow-[0_0_20px_rgba(234,179,8,0.15)]">
+              {t.qualifications.sectionTag}
+            </span>
           </span>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold gradient-text mb-4">
-            {t.qualifications.title}
+          
+          <h2 className="font-heading text-4xl sm:text-5xl lg:text-5xl font-extrabold leading-tight tracking-wide mb-6">
+            <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300 bg-clip-text text-transparent drop-shadow-[0_2px_15px_rgba(234,179,8,0.3)]">
+              {t.qualifications.title}
+            </span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+          
+          <p className="mx-auto max-w-2xl text-lg sm:text-xl leading-8 text-white/80 font-light drop-shadow-sm">
             {t.qualifications.subtitle}
           </p>
+
+          <div className="mx-auto mt-10 w-full flex justify-center items-center gap-4">
+            <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-r from-transparent to-gold-500/50" />
+            <svg viewBox="0 0 120 24" className="h-7 w-36 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor">
+              <path strokeWidth="1.5" strokeLinecap="round" d="M4 12h34m44 0h34" />
+              <path strokeLinejoin="round" fill="currentColor" d="M60 2 c 2 8 2 8 8 10 c -6 2 -6 2 -8 10 c -2 -8 -2 -8 -8 -10 c 6 -2 6 -2 8 -10 z" />
+              <path strokeLinejoin="round" fill="currentColor" opacity="0.6" d="M44 12 l2 -2 l2 2 l-2 2 z" />
+              <path strokeLinejoin="round" fill="currentColor" opacity="0.6" d="M76 12 l-2 -2 l-2 2 l2 2 z" />
+            </svg>
+            <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-l from-transparent to-gold-500/50" />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
@@ -148,7 +152,7 @@ export default function Qualifications() {
 
             <div className="relative mx-auto rounded-xl border-4 border-gold-500/20 shadow-inner overflow-hidden max-w-2xl bg-spiritual-slate/50 flex items-center justify-center min-h-[300px]">
               <img
-                src="/assets/certificate_mockup_1776496466745.png"
+                src={selectedCert.certificateImage || "/assets/certificate_mockup_1776496466745.png"}
                 alt={`${selectedCert.title} Certificate`}
                 className="w-full h-auto object-contain"
               />

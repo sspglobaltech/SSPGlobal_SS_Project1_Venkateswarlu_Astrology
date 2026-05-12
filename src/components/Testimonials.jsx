@@ -49,26 +49,49 @@ export default function Testimonials() {
   }, [next]);
 
   return (
-    <section id="testimonials" className="relative py-24 overflow-hidden bg-cosmic">
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#040815] via-[#091022]/70 to-transparent pointer-events-none" />
+    <section id="testimonials" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#030612] via-[#09152b] to-[#030612]">
+      {/* Premium Particles / Mandala Background Effect */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[100px] mix-blend-screen" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] mix-blend-screen" />
+      </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#040815] via-[#091022]/70 to-transparent pointer-events-none" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         {/* Section header */}
         <div
           ref={sectionRef}
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          className={`mx-auto mb-16 max-w-4xl text-center transition-all duration-1000 ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
           }`}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border border-gold-500/30 text-gold-400 bg-gold-500/5 mb-4">
-            {t.testimonials.sectionTag}
+          <span className="inline-flex flex-col items-center justify-center gap-4 mb-6">
+            <span className="px-6 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase border border-gold-500/40 text-gold-400 bg-gold-500/10 shadow-[0_0_20px_rgba(234,179,8,0.15)]">
+              {t.testimonials.sectionTag}
+            </span>
           </span>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold gradient-text mb-4">
-            {t.testimonials.title}
+          
+          <h2 className="font-heading text-4xl sm:text-5xl lg:text-5xl font-extrabold leading-tight tracking-wide mb-6">
+            <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300 bg-clip-text text-transparent drop-shadow-[0_2px_15px_rgba(234,179,8,0.3)]">
+              {t.testimonials.title}
+            </span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+          
+          <p className="mx-auto max-w-2xl text-lg sm:text-xl leading-8 text-white/80 font-light drop-shadow-sm">
             {t.testimonials.subtitle}
           </p>
+
+          <div className="mx-auto mt-10 w-full flex justify-center items-center gap-4">
+            <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-r from-transparent to-gold-500/50" />
+            <svg viewBox="0 0 120 24" className="h-7 w-36 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor">
+              <path strokeWidth="1.5" strokeLinecap="round" d="M4 12h34m44 0h34" />
+              <path strokeLinejoin="round" fill="currentColor" d="M60 2 c 2 8 2 8 8 10 c -6 2 -6 2 -8 10 c -2 -8 -2 -8 -8 -10 c 6 -2 6 -2 8 -10 z" />
+              <path strokeLinejoin="round" fill="currentColor" opacity="0.6" d="M44 12 l2 -2 l2 2 l-2 2 z" />
+              <path strokeLinejoin="round" fill="currentColor" opacity="0.6" d="M76 12 l-2 -2 l-2 2 l2 2 z" />
+            </svg>
+            <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-l from-transparent to-gold-500/50" />
+          </div>
         </div>
 
         {/* Testimonial Carousel */}
@@ -118,43 +141,45 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* Navigation */}
-          <div className="flex items-center justify-center gap-6 mt-8">
+          {/* Professional Navigation Controls */}
+          <div className="flex items-center justify-center gap-8 mt-12">
             {/* Prev button */}
             <button
               onClick={prev}
-              className="w-12 h-12 rounded-full border border-gold-500/20 flex items-center justify-center text-gold-400 hover:bg-gold-500/10 hover:border-gold-500/40 transition-all duration-300"
+              className="group flex items-center justify-center text-gray-500 hover:text-gold-400 transition-all duration-300"
               aria-label="Previous testimonial"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <svg className="w-8 h-8 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
 
-            {/* Dots */}
-            <div className="flex gap-2">
+            {/* Minimalist Bars Pagination */}
+            <div className="flex items-center gap-3">
               {items.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => goTo(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === currentIndex
-                      ? 'w-8 bg-gradient-to-r from-gold-400 to-saffron-500'
-                      : 'w-2 bg-gray-600 hover:bg-gray-500'
-                  }`}
+                  className="group py-4 flex items-center"
                   aria-label={`Go to testimonial ${i + 1}`}
-                />
+                >
+                  <div className={`h-[2px] rounded-full transition-all duration-500 ${
+                    i === currentIndex
+                      ? 'w-10 bg-gradient-to-r from-gold-300 to-gold-500 shadow-[0_0_10px_rgba(212,175,55,0.3)]'
+                      : 'w-4 bg-white/10 group-hover:bg-white/30'
+                  }`} />
+                </button>
               ))}
             </div>
 
             {/* Next button */}
             <button
               onClick={next}
-              className="w-12 h-12 rounded-full border border-gold-500/20 flex items-center justify-center text-gold-400 hover:bg-gold-500/10 hover:border-gold-500/40 transition-all duration-300"
+              className="group flex items-center justify-center text-gray-500 hover:text-gold-400 transition-all duration-300"
               aria-label="Next testimonial"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <svg className="w-8 h-8 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>

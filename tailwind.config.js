@@ -8,14 +8,14 @@ export default {
     extend: {
       colors: {
         gold: {
-          50: '#FFF9E6',
-          100: '#FFF0BF',
-          200: '#FFE699',
-          300: '#FFDB73',
-          400: '#FFD04D',
-          500: '#FFC526',
-          600: '#E6AA00',
-          700: '#BF8E00',
+          50: '#FDFBF3',
+          100: '#FAF4E0',
+          200: '#F4E5B8',
+          300: '#F7D774',
+          400: '#E5C158',
+          500: '#D4AF37', // metallic gold
+          600: '#C69D26',
+          700: '#B8860B', // dark goldenrod
           800: '#997200',
           900: '#735600',
         },

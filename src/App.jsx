@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
+import LoadingScreen from './components/LoadingScreen';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -13,10 +15,13 @@ import ShareFloat from './components/ShareFloat';
 import Events from './components/Events';
 
 function App() {
+  const [showLoading, setShowLoading] = useState(true);
+
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <div className="cosmic-reference-shell min-h-screen" style={{ transition: 'background-color 0.5s ease' }}>
+        {showLoading && <LoadingScreen onComplete={() => setShowLoading(false)} />}
+        <div className={`cosmic-reference-shell min-h-screen transition-opacity duration-1000 ${showLoading ? 'opacity-0' : 'opacity-100'}`} style={{ transition: 'background-color 0.5s ease, opacity 1s ease' }}>
           <Navbar />
           <main>
             <Hero />

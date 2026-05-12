@@ -37,14 +37,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-3 group">
-            <div
-              className="w-10 h-10 rounded-full flex items-center justify-center font-heading font-bold text-lg transition-transform group-hover:scale-110"
-              style={{ background: theme.buttonBg, color: theme.buttonText }}
-            >
-              V
+            <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center transition-transform group-hover:scale-110 border-2 border-gold-500/30 shadow-lg shadow-gold-500/10">
+              <img src="/assets/acharya_logo.jpg" alt="Acharya Venkateswarlu Logo" className="w-full h-full object-cover" />
             </div>
             <div className="hidden sm:block">
-              <span className="font-heading text-lg font-semibold gradient-text">
+              <span className="font-heading text-lg font-bold text-[#FFC526]">
                 {t.nav.brandName}
               </span>
               <span className="block text-xs tracking-widest uppercase" style={{ color: `${theme.textPrimary}99` }}>
@@ -75,32 +72,28 @@ export default function Navbar() {
 
           {/* Right section */}
           <div className="flex items-center gap-3">
-            {/* Language Toggle */}
+            {/* Premium Sliding Language Toggle */}
             <button
               id="language-toggle"
               onClick={toggleLanguage}
-              className="relative flex items-center bg-white/5 rounded-full p-1 cursor-pointer transition-all duration-300"
-              style={{ borderWidth: '1px', borderStyle: 'solid', borderColor: `rgba(${theme.primaryRgb}, 0.2)` }}
+              className="relative flex items-center p-1 rounded-full bg-[#0a0f25] border cursor-pointer hover:shadow-[0_0_15px_rgba(255,197,38,0.15)] transition-shadow duration-300"
+              style={{ borderColor: `rgba(${theme.primaryRgb}, 0.2)` }}
               title="Toggle Language"
             >
-              <span
-                className="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300"
-                style={
-                  language === 'en'
-                    ? { background: theme.buttonBg, color: theme.buttonText }
-                    : { color: theme.isLight ? '#888' : '#9ca3af' }
-                }
-              >
+              {/* Sliding Gold Background */}
+              <div 
+                className="absolute top-1 bottom-1 w-[38px] rounded-full transition-transform duration-400 ease-out"
+                style={{
+                  background: theme.buttonBg,
+                  transform: language === 'en' ? 'translateX(0)' : 'translateX(38px)',
+                  boxShadow: `0 0 10px ${theme.glowColor}`
+                }}
+              />
+              
+              <span className={`relative z-10 w-[38px] text-center text-[11px] font-bold transition-colors duration-300 tracking-wider uppercase ${language === 'en' ? 'text-[#0A0A1A]' : 'text-[#D4AF37]/50 hover:text-[#D4AF37]'}`}>
                 EN
               </span>
-              <span
-                className="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300"
-                style={
-                  language === 'te'
-                    ? { background: theme.buttonBg, color: theme.buttonText }
-                    : { color: theme.isLight ? '#888' : '#9ca3af' }
-                }
-              >
+              <span className={`relative z-10 w-[38px] text-center text-[13px] font-bold transition-colors duration-300 tracking-wider ${language === 'te' ? 'text-[#0A0A1A]' : 'text-[#D4AF37]/50 hover:text-[#D4AF37]'}`}>
                 తె
               </span>
             </button>

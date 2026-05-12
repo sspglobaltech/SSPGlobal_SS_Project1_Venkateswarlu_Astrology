@@ -39,8 +39,8 @@ function FloatingOm({ style }) {
         className="font-decorative"
         style={{
           fontSize: style.fontSize || '3rem',
-          color: 'rgba(255, 197, 38, 0.08)',
-          textShadow: '0 0 20px rgba(255, 197, 38, 0.15)',
+          color: 'rgba(212, 175, 55, 0.08)',
+          textShadow: '0 0 20px rgba(212, 175, 55, 0.15)',
         }}
       >
         ॐ
@@ -61,7 +61,7 @@ function Diya({ style }) {
         <div
           className="w-3 h-5 rounded-full animate-pulse"
           style={{
-            background: 'radial-gradient(ellipse at bottom, #FF9800, #FFC526, transparent)',
+            background: 'radial-gradient(ellipse at bottom, #B8860B, #D4AF37, transparent)',
             filter: 'blur(1px)',
             animationDuration: `${1 + Math.random() * 1.5}s`,
           }}
@@ -97,14 +97,14 @@ function Lotus({ style, size = 60 }) {
             rx="12"
             ry="28"
             fill="none"
-            stroke="#FFC526"
+            stroke="#D4AF37"
             strokeWidth="1"
             transform={`rotate(${i * 45} 50 50)`}
           />
         ))}
         {/* Center circle */}
-        <circle cx="50" cy="50" r="8" fill="none" stroke="#FF9800" strokeWidth="1" />
-        <circle cx="50" cy="50" r="4" fill="rgba(255, 197, 38, 0.3)" />
+        <circle cx="50" cy="50" r="8" fill="none" stroke="#B8860B" strokeWidth="1" />
+        <circle cx="50" cy="50" r="4" fill="rgba(212, 175, 55, 0.3)" />
       </svg>
     </div>
   );
@@ -125,7 +125,7 @@ function FloatingShloka({ text, style }) {
         className="font-decorative italic whitespace-nowrap"
         style={{
           fontSize: '0.75rem',
-          color: 'rgba(255, 197, 38, 0.06)',
+          color: 'rgba(212, 175, 55, 0.06)',
           letterSpacing: '0.15em',
         }}
       >
@@ -213,12 +213,12 @@ export default function Hero() {
       {/* Sanatana Dharma Background */}
       <div className="absolute inset-0">
         {/* Base gradient aligned with the site-wide cosmic flow */}
+        {/* Base gradient aligned with the site-wide cosmic flow */}
         <div className="absolute inset-0" style={{
           background: 'linear-gradient(180deg, #0F173B 0%, #0A1030 34%, #060A1A 72%, #040815 100%)'
         }} />
         
         {/* Sacred cosmic glows */}
-        <div className="absolute top-0 left-0 w-[700px] h-[700px] bg-gradient-radial from-blue-500/10 via-blue-500/5 to-transparent rounded-full -translate-x-1/4 -translate-y-1/4" />
         <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-pink-500/8 via-fuchsia-500/4 to-transparent rounded-full translate-x-1/4 translate-y-1/4" />
         <div className="absolute top-1/3 left-1/2 w-[600px] h-[600px] bg-gradient-radial from-gold-500/6 via-transparent to-transparent rounded-full -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-[#091022]/80 to-[#10183d]" />
@@ -227,30 +227,30 @@ export default function Hero() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] opacity-[0.025] animate-spin-slow" style={{ animationDuration: '120s' }}>
           <svg viewBox="0 0 400 400" className="w-full h-full">
             {/* Outer circle (Bhupura) */}
-            <circle cx="200" cy="200" r="195" fill="none" stroke="#FFC526" strokeWidth="0.5" />
-            <circle cx="200" cy="200" r="180" fill="none" stroke="#FFC526" strokeWidth="0.3" />
-            <circle cx="200" cy="200" r="165" fill="none" stroke="#FF9800" strokeWidth="0.3" />
+            <circle cx="200" cy="200" r="195" fill="none" stroke="#F7D774" strokeWidth="0.5" />
+            <circle cx="200" cy="200" r="180" fill="none" stroke="#D4AF37" strokeWidth="0.3" />
+            <circle cx="200" cy="200" r="165" fill="none" stroke="#B8860B" strokeWidth="0.3" />
             {/* Lotus petals outer ring - 16 petals */}
             {Array.from({ length: 16 }).map((_, i) => (
-              <ellipse key={`outer-${i}`} cx="200" cy="60" rx="18" ry="45" fill="none" stroke="#FFC526" strokeWidth="0.3" transform={`rotate(${i * 22.5} 200 200)`} />
+              <ellipse key={`outer-${i}`} cx="200" cy="60" rx="18" ry="45" fill="none" stroke="#D4AF37" strokeWidth="0.3" transform={`rotate(${i * 22.5} 200 200)`} />
             ))}
             {/* Inner lotus - 8 petals */}
             {Array.from({ length: 8 }).map((_, i) => (
-              <ellipse key={`inner-${i}`} cx="200" cy="100" rx="14" ry="35" fill="none" stroke="#FF9800" strokeWidth="0.3" transform={`rotate(${i * 45} 200 200)`} />
+              <ellipse key={`inner-${i}`} cx="200" cy="100" rx="14" ry="35" fill="none" stroke="#B8860B" strokeWidth="0.3" transform={`rotate(${i * 45} 200 200)`} />
             ))}
             {/* Upward triangles (Shiva) */}
-            <polygon points="200,50 320,310 80,310" fill="none" stroke="#FFC526" strokeWidth="0.4" />
-            <polygon points="200,70 300,290 100,290" fill="none" stroke="#FFC526" strokeWidth="0.3" />
-            <polygon points="200,90 280,270 120,270" fill="none" stroke="#FFC526" strokeWidth="0.3" />
-            <polygon points="200,110 260,250 140,250" fill="none" stroke="#FFC526" strokeWidth="0.3" />
+            <polygon points="200,50 320,310 80,310" fill="none" stroke="#D4AF37" strokeWidth="0.4" />
+            <polygon points="200,70 300,290 100,290" fill="none" stroke="#D4AF37" strokeWidth="0.3" />
+            <polygon points="200,90 280,270 120,270" fill="none" stroke="#D4AF37" strokeWidth="0.3" />
+            <polygon points="200,110 260,250 140,250" fill="none" stroke="#D4AF37" strokeWidth="0.3" />
             {/* Downward triangles (Shakti) */}
-            <polygon points="200,350 80,90 320,90" fill="none" stroke="#FF9800" strokeWidth="0.4" />
-            <polygon points="200,330 100,110 300,110" fill="none" stroke="#FF9800" strokeWidth="0.3" />
-            <polygon points="200,310 120,130 280,130" fill="none" stroke="#FF9800" strokeWidth="0.3" />
-            <polygon points="200,290 140,150 260,150" fill="none" stroke="#FF9800" strokeWidth="0.3" />
+            <polygon points="200,350 80,90 320,90" fill="none" stroke="#B8860B" strokeWidth="0.4" />
+            <polygon points="200,330 100,110 300,110" fill="none" stroke="#B8860B" strokeWidth="0.3" />
+            <polygon points="200,310 120,130 280,130" fill="none" stroke="#B8860B" strokeWidth="0.3" />
+            <polygon points="200,290 140,150 260,150" fill="none" stroke="#B8860B" strokeWidth="0.3" />
             {/* Bindu (center point) */}
-            <circle cx="200" cy="200" r="5" fill="rgba(255, 197, 38, 0.3)" />
-            <circle cx="200" cy="200" r="2" fill="rgba(255, 197, 38, 0.5)" />
+            <circle cx="200" cy="200" r="5" fill="rgba(212, 175, 55, 0.3)" />
+            <circle cx="200" cy="200" r="2" fill="rgba(212, 175, 55, 0.5)" />
           </svg>
         </div>
 
@@ -261,7 +261,7 @@ export default function Hero() {
             className="star"
             style={{
               ...light,
-              background: i % 3 === 0 ? '#FFC526' : i % 3 === 1 ? '#FF9800' : '#FFE082',
+              background: i % 3 === 0 ? '#F7D774' : i % 3 === 1 ? '#D4AF37' : '#FFE082',
               borderRadius: '50%',
               animationDelay: `${Math.random() * 5}s`,
               animationDuration: `${2 + Math.random() * 4}s`,
@@ -306,7 +306,7 @@ export default function Hero() {
               animationDuration: `${8 + Math.random() * 6}s`,
             }}
           >
-            <span style={{ fontSize: '0.65rem', color: 'rgba(255, 197, 38, 0.05)', letterSpacing: '0.1em' }}>
+            <span style={{ fontSize: '0.65rem', color: 'rgba(212, 175, 55, 0.05)', letterSpacing: '0.1em' }}>
               {name}
             </span>
           </div>
