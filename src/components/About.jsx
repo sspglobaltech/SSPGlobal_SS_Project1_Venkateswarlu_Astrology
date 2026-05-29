@@ -82,14 +82,14 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#030612] via-[#09152b] to-[#030612]">
+    <section id="about" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#02040A] via-[#050712] to-[#0A1128]">
       {/* Premium Particles / Mandala Background Effect */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[100px] mix-blend-screen" />
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] mix-blend-screen" />
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gold-500/10 rounded-full blur-[100px] mix-blend-screen" />
+        <div className="absolute bottom-0 right-1/4 w-[800px] h-[800px] bg-spiritual-accent/10 rounded-full blur-[120px] mix-blend-screen" />
       </div>
 
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#040815] via-[#091022]/70 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#02040A] via-[#050712]/70 to-transparent pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         {/* Section header */}
@@ -130,16 +130,17 @@ export default function About() {
           >
             <div className="relative mt-2">
               {/* Glowing decorative background */}
-              <div className="absolute -inset-4 bg-gradient-to-br from-gold-500/30 to-spiritual-dark/5 rounded-3xl blur-[32px] opacity-70" />
+              <div className="absolute -inset-6 bg-gradient-to-br from-gold-500/40 via-gold-500/10 to-transparent rounded-[2.5rem] blur-[40px] opacity-80" />
               
               {/* Main image wrapper */}
-              <div className="relative rounded-[2rem] overflow-hidden border border-gold-500/30 shadow-[0_15px_50px_-12px_rgba(234,179,8,0.25)] group">
+              <div className="relative rounded-[2rem] overflow-hidden border-2 border-gold-500/50 shadow-[0_20px_60px_-12px_rgba(212,175,55,0.4)] group">
+                <div className="absolute inset-0 bg-[url('/images/pattern-overlay.png')] opacity-10 mix-blend-overlay z-10 pointer-events-none" />
                 <img
-                  src="/images/venkateswarlu-traditional.jpg"
-                  alt="Astrologer Venkateswarlu - Traditional"
-                  className="w-full h-[550px] lg:h-[680px] object-cover object-[center_20%] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  src="/images/profile.jpg"
+                  alt="Astrologer Venkateswarlu - Profile"
+                  className="w-full h-[550px] lg:h-[680px] object-cover object-[center_20%] transition-transform duration-1000 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f18]/90 via-[#0a0f18]/20 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#02040A]/90 via-[#02040A]/20 to-transparent pointer-events-none z-10" />
               </div>
 
               {/* Stats overlaid on image */}
@@ -180,7 +181,7 @@ export default function About() {
               {highlights.map((item, i) => (
                 <div
                   key={i}
-                  className="group relative flex items-center gap-5 p-5 rounded-[1.25rem] bg-[#0a0f18]/60 backdrop-blur-xl border border-gold-500/15 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_30px_-5px_rgba(234,179,8,0.3)] hover:border-gold-500/50 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+                  className="group relative flex items-center gap-5 p-5 rounded-[1.25rem] bg-[#0A1128]/60 backdrop-blur-xl border border-gold-500/20 shadow-[0_8px_30px_-5px_rgba(0,0,0,0.6)] hover:shadow-[0_12px_40px_-5px_rgba(212,175,55,0.3)] hover:border-gold-500/60 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
                 >
                   {/* Hover Aura Effect */}
                   <div className="absolute inset-x-0 -bottom-10 h-20 bg-gradient-to-t from-gold-500/10 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

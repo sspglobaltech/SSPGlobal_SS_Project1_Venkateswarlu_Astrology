@@ -49,14 +49,14 @@ export default function Testimonials() {
   }, [next]);
 
   return (
-    <section id="testimonials" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#030612] via-[#09152b] to-[#030612]">
+    <section id="testimonials" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#02040A] via-[#050712] to-[#0A1128]">
       {/* Premium Particles / Mandala Background Effect */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[100px] mix-blend-screen" />
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] mix-blend-screen" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-spiritual-accent/10 rounded-full blur-[120px] mix-blend-screen" />
       </div>
 
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#040815] via-[#091022]/70 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#02040A] via-[#050712]/70 to-transparent pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         {/* Section header */}
@@ -103,7 +103,7 @@ export default function Testimonials() {
               &ldquo;
             </div>
 
-            <div className="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+            <div className="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden bg-[#0A1128]/60 backdrop-blur-2xl border border-gold-500/20 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.8)]">
               {/* Accent */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold-400 via-saffron-500 to-gold-400" />
 
@@ -115,7 +115,7 @@ export default function Testimonials() {
               >
                 <StarRating rating={items[currentIndex].rating} />
                 
-                <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mt-6 mb-8 font-light italic">
+                <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mt-6 mb-8 font-light italic font-decorative tracking-wide">
                   &ldquo;{items[currentIndex].text}&rdquo;
                 </p>
 

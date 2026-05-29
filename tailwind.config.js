@@ -32,12 +32,12 @@ export default {
           900: '#995C00',
         },
         spiritual: {
-          dark: '#0A0A1A',
-          deeper: '#0D0D2B',
-          deep: '#12123A',
-          medium: '#1A1A4E',
-          light: '#2A2A6E',
-          accent: '#3D3D8E',
+          dark: '#02040A',
+          deeper: '#050712',
+          deep: '#0A1128',
+          medium: '#151E3D',
+          light: '#253565',
+          accent: '#3E57A0',
         },
         sacred: {
           red: '#C62828',
@@ -50,8 +50,8 @@ export default {
       },
       fontFamily: {
         heading: ['Cinzel', '"Noto Serif Telugu"', 'serif'],
-        body: ['Inter', '"Noto Sans Telugu"', 'sans-serif'],
-        decorative: ['Playfair Display', '"Noto Serif Telugu"', 'serif'],
+        body: ['Poppins', 'Inter', '"Noto Sans Telugu"', 'sans-serif'],
+        decorative: ['"Cormorant Garamond"', 'Playfair Display', '"Noto Serif Telugu"', 'serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
@@ -65,6 +65,8 @@ export default {
         'slide-right': 'slideRight 0.8s ease-out forwards',
         'twinkle': 'twinkle 3s ease-in-out infinite',
         'orbit': 'orbit 15s linear infinite',
+        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float-slow': 'float 8s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -103,6 +105,10 @@ export default {
           '0%': { transform: 'rotate(0deg) translateX(150px) rotate(0deg)' },
           '100%': { transform: 'rotate(360deg) translateX(150px) rotate(-360deg)' },
         },
+        pulseGlow: {
+          '0%, 100%': { opacity: '1', transform: 'scale(1)', boxShadow: '0 0 20px rgba(16, 185, 129, 0.5)' },
+          '50%': { opacity: '.8', transform: 'scale(1.05)', boxShadow: '0 0 30px rgba(16, 185, 129, 0.8)' },
+        }
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

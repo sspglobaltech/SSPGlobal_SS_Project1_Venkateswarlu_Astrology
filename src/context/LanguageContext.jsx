@@ -18,11 +18,13 @@ const translations = {
     },
     // Hero
     hero: {
-      title: 'Trusted Hereditary Astrologer',
-      titleHighlight: '15+ Years Experience',
+      titleLine1: 'Trusted Hereditary',
+      titleLine2: 'Astrologer',
+      titleHighlightPart1: '15+ Years',
+      titleHighlightPart2: 'of Vedic Excellence',
       subtitle: 'Guiding lives through ancient Jyotisha wisdom passed through generations',
       cta1: 'Book Consultation',
-      cta2: 'Contact on WhatsApp',
+      cta2: 'WhatsApp Us',
       badge1: '15+ Years',
       badge2: 'Hereditary',
       badge3: '10000+ Consultations',
@@ -232,11 +234,13 @@ const translations = {
     },
     // Hero
     hero: {
-      title: 'విశ్వసనీయ వంశపారంపర్య జ్యోతిష్కులు',
-      titleHighlight: '15+ సంవత్సరాల అనుభవం',
+      titleLine1: 'విశ్వసనీయ వంశపారంపర్య',
+      titleLine2: 'జ్యోతిష్కులు',
+      titleHighlightPart1: '15+ సంవత్సరాల',
+      titleHighlightPart2: 'వేద నైపుణ్యం',
       subtitle: 'తరతరాలుగా అందించబడిన ప్రాచీన జ్యోతిష శాస్త్ర జ్ఞానంతో జీవితాలను మార్గదర్శనం చేస్తున్నాము',
       cta1: 'సంప్రదింపు బుక్ చేయండి',
-      cta2: 'వాట్సాప్‌లో సంప్రదించండి',
+      cta2: 'వాట్సాప్‌ చేయండి',
       badge1: '15+ సంవత్సరాలు',
       badge2: 'వంశపారంపర్యం',
       badge3: '10000+ సంప్రదింపులు',

@@ -66,14 +66,14 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#030612] via-[#09152b] to-[#030612]">
+    <section id="contact" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#02040A] via-[#050712] to-[#02040A]">
       {/* Premium Particles / Mandala Background Effect */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[100px] mix-blend-screen" />
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] mix-blend-screen" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-spiritual-accent/10 rounded-full blur-[120px] mix-blend-screen" />
       </div>
 
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#040815] via-[#091022]/70 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#02040A] via-[#050712]/70 to-transparent pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         {/* Section header */}
@@ -120,15 +120,15 @@ export default function Contact() {
                 href={method.href}
                 target={method.href.startsWith('http') ? '_blank' : undefined}
                 rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="group flex items-center gap-6 p-5 rounded-2xl glass-card border border-gold-500/10 hover:border-gold-500/30 transition-all duration-500"
+                className="group flex items-center gap-6 p-5 rounded-2xl glass-card border border-gold-500/20 hover:border-gold-500/50 hover:shadow-[0_10px_30px_-10px_rgba(212,175,55,0.4)] transition-all duration-500"
               >
-                <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-2xl bg-[#0a1122] border border-gold-500/20 group-hover:border-gold-500/50 group-hover:scale-110 transition-all duration-500 shadow-[0_0_20px_rgba(234,179,8,0.1)] group-hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] shrink-0 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold-500/10 via-transparent to-transparent opacity-50" />
+                <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-2xl bg-[#0A1128]/80 border border-gold-500/30 group-hover:border-gold-400 group-hover:scale-110 transition-all duration-500 shadow-[0_0_20px_rgba(212,175,55,0.15)] group-hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] shrink-0 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold-500/20 via-transparent to-transparent opacity-60" />
                   {method.icon}
                 </div>
                 <div className="flex-1">
-                  <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-widest font-semibold mb-1">{method.title}</div>
-                  <div className="text-base sm:text-lg text-gold-300 font-bold tracking-wide break-all sm:break-normal">{method.value}</div>
+                  <div className="text-xs sm:text-sm text-gray-300 uppercase tracking-widest font-semibold mb-1 group-hover:text-gold-300 transition-colors">{method.title}</div>
+                  <div className="text-base sm:text-lg text-gold-400 font-bold tracking-wide break-all sm:break-normal drop-shadow-sm">{method.value}</div>
                 </div>
               </a>
             ))}
@@ -163,7 +163,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder={t.contact.namePlaceholder}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-gold-500/10 text-white placeholder-gray-500 focus:border-gold-500/40 focus:outline-none focus:ring-1 focus:ring-gold-500/20 transition-all duration-300"
+                  className="w-full px-5 py-4 rounded-xl bg-[#0A1128]/40 backdrop-blur-md border border-gold-500/20 text-white placeholder-gray-400 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-[#0A1128]/60 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]"
                 />
               </div>
 
@@ -179,7 +179,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder={t.contact.phonePlaceholder}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-gold-500/10 text-white placeholder-gray-500 focus:border-gold-500/40 focus:outline-none focus:ring-1 focus:ring-gold-500/20 transition-all duration-300"
+                  className="w-full px-5 py-4 rounded-xl bg-[#0A1128]/40 backdrop-blur-md border border-gold-500/20 text-white placeholder-gray-400 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-[#0A1128]/60 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]"
                 />
               </div>
 
@@ -195,7 +195,7 @@ export default function Contact() {
                   placeholder={t.contact.messagePlaceholder}
                   rows={5}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-gold-500/10 text-white placeholder-gray-500 focus:border-gold-500/40 focus:outline-none focus:ring-1 focus:ring-gold-500/20 transition-all duration-300 resize-none"
+                  className="w-full px-5 py-4 rounded-xl bg-[#0A1128]/40 backdrop-blur-md border border-gold-500/20 text-white placeholder-gray-400 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-[#0A1128]/60 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] resize-none"
                 />
               </div>
 

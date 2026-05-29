@@ -167,12 +167,12 @@ function ServiceCard({ service, index }) {
       }`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
-      <article className="group relative h-full flex flex-col rounded-[28px] bg-gradient-to-br from-[#0a1122]/80 to-[#040812]/90 backdrop-blur-xl border border-gold-500/20 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_50px_-12px_rgba(234,179,8,0.25)] hover:border-gold-500/50 hover:-translate-y-2 transition-all duration-500 overflow-hidden">
+      <article className="group relative h-full flex flex-col rounded-[28px] bg-[#0A1128]/60 backdrop-blur-2xl border border-gold-500/20 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.8)] hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.4)] hover:border-gold-500/60 hover:-translate-y-3 hover:scale-[1.02] transition-all duration-500 overflow-hidden">
         {/* Shimmer Animation */}
         <div className="qualification-card-shimmer z-10" />
         
         {/* Sacred Glow */}
-        <div className="absolute -inset-4 bg-gradient-to-br from-gold-500/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+        <div className="absolute -inset-4 bg-gradient-to-br from-gold-500/20 to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
         <div className="relative z-20 flex flex-col h-full p-8 sm:p-10">
           <div className="mb-8 relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-2xl bg-gradient-to-br from-gold-500/20 to-transparent border border-gold-500/30 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 ease-out shadow-[0_0_20px_rgba(234,179,8,0.15)] group-hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] text-gold-400 shrink-0">
@@ -211,14 +211,14 @@ export default function Services() {
       };
 
   return (
-    <section id="services" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#030612] via-[#09152b] to-[#030612]">
+    <section id="services" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#0A1128] via-[#050712] to-[#02040A]">
       {/* Premium Particles / Mandala Background Effect */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[100px] mix-blend-screen" />
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] mix-blend-screen" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-spiritual-accent/10 rounded-full blur-[120px] mix-blend-screen" />
       </div>
 
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#040815] via-[#091022]/70 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0A1128] via-[#050712]/70 to-transparent pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         <div

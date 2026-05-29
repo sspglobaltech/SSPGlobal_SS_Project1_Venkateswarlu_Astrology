@@ -213,15 +213,14 @@ export default function Hero() {
       {/* Sanatana Dharma Background */}
       <div className="absolute inset-0">
         {/* Base gradient aligned with the site-wide cosmic flow */}
-        {/* Base gradient aligned with the site-wide cosmic flow */}
         <div className="absolute inset-0" style={{
-          background: 'linear-gradient(180deg, #0F173B 0%, #0A1030 34%, #060A1A 72%, #040815 100%)'
+          background: 'linear-gradient(180deg, #02040A 0%, #050712 34%, #0A1128 72%, #02040A 100%)'
         }} />
         
         {/* Sacred cosmic glows */}
-        <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-pink-500/8 via-fuchsia-500/4 to-transparent rounded-full translate-x-1/4 translate-y-1/4" />
-        <div className="absolute top-1/3 left-1/2 w-[600px] h-[600px] bg-gradient-radial from-gold-500/6 via-transparent to-transparent rounded-full -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-[#091022]/80 to-[#10183d]" />
+        <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-spiritual-accent/10 via-spiritual-light/5 to-transparent rounded-full translate-x-1/4 translate-y-1/4" />
+        <div className="absolute top-1/3 left-1/2 w-[800px] h-[800px] bg-gradient-radial from-gold-500/10 via-gold-500/5 to-transparent rounded-full -translate-x-1/2 -translate-y-1/2 blur-2xl" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-[#050712]/80 to-[#02040A]" />
 
         {/* Sri Yantra sacred geometry in center */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] opacity-[0.025] animate-spin-slow" style={{ animationDuration: '120s' }}>
@@ -318,8 +317,9 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 pb-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 sm:pt-36 lg:pt-40 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Text Content */}
           {/* Text Content */}
           <div className="text-center lg:text-left order-2 lg:order-1">
             {/* Badges */}
@@ -336,13 +336,23 @@ export default function Hero() {
             </div>
 
             {/* Title */}
-            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold leading-snug mb-6 animate-slide-up">
-              <span className="text-sacred-white block mb-3">{t.hero.title}</span>
-              <span className="gradient-text-shimmer block mt-4">{t.hero.titleHighlight}</span>
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.3] mb-8 animate-slide-up drop-shadow-2xl flex flex-col">
+              <span className="text-[#FDFBF3] tracking-[0.05em] block pb-1" style={{ textShadow: '0 4px 20px rgba(212, 175, 55, 0.25), 0 0 10px rgba(255, 253, 240, 0.15)' }}>
+                {t.hero.titleLine1}
+              </span>
+              <span className="text-[#FDFBF3] tracking-[0.05em] block pb-3" style={{ textShadow: '0 4px 20px rgba(212, 175, 55, 0.25), 0 0 10px rgba(255, 253, 240, 0.15)' }}>
+                {t.hero.titleLine2}
+              </span>
+              
+              {/* Signature / Experience Line */}
+              <span className="mt-6 flex flex-wrap gap-x-2.5 items-center justify-center lg:justify-start text-2xl sm:text-3xl bg-gradient-to-r from-gold-500 via-gold-200 to-gold-500 bg-[length:200%_auto] animate-shimmer text-transparent bg-clip-text drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]">
+                <span className="font-heading font-bold tracking-[0.1em]">{t.hero.titleHighlightPart1}</span>
+                <span className="font-decorative italic tracking-[0.15em] font-medium">{t.hero.titleHighlightPart2}</span>
+              </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg sm:text-xl text-gray-400 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed animate-slide-up" style={{ animationDelay: '0.3s' }}>
+            <p className="text-lg sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed animate-slide-up font-light drop-shadow-md" style={{ animationDelay: '0.3s' }}>
               {t.hero.subtitle}
             </p>
 
@@ -351,32 +361,51 @@ export default function Hero() {
               <a
                 href="#contact"
                 id="hero-book-consultation"
-                className="glow-button text-center text-lg"
+                className="group relative overflow-hidden flex items-center justify-center gap-3 px-8 py-4 rounded-full w-full sm:w-auto text-base sm:text-lg whitespace-nowrap font-heading font-bold transition-all duration-500 hover:-translate-y-1 
+                bg-black/40 backdrop-blur-xl border border-gold-400/50 text-gold-400
+                shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]
+                hover:border-gold-300 hover:bg-black/60 z-10"
               >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {/* Antique gold glass overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-gold-500/20 via-gold-300/20 to-gold-600/20 opacity-100 mix-blend-overlay"></div>
+                {/* Hover gold light sweep effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[length:200%_auto] animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 mix-blend-screen"></div>
+                
+                <span className="relative z-10 flex items-center justify-center gap-2 drop-shadow-md">
+                  <svg className="w-5 h-5 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                   {t.hero.cta1}
                 </span>
               </a>
+
               <a
                 href="https://wa.me/917799099069"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="hero-whatsapp"
-                className="relative px-8 py-4 rounded-full font-semibold text-center text-lg border-2 border-green-500/50 text-green-400 hover:bg-green-500/10 hover:border-green-400 transition-all duration-300 flex items-center justify-center gap-2"
+                className="group relative overflow-hidden flex items-center justify-center gap-3 px-8 py-4 rounded-full w-full sm:w-auto text-base sm:text-lg whitespace-nowrap font-heading font-semibold transition-all duration-500 hover:-translate-y-1
+                bg-black/30 backdrop-blur-xl border border-gold-500/20 hover:border-emerald-500/40 text-gold-50
+                shadow-[0_0_20px_rgba(37,211,102,0.05)] hover:shadow-[0_0_30px_rgba(37,211,102,0.25)]
+                hover:bg-black/50 z-10"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                {t.hero.cta2}
+                {/* Frosted emerald hover overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-400/10 to-emerald-600/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-screen"></div>
+                {/* Shimmer sweep */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[length:200%_auto] animate-shimmer bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"></div>
+
+                <span className="relative z-10 flex items-center justify-center gap-2 drop-shadow-sm">
+                  <svg className="w-5 h-5 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.5)] group-hover:text-emerald-300 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  {t.hero.cta2}
+                </span>
               </a>
             </div>
           </div>
 
           {/* Hero Image */}
-          <div className="order-1 lg:order-2 flex justify-center animate-fade-in">
+          <div className="order-1 lg:order-2 flex justify-center">
             <style>
               {`
                 @keyframes breathe {
@@ -399,13 +428,22 @@ export default function Hero() {
                   justify-content: center;
                   align-items: center;
                   border-radius: 50%;
-                  animation: breathe 6s ease-in-out infinite;
                 }
                 @media (min-width: 640px) {
                   .wheel-wrapper { width: 450px; height: 450px; }
                 }
                 @media (min-width: 1024px) {
                   .wheel-wrapper { width: 550px; height: 550px; }
+                }
+                .wheel-group {
+                  position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  animation: breathe 6s ease-in-out infinite;
+                }
+                .zodiac-group {
+                  mix-blend-mode: screen;
                 }
                 .wheel-container {
                   position: relative;
@@ -494,17 +532,23 @@ export default function Hero() {
               `}
             </style>
             
-            <div className="wheel-wrapper">
-                <div className="wheel-container">
+            <div className="relative flex justify-center items-center">
+              {/* Divine Aura Glow behind the wheel */}
+              <div className="absolute w-[120%] h-[120%] bg-gradient-radial from-gold-500/30 via-gold-500/10 to-transparent blur-[60px] rounded-full animate-pulse-glow" />
+              <div className="wheel-wrapper">
+                <div className="wheel-group zodiac-group">
                     <div className="wheel-layer layer-inner"></div>
                     <div className="wheel-layer layer-zodiac">
                         <div className="zodiac-rotator"></div>
                     </div>
                     <div className="wheel-layer layer-outer"></div>
-                    <div className="wheel-layer layer-idol-person">
+                </div>
+                <div className="wheel-group idol-group">
+                    <div className="wheel-layer layer-idol-person drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]">
                         <img src="/images/SSSS.png" alt="Astrologer Venkateswarlu" />
                     </div>
                 </div>
+            </div>
             </div>
           </div>
         </div>
