@@ -219,7 +219,7 @@ export default function Hero() {
         
         {/* Sacred cosmic glows */}
         <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-spiritual-accent/10 via-spiritual-light/5 to-transparent rounded-full translate-x-1/4 translate-y-1/4" />
-        <div className="absolute top-1/3 left-1/2 w-[800px] h-[800px] bg-gradient-radial from-gold-500/10 via-gold-500/5 to-transparent rounded-full -translate-x-1/2 -translate-y-1/2 blur-2xl" />
+        <div className="absolute top-1/3 left-1/2 w-[800px] h-[800px] bg-gradient-radial from-gold-500/15 via-gold-500/5 to-transparent rounded-full -translate-x-1/2 -translate-y-1/2 blur-2xl" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-[#050712]/80 to-[#02040A]" />
 
         {/* Sri Yantra sacred geometry in center */}
@@ -533,8 +533,7 @@ export default function Hero() {
             </style>
             
             <div className="relative flex justify-center items-center">
-              {/* Divine Aura Glow behind the wheel */}
-              <div className="absolute w-[120%] h-[120%] bg-gradient-radial from-gold-500/30 via-gold-500/10 to-transparent blur-[60px] rounded-full animate-pulse-glow" />
+              {/* Divine Aura Glow behind the wheel has been removed per request */}
               <div className="wheel-wrapper">
                 <div className="wheel-group zodiac-group">
                     <div className="wheel-layer layer-inner"></div>

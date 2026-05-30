@@ -79,10 +79,8 @@ export default function Events() {
           <div className="mx-auto mt-10 w-full flex justify-center items-center gap-4">
             <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-r from-transparent to-gold-500/50" />
             <svg viewBox="0 0 120 24" className="h-7 w-36 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor">
-              <path strokeWidth="1.5" strokeLinecap="round" d="M4 12h34m44 0h34" />
-              <path strokeLinejoin="round" fill="currentColor" d="M60 2 c 2 8 2 8 8 10 c -6 2 -6 2 -8 10 c -2 -8 -2 -8 -8 -10 c 6 -2 6 -2 8 -10 z" />
-              <path strokeLinejoin="round" fill="currentColor" opacity="0.6" d="M44 12 l2 -2 l2 2 l-2 2 z" />
-              <path strokeLinejoin="round" fill="currentColor" opacity="0.6" d="M76 12 l-2 -2 l-2 2 l2 2 z" />
+              <path strokeWidth="1.5" strokeLinecap="round" d="M4 12h46m20 0h46" />
+              <path strokeWidth="1.5" strokeLinejoin="round" d="M60 7 l5 5 l-5 5 l-5 -5 z" />
             </svg>
             <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-l from-transparent to-gold-500/50" />
           </div>
