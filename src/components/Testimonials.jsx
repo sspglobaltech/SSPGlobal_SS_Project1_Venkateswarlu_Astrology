@@ -1,15 +1,25 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import SectionHeading from './SectionHeading';
 
 function StarRating({ rating }) {
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1 relative z-10">
+      <svg width="0" height="0" className="absolute">
+        <defs>
+          <linearGradient id="gold-metallic" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#F5E6B8" />
+            <stop offset="50%" stopColor="#D4AF37" />
+            <stop offset="100%" stopColor="#8B6508" />
+          </linearGradient>
+        </defs>
+      </svg>
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
-          className={`w-4 h-4 ${i < rating ? 'text-gold-400' : 'text-gray-600'}`}
-          fill="currentColor"
+          className={`w-5 h-5 transition-all duration-300 ${i < rating ? 'drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]' : 'opacity-30 text-gray-500'}`}
+          fill={i < rating ? "url(#gold-metallic)" : "currentColor"}
           viewBox="0 0 20 20"
         >
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -66,70 +76,63 @@ export default function Testimonials() {
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
           }`}
         >
-          <span className="inline-flex flex-col items-center justify-center gap-4 mb-6">
-            <span className="px-6 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase border border-gold-500/40 text-gold-400 bg-gold-500/10 shadow-[0_0_20px_rgba(234,179,8,0.15)]">
-              {t.testimonials.sectionTag}
-            </span>
-          </span>
+          <SectionHeading 
+            title={t.testimonials.title} 
+            subtitle={t.testimonials.sectionTag} 
+          />
           
-          <h2 className="font-heading text-4xl sm:text-5xl lg:text-5xl font-extrabold leading-tight tracking-wide mb-6">
-            <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300 bg-clip-text text-transparent drop-shadow-[0_2px_15px_rgba(234,179,8,0.3)]">
-              {t.testimonials.title}
-            </span>
-          </h2>
-          
-          <p className="mx-auto max-w-2xl text-lg sm:text-xl leading-8 text-white/80 font-light drop-shadow-sm">
+          <p className="mx-auto max-w-2xl text-lg sm:text-xl leading-8 text-white/80 font-light drop-shadow-sm mt-4">
             {t.testimonials.subtitle}
           </p>
-
-          <div className="mx-auto mt-10 w-full flex justify-center items-center gap-4">
-            <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-r from-transparent to-gold-500/50" />
-            <svg viewBox="0 0 120 24" className="h-7 w-36 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor">
-              <path strokeWidth="1.5" strokeLinecap="round" d="M4 12h46m20 0h46" />
-              <path strokeWidth="1.5" strokeLinejoin="round" d="M60 7 l5 5 l-5 5 l-5 -5 z" />
-            </svg>
-            <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-l from-transparent to-gold-500/50" />
-          </div>
         </div>
 
         {/* Testimonial Carousel */}
         <div className="max-w-4xl mx-auto">
           {/* Main testimonial */}
-          <div className="relative">
-            {/* Large quote mark */}
-            <div className="absolute -top-8 left-4 text-8xl text-gold-500/10 font-decorative leading-none select-none">
-              &ldquo;
-            </div>
+          <div className="relative group">
+            
+            {/* Ultra-Premium Glassmorphism Card */}
+            <div className="rounded-[32px] p-8 sm:p-12 relative overflow-hidden bg-[rgba(8,15,35,0.22)] backdrop-blur-[24px] border border-[rgba(212,175,55,0.18)] shadow-[0_8px_40px_rgba(0,0,0,0.35),0_0_25px_rgba(212,175,55,0.06),inset_0_1px_0_rgba(255,255,255,0.08)] transition-all duration-300 ease-out group-hover:-translate-y-[6px] group-hover:shadow-[0_12px_45px_rgba(0,0,0,0.45),0_0_40px_rgba(212,175,55,0.08),inset_0_1px_0_rgba(255,255,255,0.1)]">
+              
+              {/* Glass Reflection Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-40 pointer-events-none" />
+              
+              {/* Soft Golden Ambient Glow on Hover */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[#D4AF37]/5 blur-[80px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-            <div className="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden bg-[#0A1128]/60 backdrop-blur-2xl border border-gold-500/20 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.8)]">
-              {/* Accent */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold-400 via-saffron-500 to-gold-400" />
+              {/* Large Transparent Quote Mark */}
+              <div className="absolute -top-4 left-6 text-[180px] text-white/5 font-serif leading-none select-none pointer-events-none">
+                &ldquo;
+              </div>
 
               {/* Content */}
               <div
-                className={`transition-all duration-500 ${
+                className={`relative z-10 transition-all duration-500 ${
                   isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
                 }`}
               >
                 <StarRating rating={items[currentIndex].rating} />
                 
-                <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mt-6 mb-8 font-light italic font-decorative tracking-wide">
+                {/* Premium Typography for Review */}
+                <p className="text-lg sm:text-xl text-[#F8F9FA] leading-loose mt-8 mb-10 font-light italic tracking-wide">
                   &ldquo;{items[currentIndex].text}&rdquo;
                 </p>
 
-                <div className="flex items-center gap-4">
-                  {/* Avatar placeholder */}
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gold-400 to-saffron-500 flex items-center justify-center text-spiritual-dark font-heading font-bold text-xl">
+                <div className="flex items-center gap-5">
+                  {/* Luxury Circular Badge Avatar */}
+                  <div className="w-16 h-16 rounded-full bg-[rgba(255,255,255,0.06)] backdrop-blur-[12px] border border-[rgba(212,175,55,0.25)] shadow-[0_4px_15px_rgba(0,0,0,0.2)] flex items-center justify-center text-[#D4AF37] font-serif font-bold text-2xl drop-shadow-[0_0_5px_rgba(212,175,55,0.5)]">
                     {items[currentIndex].name.charAt(0)}
                   </div>
                   <div>
-                    <div className="font-heading text-lg font-semibold text-gold-300">
+                    {/* Royal Gold Client Name */}
+                    <div className="font-serif text-xl font-semibold text-[#D4AF37] drop-shadow-[0_0_8px_rgba(212,175,55,0.3)] tracking-wide">
                       {items[currentIndex].name}
                     </div>
-                    <div className="text-sm text-gray-400 flex items-center gap-1">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    {/* Minimalist Location */}
+                    <div className="text-sm text-white/50 flex items-center gap-1.5 mt-1 font-light tracking-wide uppercase">
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                       {items[currentIndex].location}
                     </div>
@@ -141,17 +144,6 @@ export default function Testimonials() {
 
           {/* Professional Navigation Controls */}
           <div className="flex items-center justify-center gap-8 mt-12">
-            {/* Prev button */}
-            <button
-              onClick={prev}
-              className="group flex items-center justify-center text-gray-500 hover:text-gold-400 transition-all duration-300"
-              aria-label="Previous testimonial"
-            >
-              <svg className="w-8 h-8 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
             {/* Minimalist Bars Pagination */}
             <div className="flex items-center gap-3">
               {items.map((_, i) => (
@@ -163,23 +155,12 @@ export default function Testimonials() {
                 >
                   <div className={`h-[2px] rounded-full transition-all duration-500 ${
                     i === currentIndex
-                      ? 'w-10 bg-gradient-to-r from-gold-300 to-gold-500 shadow-[0_0_10px_rgba(212,175,55,0.3)]'
-                      : 'w-4 bg-white/10 group-hover:bg-white/30'
+                      ? 'w-10 bg-gradient-to-r from-[#D4AF37] to-[#F5E6B8] shadow-[0_0_10px_rgba(212,175,55,0.5)]'
+                      : 'w-4 bg-white/20 group-hover:bg-white/50'
                   }`} />
                 </button>
               ))}
             </div>
-
-            {/* Next button */}
-            <button
-              onClick={next}
-              className="group flex items-center justify-center text-gray-500 hover:text-gold-400 transition-all duration-300"
-              aria-label="Next testimonial"
-            >
-              <svg className="w-8 h-8 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
           </div>
         </div>
       </div>

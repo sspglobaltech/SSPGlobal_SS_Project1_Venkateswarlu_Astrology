@@ -32,7 +32,9 @@ export default function Navbar() {
           : 'top-6 py-4 rounded-[2.5rem] border-gold-500/20 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5),0_0_15px_rgba(212,175,55,0.1)]'
       }`}
       style={{
-        background: scrolled ? 'rgba(5, 8, 22, 0.65)' : 'rgba(5, 8, 22, 0.45)',
+        background: scrolled 
+          ? 'rgba(5, 8, 22, 0.65)' 
+          : 'linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(5, 8, 22, 0.15) 100%)',
         backdropFilter: scrolled ? 'blur(24px)' : 'blur(20px)',
         WebkitBackdropFilter: scrolled ? 'blur(24px)' : 'blur(20px)',
       }}

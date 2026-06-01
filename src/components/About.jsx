@@ -1,6 +1,7 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { Award, Users, GraduationCap, ScrollText } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SectionHeading from './SectionHeading';
 
 export default function About() {
   const [sectionRef, isVisible] = useScrollAnimation(0.1);
@@ -20,23 +21,14 @@ export default function About() {
         {/* SECTION HEADER */}
         <div 
           ref={sectionRef}
-          className={`mx-auto mb-16 lg:mb-24 flex flex-col items-center text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className={`mx-auto mb-16 lg:mb-24 flex flex-col items-center text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} w-full`}
         >
-          <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 backdrop-blur-sm">
-            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.25em] uppercase text-[#D4AF37]">
-              {language === 'en' ? 'Our Legacy' : 'మా వారసత్వం'}
-            </span>
-          </div>
-          
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-[#D4AF37] mb-6 drop-shadow-sm">
-            {language === 'en' ? 'About Acharya Venkateswarlu' : 'ఆచార్య వేంకటేశ్వర్లు గారి గురించి'}
-          </h2>
-          
-          <div className="flex items-center justify-center gap-4 w-full max-w-[200px]">
-            <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-[#D4AF37]/40" />
-            <div className="w-2 h-2 rotate-45 border border-[#D4AF37]/60" />
-            <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-[#D4AF37]/40" />
-          </div>
+          <SectionHeading 
+            subtitleEn="Our Legacy" 
+            subtitleTe="మా వారసత్వం" 
+            titleEn="About Acharya Venkateswarlu" 
+            titleTe="ఆచార్య వేంకటేశ్వర్లు గారి గురించి" 
+          />
         </div>
 
         {/* LAYOUT STRUCTURE */}

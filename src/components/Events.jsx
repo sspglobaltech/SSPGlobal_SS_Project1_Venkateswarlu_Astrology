@@ -1,57 +1,127 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import SectionHeading from './SectionHeading';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Events() {
   const { t } = useLanguage();
   const [sectionRef, isVisible] = useScrollAnimation(0.1);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-  // We are using the generated placeholder images
   const events = [
     {
       id: 1,
       image: '/assets/event-1.jpg',
-      alt: 'Isha Foundation Visit',
-      description: 'A spiritual journey to the magnificent Adiyogi Shiva statue at Isha Foundation, Coimbatore.'
+      title: 'AWARD CEREMONY',
+      location: 'HYDERABAD',
+      date: 'March 2024',
+      description: 'Receiving honors at the Jyotisha award ceremony.'
     },
     {
       id: 2,
       image: '/assets/event-2.jpg',
-      alt: 'Sharing Vedic Wisdom',
-      description: 'Sharing profound Jyotisha wisdom and Sanatana Dharma insights through traditional teaching.'
+      title: 'ASTROLOGY SEMINAR',
+      location: 'HYDERABAD',
+      date: 'January 2024',
+      description: 'Addressing the gathering at the Vedic Astrology seminar.'
     },
     {
       id: 3,
+      image: '/assets/event-3.png',
+      title: 'CAMPUS VISIT',
+      location: 'TIRUPATI',
+      date: 'December 2023',
+      description: 'At the university campus with scenic mountain views.'
+    },
+    {
+      id: 4,
       image: '/assets/event-4.jpg',
-      alt: 'Vedic Scholars Gathering',
-      description: 'Collaborating with esteemed Vedic scholars to preserve and promote ancient astrology sciences.'
+      title: 'SPIRITUAL EVENT 1',
+      location: 'CHENNAI',
+      date: '2024',
+      description: 'Participating in a grand spiritual ceremony.'
+    },
+    {
+      id: 5,
+      image: '/assets/event-5.png',
+      title: 'SPIRITUAL EVENT 2',
+      location: 'BANGALORE',
+      date: '2024',
+      description: 'Guiding devotees during a spiritual gathering.'
+    },
+    {
+      id: 6,
+      image: '/assets/event-6.png',
+      title: 'SPIRITUAL EVENT 3',
+      location: 'COIMBATORE',
+      date: '2024',
+      description: 'A special moment captured during a temple visit.'
+    },
+    {
+      id: 7,
+      image: '/assets/event-7.png',
+      title: 'SPIRITUAL EVENT 4',
+      location: 'CHENNAI',
+      date: '2024',
+      description: 'Sharing Jyotisha wisdom at a recent gathering.'
+    },
+    {
+      id: 8,
+      image: '/assets/event-8.png',
+      title: 'SPIRITUAL EVENT 5',
+      location: 'TIRUPATI',
+      date: '2024',
+      description: 'Participating in sacred rituals.'
     }
   ];
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % events.length);
+  const nextEvent = (e) => {
+    e?.stopPropagation();
+    if (!selectedEvent) return;
+    const currentIndex = events.findIndex(ev => ev.id === selectedEvent.id);
+    setSelectedEvent(events[(currentIndex + 1) % events.length]);
   };
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? events.length - 1 : prev - 1));
+  const prevEvent = (e) => {
+    e?.stopPropagation();
+    if (!selectedEvent) return;
+    const currentIndex = events.findIndex(ev => ev.id === selectedEvent.id);
+    setSelectedEvent(events[currentIndex === 0 ? events.length - 1 : currentIndex - 1]);
   };
 
-  // Auto-play for professional feel
+  // Keyboard navigation
   useEffect(() => {
-    const timer = setInterval(nextSlide, 6000);
-    return () => clearInterval(timer);
-  }, []);
+    const handleKeyDown = (e) => {
+      if (!selectedEvent) return;
+      if (e.key === 'Escape') setSelectedEvent(null);
+      if (e.key === 'ArrowRight') nextEvent();
+      if (e.key === 'ArrowLeft') prevEvent();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedEvent]);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedEvent) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedEvent]);
 
   return (
-    <section id="events" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#030612] via-[#09152b] to-[#030612]">
-      {/* Premium Particles / Mandala Background Effect */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[100px] mix-blend-screen" />
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] mix-blend-screen" />
+    <section id="events" className="relative overflow-hidden py-24 sm:py-32 bg-[#050B1E]">
+      {/* Luxury Spiritual Enhancements - Particles & Glows */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#D4AF37]/5 rounded-full blur-[120px] mix-blend-screen" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 rounded-full blur-[100px] mix-blend-screen" />
       </div>
-
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#040815] via-[#091022]/70 to-transparent pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         <div
@@ -60,107 +130,131 @@ export default function Events() {
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
           }`}
         >
-          <span className="inline-flex flex-col items-center justify-center gap-4 mb-6">
-            <span className="px-6 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase border border-gold-500/40 text-gold-400 bg-gold-500/10 shadow-[0_0_20px_rgba(234,179,8,0.15)]">
-              {t.events?.sectionTag || 'Gallery'}
-            </span>
-          </span>
+          <SectionHeading 
+            title={t.events?.title || 'Spiritual Journey & Events'} 
+            subtitle={t.events?.sectionTag || 'Gallery'} 
+          />
           
-          <h2 className="font-heading text-4xl sm:text-5xl lg:text-5xl font-extrabold leading-tight tracking-wide mb-6">
-            <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300 bg-clip-text text-transparent drop-shadow-[0_2px_15px_rgba(234,179,8,0.3)]">
-              {t.events?.title || 'Spiritual Journey & Events'}
-            </span>
-          </h2>
-          
-          <p className="mx-auto max-w-2xl text-lg sm:text-xl leading-8 text-white/80 font-light drop-shadow-sm">
+          <p className="mx-auto max-w-2xl text-lg sm:text-xl leading-8 text-white/80 font-light drop-shadow-sm mt-4">
             {t.events?.subtitle || 'Glimpses of our spiritual ceremonies, astrology seminars, and divine gatherings.'}
           </p>
-
-          <div className="mx-auto mt-10 w-full flex justify-center items-center gap-4">
-            <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-r from-transparent to-gold-500/50" />
-            <svg viewBox="0 0 120 24" className="h-7 w-36 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor">
-              <path strokeWidth="1.5" strokeLinecap="round" d="M4 12h46m20 0h46" />
-              <path strokeWidth="1.5" strokeLinejoin="round" d="M60 7 l5 5 l-5 5 l-5 -5 z" />
-            </svg>
-            <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-l from-transparent to-gold-500/50" />
-          </div>
         </div>
 
-        {/* Professional Carousel */}
-        <div className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-gold-500/10 group">
-          
-          {/* Main Track */}
-          <div 
-            className="flex transition-transform duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] h-[400px] md:h-[600px]"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          >
-            {events.map((event) => (
-              <div key={event.id} className="w-full flex-shrink-0 relative">
+        {/* Masonry Gallery Grid */}
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+          {events.map((event, index) => (
+            <motion.div 
+              key={event.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              onClick={() => setSelectedEvent(event)}
+              className="break-inside-avoid relative overflow-hidden rounded-[24px] cursor-pointer group bg-[#020510] border border-[#D4AF37]/10 shadow-lg"
+            >
+              <div className="relative w-full overflow-hidden">
                 <img 
                   src={event.image} 
-                  alt={event.alt} 
-                  className="w-full h-full object-cover select-none"
+                  alt={event.title} 
+                  loading="lazy"
+                  className="w-full h-auto object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                {/* Premium Gradient Shadow */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent flex items-end">
-                  <div className="p-8 md:p-12 w-full text-center md:text-left translate-y-4 group-hover:translate-y-0 transition-all duration-700 opacity-90 group-hover:opacity-100">
-                    <h3 className="text-white font-heading text-2xl md:text-4xl font-bold mb-2 drop-shadow-lg">
-                      {event.alt}
-                    </h3>
-                    <p className="text-gold-200/80 md:text-lg max-w-2xl leading-relaxed">
-                      {event.description}
-                    </p>
-                  </div>
-                </div>
+                
+                {/* Smooth Dark Gradient Overlay (Optional now, but good for pure image depth) */}
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Hover Reveal Glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_40px_rgba(212,175,55,0.15)] pointer-events-none" />
               </div>
-            ))}
-          </div>
-
-          {/* Minimal Navigation Arrows */}
-          <button 
-            onClick={prevSlide}
-            className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center text-white/50 hover:text-gold-400 hover:bg-gold-500/10 transition-all backdrop-blur-sm opacity-0 group-hover:opacity-100 border border-white/5 hover:border-gold-500/30"
-            aria-label="Previous Slide"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          
-          <button 
-            onClick={nextSlide}
-            className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center text-white/50 hover:text-gold-400 hover:bg-gold-500/10 transition-all backdrop-blur-sm opacity-0 group-hover:opacity-100 border border-white/5 hover:border-gold-500/30"
-            aria-label="Next Slide"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Professional Minimalist Pagination (Moved below photos to prevent overlap) */}
-        <div className="mt-8 flex items-center justify-center gap-2">
-          {events.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className="group py-2 flex items-center"
-              aria-label={`Go to slide ${index + 1}`}
-            >
-              <div className={`h-[3px] rounded-full transition-all duration-500 ${
-                currentIndex === index 
-                  ? 'bg-gradient-to-r from-gold-300 to-gold-500 w-12 shadow-[0_0_10px_rgba(212,175,55,0.3)]' 
-                  : 'bg-white/10 w-6 group-hover:bg-white/30'
-              }`} />
-            </button>
+            </motion.div>
           ))}
         </div>
-
-        {/* Gallery Footer Subtext */}
-        <div className="mt-8 text-center text-gray-500/60 text-xs tracking-widest uppercase">
-          Slide to explore the spiritual legacy
-        </div>
       </div>
+
+      {/* Fullscreen Lightbox Modal */}
+      <AnimatePresence>
+        {selectedEvent && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#02040A]/95 backdrop-blur-xl p-4 md:p-8"
+            onClick={() => setSelectedEvent(null)}
+          >
+            {/* Close Button */}
+            <button 
+              className="absolute top-6 right-6 p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-colors border border-white/10 z-[110]"
+              onClick={(e) => { e.stopPropagation(); setSelectedEvent(null); }}
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Navigation Buttons */}
+            <button 
+              className="absolute left-4 md:left-12 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#050B1E]/80 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#050B1E] transition-all border border-[#D4AF37]/30 z-[110]"
+              onClick={prevEvent}
+            >
+              <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+            </button>
+            <button 
+              className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#050B1E]/80 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#050B1E] transition-all border border-[#D4AF37]/30 z-[110]"
+              onClick={nextEvent}
+            >
+              <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+            </button>
+
+            {/* Modal Content container */}
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="relative max-w-5xl w-full max-h-[90vh] flex flex-col md:flex-row bg-[#050B1E] rounded-3xl overflow-hidden border border-[#D4AF37]/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Image Section */}
+              <div className="w-full md:w-2/3 bg-black relative flex items-center justify-center min-h-[300px] md:min-h-[500px]">
+                <img 
+                  src={selectedEvent.image} 
+                  alt={selectedEvent.title}
+                  className="w-full h-full object-contain md:object-cover"
+                />
+              </div>
+
+              {/* Info Section */}
+              <div className="w-full md:w-1/3 p-8 flex flex-col justify-center relative">
+                {/* Mandala Corner Decoration */}
+                <div className="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
+                  <svg viewBox="0 0 100 100" className="w-full h-full fill-[#D4AF37]">
+                    <path d="M50 0 C60 30 70 40 100 50 C70 60 60 70 50 100 C40 70 30 60 0 50 C30 40 40 30 50 0 Z" />
+                  </svg>
+                </div>
+
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-xs uppercase tracking-[0.2em] font-bold text-[#D4AF37]">
+                    {selectedEvent.location}
+                  </span>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]/40" />
+                  <span className="text-xs text-white/50 font-light">
+                    {selectedEvent.date}
+                  </span>
+                </div>
+
+                <h2 className="text-3xl font-heading font-bold text-white mb-6 leading-tight">
+                  {selectedEvent.title}
+                </h2>
+                
+                <div className="w-12 h-px bg-[#D4AF37]/40 mb-6" />
+
+                <p className="text-white/70 leading-relaxed font-light text-lg">
+                  {selectedEvent.description}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

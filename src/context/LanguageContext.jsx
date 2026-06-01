@@ -24,7 +24,7 @@ const translations = {
       titleHighlightPart2: 'of Vedic Excellence',
       subtitle: 'Guiding lives through ancient Jyotisha wisdom passed through generations',
       cta1: 'Book Consultation',
-      cta2: 'WhatsApp Us',
+      cta2: 'Consult on WhatsApp',
       badge1: '15+ Years',
       badge2: 'Hereditary',
       badge3: '10000+ Consultations',

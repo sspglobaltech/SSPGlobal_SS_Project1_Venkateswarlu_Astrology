@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import SectionHeading from './SectionHeading';
 
 function QualificationIcon({ icon, className = 'w-7 h-7' }) {
   const commonProps = {
@@ -94,39 +95,30 @@ export default function Qualifications() {
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
           }`}
         >
-          <span className="inline-flex flex-col items-center justify-center gap-4 mb-6">
-            <span className="px-6 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase border border-gold-500/40 text-gold-400 bg-gold-500/10 shadow-[0_0_20px_rgba(234,179,8,0.15)]">
-              {t.qualifications.sectionTag}
-            </span>
-          </span>
+          <SectionHeading 
+            title={t.qualifications.title} 
+            subtitle={t.qualifications.sectionTag} 
+          />
           
-          <h2 className="font-heading text-4xl sm:text-5xl lg:text-5xl font-extrabold leading-tight tracking-wide mb-6">
-            <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300 bg-clip-text text-transparent drop-shadow-[0_2px_15px_rgba(234,179,8,0.3)]">
-              {t.qualifications.title}
-            </span>
-          </h2>
-          
-          <p className="mx-auto max-w-2xl text-lg sm:text-xl leading-8 text-white/80 font-light drop-shadow-sm">
+          <p className="mx-auto max-w-2xl text-lg sm:text-xl leading-8 text-white/80 font-light drop-shadow-sm mt-4">
             {t.qualifications.subtitle}
           </p>
-
-          <div className="mx-auto mt-10 w-full flex justify-center items-center gap-4">
-            <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-r from-transparent to-gold-500/50" />
-            <svg viewBox="0 0 120 24" className="h-7 w-36 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor">
-              <path strokeWidth="1.5" strokeLinecap="round" d="M4 12h46m20 0h46" />
-              <path strokeWidth="1.5" strokeLinejoin="round" d="M60 7 l5 5 l-5 5 l-5 -5 z" />
-            </svg>
-            <div className="h-[1px] w-16 sm:w-32 bg-gradient-to-l from-transparent to-gold-500/50" />
-          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
+        <div className="flex flex-wrap justify-center gap-6">
           {t.qualifications.items.map((item, i) => (
-            <div key={i} className="w-full">
+            <div key={i} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] max-w-[320px] lg:max-w-none">
               <QualificationCard item={item} index={i} onClick={() => setSelectedCert(item)} />
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Hidden preloader for certificates to remove loading lag */}
+      <div className="hidden">
+        {t.qualifications.items.map((item, i) => (
+          <img key={`preload-${i}`} src={item.certificateImage || "/assets/certificate_mockup_1776496466745.png"} alt="" />
+        ))}
       </div>
 
       {selectedCert && (

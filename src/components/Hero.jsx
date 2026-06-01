@@ -219,7 +219,6 @@ export default function Hero() {
         
         {/* Sacred cosmic glows */}
         <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-spiritual-accent/10 via-spiritual-light/5 to-transparent rounded-full translate-x-1/4 translate-y-1/4" />
-        <div className="absolute top-1/3 left-1/2 w-[800px] h-[800px] bg-gradient-radial from-gold-500/15 via-gold-500/5 to-transparent rounded-full -translate-x-1/2 -translate-y-1/2 blur-2xl" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-[#050712]/80 to-[#02040A]" />
 
         {/* Sri Yantra sacred geometry in center */}
@@ -327,10 +326,17 @@ export default function Hero() {
               {[t.hero.badge1, t.hero.badge2, t.hero.badge3].map((badge, i) => (
                 <span
                   key={i}
-                  className="px-4 py-1.5 rounded-full text-xs font-semibold border border-gold-500/30 text-gold-400 bg-gold-500/5 backdrop-blur-sm"
+                  className="group relative overflow-hidden flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-500 hover:-translate-y-0.5 border border-gold-400/50 text-gold-400 bg-black/40 backdrop-blur-xl hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:border-gold-300 hover:bg-black/60 cursor-default"
                   style={{ animationDelay: `${i * 0.2}s` }}
                 >
-                  ✦ {badge}
+                  {/* Antique gold glass overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-gold-500/20 via-gold-300/20 to-gold-600/20 opacity-100 mix-blend-overlay pointer-events-none"></div>
+                  {/* Hover gold light sweep effect */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[length:200%_auto] animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 mix-blend-screen pointer-events-none"></div>
+                  
+                  <span className="relative z-10 drop-shadow-md">
+                    ✦ {badge}
+                  </span>
                 </span>
               ))}
             </div>
@@ -347,7 +353,7 @@ export default function Hero() {
               {/* Signature / Experience Line */}
               <span className="mt-6 flex flex-wrap gap-x-2.5 items-center justify-center lg:justify-start text-2xl sm:text-3xl bg-gradient-to-r from-gold-500 via-gold-200 to-gold-500 bg-[length:200%_auto] animate-shimmer text-transparent bg-clip-text drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]">
                 <span className="font-heading font-bold tracking-[0.1em]">{t.hero.titleHighlightPart1}</span>
-                <span className="font-decorative italic tracking-[0.15em] font-medium">{t.hero.titleHighlightPart2}</span>
+                <span className="font-heading font-bold tracking-[0.1em]">{t.hero.titleHighlightPart2}</span>
               </span>
             </h1>
 
@@ -362,14 +368,14 @@ export default function Hero() {
                 href="#contact"
                 id="hero-book-consultation"
                 className="group relative overflow-hidden flex items-center justify-center gap-3 px-8 py-4 rounded-full w-full sm:w-auto text-base sm:text-lg whitespace-nowrap font-heading font-bold transition-all duration-500 hover:-translate-y-1 
-                bg-black/40 backdrop-blur-xl border border-gold-400/50 text-gold-400
-                shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]
-                hover:border-gold-300 hover:bg-black/60 z-10"
+                bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 text-[#02040A] border-2 border-gold-200/50 hover:border-gold-100
+                shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_35px_rgba(212,175,55,0.6)]
+                z-10"
               >
                 {/* Antique gold glass overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-gold-500/20 via-gold-300/20 to-gold-600/20 opacity-100 mix-blend-overlay"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-gold-200/20 via-white/10 to-gold-200/20 opacity-100 mix-blend-overlay"></div>
                 {/* Hover gold light sweep effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[length:200%_auto] animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 mix-blend-screen"></div>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[length:200%_auto] animate-shimmer bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 mix-blend-screen"></div>
                 
                 <span className="relative z-10 flex items-center justify-center gap-2 drop-shadow-md">
                   <svg className="w-5 h-5 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -468,7 +474,6 @@ export default function Hero() {
                   background-image: url("/images/up-sticker-${langSuffix}.png");
                   background-size: cover;
                   background-position: center center;
-                  opacity: 0.15;
                   z-index: 1;
                   mask-image: radial-gradient(circle at center, black 92%, transparent 100%);
                   -webkit-mask-image: radial-gradient(circle at center, black 92%, transparent 100%);
@@ -518,17 +523,7 @@ export default function Hero() {
                   object-fit: contain;
                 }
                 .layer-idol-person::before {
-                  content: "";
-                  position: absolute;
-                  top: 10%;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  width: 60%;
-                  height: 40%;
-                  background: radial-gradient(circle, rgba(255, 200, 0, 0.35), transparent 70%);
-                  filter: blur(25px);
-                  z-index: -1;
-                }
+                /* Yellow radial glow behind idol removed per user request */
               `}
             </style>
             
