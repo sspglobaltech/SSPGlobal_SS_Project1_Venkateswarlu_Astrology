@@ -54,7 +54,6 @@ function QualificationIcon({ icon, className = 'w-7 h-7' }) {
 function QualificationIconBadge({ icon, large = false }) {
   return (
     <div className={`qualification-icon-badge ${large ? 'qualification-icon-badge-large' : ''}`}>
-      <div className="qualification-icon-badge-ring" />
       <div className="qualification-icon-badge-core">
         <QualificationIcon icon={icon} className={large ? 'w-9 h-9' : 'w-7 h-7'} />
       </div>
@@ -122,33 +121,7 @@ export default function Qualifications() {
       </div>
 
       {selectedCert && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm transition-opacity" onClick={() => setSelectedCert(null)}>
-          <div className="relative max-w-4xl w-full bg-spiritual-dark border border-gold-500/30 rounded-2xl overflow-hidden shadow-2xl p-8 text-center" onClick={(e) => e.stopPropagation()}>
-            <button
-              className="absolute top-4 right-4 text-gray-400 hover:text-gold-400 transition-colors"
-              onClick={() => setSelectedCert(null)}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <div className="mb-6">
-              <div className="mb-4">
-                <QualificationIconBadge icon={selectedCert.icon} large />
-              </div>
-              <h3 className="font-heading text-2xl font-bold text-gold-300">{selectedCert.title}</h3>
-              <p className="text-gray-400">{selectedCert.issuer}</p>
-            </div>
-
-            <div className="relative mx-auto rounded-xl border-4 border-gold-500/20 shadow-inner overflow-hidden max-w-2xl bg-spiritual-slate/50 flex items-center justify-center min-h-[300px]">
-              <img
-                src={selectedCert.certificateImage || "/assets/certificate_mockup_1776496466745.png"}
-                alt={`${selectedCert.title} Certificate`}
-                className="w-full h-auto object-contain"
-              />
-            </div>
-          </div>
-        </div>
+        <CertificateModal cert={selectedCert} onClose={() => setSelectedCert(null)} />
       )}
     </section>
   );
@@ -166,12 +139,10 @@ function QualificationCard({ item, index, onClick }) {
       onClick={onClick}
     >
       <div className="qualification-card relative h-full min-h-[290px] w-full flex flex-col overflow-hidden text-center">
-        <div className="qualification-card-border" />
         <div className="qualification-card-inner flex-1 w-full relative flex flex-col items-center justify-start rounded-2xl px-8 pt-10 pb-8">
-          <div className="qualification-card-shimmer" />
           <QualificationCertifiedBadge />
 
-          <div className="mb-6 transition-transform duration-300 group-hover:scale-110">
+          <div className="mb-6 transition-transform duration-300 group-hover:scale-110 relative z-10">
             <QualificationIconBadge icon={item.icon} />
           </div>
 
@@ -185,6 +156,103 @@ function QualificationCard({ item, index, onClick }) {
             {item.issuer}
           </p>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function CertificateModal({ cert, onClose }) {
+  const [scale, setScale] = useState(1);
+  const [isFitToScreen, setIsFitToScreen] = useState(true);
+
+  const handleZoomIn = () => {
+    setScale(prev => Math.min(3, prev + 0.25));
+    setIsFitToScreen(false);
+  };
+  
+  const handleZoomOut = () => {
+    setScale(prev => Math.max(0.5, prev - 0.25));
+    setIsFitToScreen(false);
+  };
+  
+  const handleReset = () => {
+    setScale(1);
+    setIsFitToScreen(false);
+  };
+  
+  const handleFitToScreen = () => {
+    setScale(1);
+    setIsFitToScreen(true);
+  };
+
+  return (
+    <div 
+      className="fixed inset-0 z-[100] flex items-center justify-center transition-opacity" 
+      style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}
+      onClick={onClose}
+    >
+      {/* Scrollable Modal Container */}
+      <div className="w-full h-full overflow-auto flex items-start justify-center p-2 sm:p-4 pb-28 custom-scrollbar touch-pan-x touch-pan-y" onClick={onClose}>
+        
+        {/* Frame Design */}
+        <div 
+          className="relative w-auto bg-spiritual-dark border border-gold-500/30 rounded-2xl shadow-2xl p-4 sm:p-8 text-center transition-transform duration-300 origin-top mt-8 sm:mt-12 flex flex-col" 
+          onClick={(e) => e.stopPropagation()}
+          style={{ 
+            transform: `scale(${scale})`,
+            ...(isFitToScreen ? { maxHeight: '85vh', maxWidth: '90vw' } : { maxWidth: 'none' })
+          }}
+        >
+          {/* Close Button */}
+          <button
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 text-gray-400 hover:text-gold-400 bg-black/40 hover:bg-black/60 p-2 rounded-full backdrop-blur-md transition-all border border-white/10"
+            onClick={onClose}
+            title="Close"
+          >
+            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          
+          {/* Header */}
+          <div className="mb-4 sm:mb-6 mt-4 sm:mt-0 flex-shrink-0">
+            <h3 className="font-heading text-xl sm:text-2xl font-bold text-gold-300">{cert.title}</h3>
+            <p className="text-gray-400 text-sm sm:text-base">{cert.issuer}</p>
+          </div>
+
+          {/* Image Container with Original Styling */}
+          <div className="relative mx-auto rounded-xl border-4 border-gold-500/20 shadow-inner overflow-hidden bg-spiritual-slate/50 flex items-center justify-center flex-1">
+            <img
+              src={cert.certificateImage || "/assets/certificate_mockup_1776496466745.png"}
+              alt={`${cert.title} Certificate`}
+              style={isFitToScreen ? {
+                maxHeight: '100%',
+                maxWidth: '100%',
+                width: 'auto',
+                height: 'auto',
+                objectFit: 'contain'
+              } : {
+                maxHeight: 'none',
+                maxWidth: 'none',
+                width: 'auto',
+                height: 'auto',
+                objectFit: 'contain'
+              }}
+              className="min-h-[200px]"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Zoom Controls */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[110] flex items-center gap-2 sm:gap-4 px-3 sm:px-6 py-2 sm:py-3 bg-black/70 backdrop-blur-md border border-white/10 rounded-full shadow-2xl text-xs sm:text-sm" onClick={e => e.stopPropagation()}>
+        <button onClick={handleZoomIn} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1">➕<span className="hidden sm:inline"> Zoom In</span></button>
+        <div className="w-px h-4 bg-white/20"></div>
+        <button onClick={handleZoomOut} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1">➖<span className="hidden sm:inline"> Zoom Out</span></button>
+        <div className="w-px h-4 bg-white/20"></div>
+        <button onClick={handleReset} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1">🔄<span className="hidden sm:inline"> Reset</span></button>
+        <div className="w-px h-4 bg-white/20"></div>
+        <button onClick={handleFitToScreen} className={`px-1 sm:px-2 py-1 transition-colors flex items-center gap-1 ${isFitToScreen ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>🔍<span className="hidden sm:inline"> Fit to Screen</span></button>
       </div>
     </div>
   );

@@ -1,10 +1,43 @@
+import { useEffect, useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { Award, Users, GraduationCap, ScrollText } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SectionHeading from './SectionHeading';
 
+const AnimatedCounter = ({ end, duration = 2000, suffix = "+", isVisible }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let startTime = null;
+    let animationFrame;
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      
+      const ratio = Math.min(progress / duration, 1);
+      const easeOut = ratio === 1 ? 1 : 1 - Math.pow(2, -10 * ratio);
+      
+      setCount(Math.floor(end * easeOut));
+
+      if (ratio < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [end, duration, isVisible]);
+
+  return <>{count}{suffix}</>;
+};
+
 export default function About() {
   const [sectionRef, isVisible] = useScrollAnimation(0.1);
+  const [statsRef, statsVisible] = useScrollAnimation(0.5);
   const { language } = useLanguage();
 
   return (
@@ -48,17 +81,23 @@ export default function About() {
             </div>
 
             {/* LEGACY STATISTICS */}
-            <div className="flex flex-col gap-4 px-2 mt-auto">
+            <div ref={statsRef} className="flex flex-col gap-4 px-2 mt-auto">
               <div className="flex items-center justify-between pb-4 border-b border-white/5">
-                <span className="text-2xl font-heading font-bold text-[#D4AF37]">15+</span>
+                <span className="text-2xl font-heading font-bold text-[#D4AF37]">
+                  <AnimatedCounter end={15} isVisible={statsVisible} />
+                </span>
                 <span className="text-[11px] uppercase tracking-widest text-slate-400">{language === 'en' ? 'Years Experience' : 'సంవత్సరాల అనుభవం'}</span>
               </div>
               <div className="flex items-center justify-between pb-4 border-b border-white/5">
-                <span className="text-2xl font-heading font-bold text-[#D4AF37]">10000+</span>
+                <span className="text-2xl font-heading font-bold text-[#D4AF37]">
+                  <AnimatedCounter end={10000} isVisible={statsVisible} />
+                </span>
                 <span className="text-[11px] uppercase tracking-widest text-slate-400">{language === 'en' ? 'Consultations' : 'సంప్రదింపులు'}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-2xl font-heading font-bold text-[#D4AF37]">5000+</span>
+                <span className="text-2xl font-heading font-bold text-[#D4AF37]">
+                  <AnimatedCounter end={5000} isVisible={statsVisible} />
+                </span>
                 <span className="text-[11px] uppercase tracking-widest text-slate-400">{language === 'en' ? 'Families Guided' : 'కుటుంబాలకు మార్గనిర్దేశం'}</span>
               </div>
             </div>
@@ -116,24 +155,37 @@ export default function About() {
             </div>
 
             {/* JYOTISHA WISDOM QUOTE */}
-            <div className={`w-full text-center px-4 mt-auto mb-8 transition-all duration-1000 delay-[900ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              {language === 'en' ? (
-                <p className="font-heading text-[13px] leading-relaxed tracking-wider text-[#FDFBF3]/80 italic">
-                  “<span className="font-bold bg-gradient-to-b from-[#FFF4CC] via-[#D4AF37] to-[#8B6508] bg-clip-text text-transparent drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">Jyotisha</span> is the <span className="font-bold bg-gradient-to-b from-[#FFF4CC] via-[#D4AF37] to-[#8B6508] bg-clip-text text-transparent drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">divine light</span> that guides life with <span className="font-bold bg-gradient-to-b from-[#FFF4CC] via-[#D4AF37] to-[#8B6508] bg-clip-text text-transparent drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">wisdom</span>, harmony, and purpose.”
-                  <br/>
-                  <span className="inline-block mt-1.5 text-[#D4AF37]/80 text-[10px] tracking-[0.2em] uppercase font-semibold not-italic">
-                    — Ancient Vedic Wisdom
-                  </span>
-                </p>
-              ) : (
-                <p className="font-heading text-[15px] sm:text-[16px] leading-relaxed tracking-wider text-[#FDFBF3]/80 italic">
-                  "<span className="font-bold bg-gradient-to-b from-[#FFF4CC] via-[#D4AF37] to-[#8B6508] bg-clip-text text-transparent drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">జ్యోతిష్యం</span> మన జీవిత పయనంలో జ్ఞానం, సామరస్యం మరియు సార్థకతను ప్రసాదించే ఒక అపురూపమైన <span className="font-bold bg-gradient-to-b from-[#FFF4CC] via-[#D4AF37] to-[#8B6508] bg-clip-text text-transparent drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">దివ్య జ్యోతి</span>."
-                  <br/>
-                  <span className="inline-block mt-2 text-[#D4AF37]/80 text-[11px] tracking-[0.2em] uppercase font-semibold not-italic">
-                    — సనాతన వైదిక జ్ఞానం
-                  </span>
-                </p>
-              )}
+            <div className={`w-full max-w-2xl mx-auto px-4 mt-auto mb-8 transition-all duration-1000 delay-[900ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <div className="relative group rounded-xl overflow-hidden p-[1.5px]">
+                {/* Animated Golden Neon Line Backgrounds */}
+                <div className="absolute inset-[-100%] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#D4AF37_100%)] animate-[spin_3s_linear_infinite]" />
+                <div className="absolute inset-[-100%] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#D4AF37_100%)] animate-[spin_3s_linear_infinite] blur-[8px] opacity-80" />
+                
+                {/* Inner Content */}
+                <div className="relative bg-[#071224] rounded-xl px-6 py-6 sm:px-10 sm:py-8 w-full text-center h-full flex items-center justify-center">
+                  {language === 'en' ? (
+                    <p className="font-heading text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed tracking-wider italic">
+                      <span className="font-bold bg-[linear-gradient(110deg,#D4AF37_35%,#ffffff_50%,#D4AF37_65%)] bg-[length:200%_auto] animate-shimmer bg-clip-text text-transparent drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                        “Jyotisha is the divine light that guides life with wisdom, harmony, and purpose.”
+                      </span>
+                      <br/>
+                      <span className="inline-block mt-3 text-[#D4AF37]/80 text-[10px] tracking-[0.2em] uppercase font-semibold not-italic drop-shadow-none">
+                        — Ancient Vedic Wisdom
+                      </span>
+                    </p>
+                  ) : (
+                    <p className="font-heading text-[16px] sm:text-[17px] lg:text-[18px] leading-relaxed tracking-wider italic">
+                      <span className="font-bold bg-[linear-gradient(110deg,#D4AF37_35%,#ffffff_50%,#D4AF37_65%)] bg-[length:200%_auto] animate-shimmer bg-clip-text text-transparent drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                        "జ్యోతిష్యం మన జీవిత పయనంలో జ్ఞానం, సామరస్యం మరియు సార్థకతను ప్రసాదించే ఒక అపురూపమైన దివ్య జ్యోతి."
+                      </span>
+                      <br/>
+                      <span className="inline-block mt-3 text-[#D4AF37]/80 text-[11px] tracking-[0.2em] uppercase font-semibold not-italic drop-shadow-none">
+                        — సనాతన వైదిక జ్ఞానం
+                      </span>
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
 
             {/* SIGNATURE PROFILE IDENTITY BLOCK */}
