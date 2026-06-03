@@ -5,7 +5,7 @@ import SectionHeading from './SectionHeading';
 
 function StarRating({ rating }) {
   return (
-    <div className="flex gap-1 relative z-10">
+    <div className="flex justify-end gap-1 relative z-10">
       <svg width="0" height="0" className="absolute">
         <defs>
           <linearGradient id="gold-metallic" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -100,10 +100,12 @@ export default function Testimonials() {
               {/* Soft Golden Ambient Glow on Hover */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[#D4AF37]/5 blur-[80px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              {/* Large Transparent Quote Mark */}
+              {/* Large Transparent Left Quote Mark */}
               <div className="absolute -top-4 left-6 text-[180px] text-white/5 font-serif leading-none select-none pointer-events-none">
                 &ldquo;
               </div>
+
+
 
               {/* Content */}
               <div
@@ -145,7 +147,7 @@ export default function Testimonials() {
           {/* Professional Navigation Controls */}
           <div className="flex items-center justify-center gap-8 mt-12">
             {/* Minimalist Bars Pagination */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center flex-wrap gap-2 sm:gap-3">
               {items.map((_, i) => (
                 <button
                   key={i}

@@ -157,7 +157,7 @@ function ServiceIcon({ title }) {
   }
 }
 
-function ServiceCard({ service, index }) {
+function ServiceCard({ service, index, className = '' }) {
   const [cardRef, isVisible] = useScrollAnimation(0.1);
 
   return (
@@ -165,7 +165,7 @@ function ServiceCard({ service, index }) {
       ref={cardRef}
       className={`h-full transition-all duration-1000 ease-out ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-      }`}
+      } ${className}`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
       <article className="group relative h-full flex flex-col rounded-[28px] bg-[#0A1128]/60 backdrop-blur-2xl border border-gold-500/20 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.8)] hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.4)] hover:border-gold-500/60 hover:-translate-y-3 hover:scale-[1.02] transition-all duration-500 overflow-hidden">
@@ -239,9 +239,22 @@ export default function Services() {
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {t.services.items.map((service, index) => (
-            <ServiceCard key={service.title} service={service} index={index} />
-          ))}
+          {t.services.items.map((service, index) => {
+            // Center the 7th item on lg screens (3 columns) and sm screens (2 columns)
+            const isSeventhItem = index === 6;
+            const alignmentClasses = isSeventhItem 
+              ? 'sm:col-span-2 lg:col-span-1 lg:col-start-2 sm:max-w-md sm:mx-auto lg:max-w-none lg:mx-0 w-full' 
+              : '';
+
+            return (
+              <ServiceCard 
+                key={service.title} 
+                service={service} 
+                index={index} 
+                className={alignmentClasses}
+              />
+            );
+          })}
         </div>
 
         <div className="mt-20 text-center">

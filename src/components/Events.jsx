@@ -224,12 +224,7 @@ export default function Events() {
 
               {/* Info Section */}
               <div className="w-full md:w-1/3 p-8 flex flex-col justify-center relative">
-                {/* Mandala Corner Decoration */}
-                <div className="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
-                  <svg viewBox="0 0 100 100" className="w-full h-full fill-[#D4AF37]">
-                    <path d="M50 0 C60 30 70 40 100 50 C70 60 60 70 50 100 C40 70 30 60 0 50 C30 40 40 30 50 0 Z" />
-                  </svg>
-                </div>
+                {/* Mandala Corner Decoration Removed */}
 
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-xs uppercase tracking-[0.2em] font-bold text-[#D4AF37]">

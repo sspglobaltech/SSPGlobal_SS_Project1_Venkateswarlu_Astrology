@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import SectionHeading from './SectionHeading';
@@ -107,7 +107,7 @@ export default function Qualifications() {
         <div className="flex flex-wrap justify-center gap-6">
           {t.qualifications.items.map((item, i) => (
             <div key={i} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] max-w-[320px] lg:max-w-none">
-              <QualificationCard item={item} index={i} onClick={() => setSelectedCert(item)} />
+              <QualificationCard item={item} index={i} onOpenModal={() => setSelectedCert(item)} />
             </div>
           ))}
         </div>
@@ -127,35 +127,102 @@ export default function Qualifications() {
   );
 }
 
-function QualificationCard({ item, index, onClick }) {
+function QualificationCard({ item, index, onOpenModal }) {
   const [cardRef, isVisible] = useScrollAnimation(0.1);
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const handleCardClick = () => {
+    setIsFlipped(!isFlipped);
+  };
+
+  const handleViewClick = (e) => {
+    e.stopPropagation();
+    onOpenModal(item);
+  };
 
   return (
     <div
       ref={cardRef}
-      className={`group h-full transition-all duration-700 cursor-pointer ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      className={`group h-full w-full min-h-[340px] transition-all duration-700 cursor-pointer ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
-      style={{ transitionDelay: `${index * 100}ms` }}
-      onClick={onClick}
+      style={{ transitionDelay: `${index * 100}ms`, perspective: '1200px' }}
+      onClick={handleCardClick}
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
     >
-      <div className="qualification-card relative h-full min-h-[290px] w-full flex flex-col overflow-hidden text-center">
-        <div className="qualification-card-inner flex-1 w-full relative flex flex-col items-center justify-start rounded-2xl px-8 pt-10 pb-8">
+      <div 
+        className="relative h-full w-full text-center transition-transform duration-[800ms] ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:-translate-y-2 sm:hover:scale-[1.02] hover:shadow-[0_15px_50px_rgba(212,175,55,0.18),0_0_35px_rgba(212,175,55,0.12)] hover:z-20 rounded-2xl"
+        style={{
+          transformStyle: 'preserve-3d',
+          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
+        }}
+      >
+        {/* Front Face */}
+        <div 
+          className="absolute inset-0 w-full h-full flex flex-col items-center justify-start rounded-2xl px-6 pt-10 pb-12 bg-[rgba(8,15,35,0.4)] backdrop-blur-[12px] border border-[rgba(212,175,55,0.18)]"
+          style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+        >
           <QualificationCertifiedBadge />
 
-          <div className="mb-6 transition-transform duration-300 group-hover:scale-110 relative z-10">
+          <div className="mb-6 transition-transform duration-300 sm:group-hover:scale-110 relative z-10">
             <QualificationIconBadge icon={item.icon} />
           </div>
 
-          <h3 className="qualification-card-title">
+          <h3 className="qualification-card-title text-[#D4AF37] font-serif font-semibold text-lg tracking-wide mb-4">
             {item.title}
           </h3>
 
-          <div className="qualification-card-divider" />
+          <div className="w-12 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent mx-auto mb-4" />
 
-          <p className="qualification-card-issuer">
+          <p className="text-white/80 text-xs tracking-widest uppercase mb-4">
             {item.issuer}
           </p>
+
+          <div className="absolute bottom-6 left-0 w-full opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500">
+            <span className="text-[#D4AF37] text-sm font-light tracking-wide">📜 Click to View Certificate</span>
+          </div>
         </div>
+
+        {/* Back Face */}
+        <div 
+          className="absolute inset-0 w-full h-full rounded-2xl border border-[rgba(212,175,55,0.3)] shadow-[0_0_30px_rgba(212,175,55,0.15)] overflow-hidden flex flex-col items-center justify-between py-6 px-4 bg-[#050B1E]"
+          style={{ 
+            backfaceVisibility: 'hidden', 
+            WebkitBackfaceVisibility: 'hidden',
+            transform: 'rotateY(180deg)' 
+          }}
+        >
+          {/* Subtle gold glow behind certificate */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.12),transparent_70%)] pointer-events-none" />
+          
+          <div className="flex-1 w-full flex flex-col items-center justify-center relative z-10">
+            {/* Small framed certificate image */}
+            <div className="w-full h-[130px] flex-shrink-0 border border-[#D4AF37]/40 p-1.5 rounded-md mb-4 bg-white/5 backdrop-blur-sm shadow-inner flex items-center justify-center overflow-hidden">
+              <img 
+                src={item.certificateImage || "/assets/certificate_mockup_1776496466745.png"} 
+                alt="Certificate" 
+                className="w-full h-full object-contain drop-shadow-md opacity-90 select-none"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+              />
+            </div>
+            
+            <h4 className="text-[#D4AF37] font-serif font-semibold text-sm mb-1 tracking-wide leading-tight px-2 text-center line-clamp-2">
+              {item.title}
+            </h4>
+            <p className="text-white/80 text-[10px] tracking-wider uppercase text-center px-2 line-clamp-2">
+              {item.issuer}
+            </p>
+          </div>
+
+          <button 
+            onClick={handleViewClick}
+            className="relative z-20 mt-3 px-5 py-2 rounded-full bg-[rgba(212,175,55,0.1)] border border-[#D4AF37]/60 text-[#D4AF37] text-xs font-medium tracking-wide hover:bg-[#D4AF37] hover:text-[#050B1E] transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] flex items-center justify-center gap-2 w-full max-w-[200px]"
+          >
+            <span>🔍 View Full Certificate</span>
+          </button>
+        </div>
+
       </div>
     </div>
   );
@@ -164,6 +231,10 @@ function QualificationCard({ item, index, onClick }) {
 function CertificateModal({ cert, onClose }) {
   const [scale, setScale] = useState(1);
   const [isFitToScreen, setIsFitToScreen] = useState(true);
+  
+  const scrollContainerRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragState = useRef({ isDown: false, startX: 0, startY: 0, scrollLeft: 0, scrollTop: 0, hasDragged: false });
 
   const handleZoomIn = () => {
     setScale(prev => Math.min(3, prev + 0.25));
@@ -175,24 +246,69 @@ function CertificateModal({ cert, onClose }) {
     setIsFitToScreen(false);
   };
   
-  const handleReset = () => {
-    setScale(1);
-    setIsFitToScreen(false);
-  };
-  
   const handleFitToScreen = () => {
     setScale(1);
     setIsFitToScreen(true);
   };
 
+  const handleMouseDown = (e) => {
+    if (!scrollContainerRef.current) return;
+    setIsDragging(true);
+    dragState.current = {
+      isDown: true,
+      startX: e.pageX - scrollContainerRef.current.offsetLeft,
+      startY: e.pageY - scrollContainerRef.current.offsetTop,
+      scrollLeft: scrollContainerRef.current.scrollLeft,
+      scrollTop: scrollContainerRef.current.scrollTop,
+      hasDragged: false
+    };
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+    dragState.current.isDown = false;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    dragState.current.isDown = false;
+  };
+
+  const handleMouseMove = (e) => {
+    if (!dragState.current.isDown || !scrollContainerRef.current) return;
+    e.preventDefault();
+    dragState.current.hasDragged = true;
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const y = e.pageY - scrollContainerRef.current.offsetTop;
+    const walkX = (x - dragState.current.startX) * 1.5;
+    const walkY = (y - dragState.current.startY) * 1.5;
+    scrollContainerRef.current.scrollLeft = dragState.current.scrollLeft - walkX;
+    scrollContainerRef.current.scrollTop = dragState.current.scrollTop - walkY;
+  };
+
+  const handleContainerClick = (e) => {
+    if (dragState.current.hasDragged) {
+      dragState.current.hasDragged = false;
+      return;
+    }
+    onClose();
+  };
+
   return (
     <div 
-      className="fixed inset-0 z-[100] flex items-center justify-center transition-opacity" 
+      className="fixed inset-0 z-[100] flex items-center justify-center transition-opacity select-none" 
       style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}
-      onClick={onClose}
     >
       {/* Scrollable Modal Container */}
-      <div className="w-full h-full overflow-auto flex items-start justify-center p-2 sm:p-4 pb-28 custom-scrollbar touch-pan-x touch-pan-y" onClick={onClose}>
+      <div 
+        ref={scrollContainerRef}
+        className={`w-full h-full overflow-auto flex items-start justify-center p-2 sm:p-4 pb-28 custom-scrollbar touch-pan-x touch-pan-y ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`} 
+        onClick={handleContainerClick}
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseLeave}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+      >
         
         {/* Frame Design */}
         <div 
@@ -225,6 +341,9 @@ function CertificateModal({ cert, onClose }) {
             <img
               src={cert.certificateImage || "/assets/certificate_mockup_1776496466745.png"}
               alt={`${cert.title} Certificate`}
+              draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
+              className="min-h-[200px] select-none"
               style={isFitToScreen ? {
                 maxHeight: '100%',
                 maxWidth: '100%',
@@ -238,7 +357,6 @@ function CertificateModal({ cert, onClose }) {
                 height: 'auto',
                 objectFit: 'contain'
               }}
-              className="min-h-[200px]"
             />
           </div>
         </div>
@@ -249,8 +367,6 @@ function CertificateModal({ cert, onClose }) {
         <button onClick={handleZoomIn} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1">➕<span className="hidden sm:inline"> Zoom In</span></button>
         <div className="w-px h-4 bg-white/20"></div>
         <button onClick={handleZoomOut} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1">➖<span className="hidden sm:inline"> Zoom Out</span></button>
-        <div className="w-px h-4 bg-white/20"></div>
-        <button onClick={handleReset} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1">🔄<span className="hidden sm:inline"> Reset</span></button>
         <div className="w-px h-4 bg-white/20"></div>
         <button onClick={handleFitToScreen} className={`px-1 sm:px-2 py-1 transition-colors flex items-center gap-1 ${isFitToScreen ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>🔍<span className="hidden sm:inline"> Fit to Screen</span></button>
       </div>
