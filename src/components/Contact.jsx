@@ -7,17 +7,47 @@ export default function Contact() {
   const { t } = useLanguage();
   const [sectionRef, isVisible] = useScrollAnimation(0.1);
   const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
+  const [errors, setErrors] = useState({ name: '', phone: '' });
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    if (errors[e.target.name]) {
+      setErrors(prev => ({ ...prev, [e.target.name]: '' }));
+    }
+  };
+
+  const validate = () => {
+    let isValid = true;
+    const newErrors = { name: '', phone: '' };
+
+    if (!formData.name.trim() || formData.name.length < 3) {
+      newErrors.name = 'Name must be at least 3 characters.';
+      isValid = false;
+    } else if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
+      newErrors.name = 'Name can only contain letters and spaces.';
+      isValid = false;
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required.';
+      isValid = false;
+    } else if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = 'Please enter a valid 10-digit phone number.';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validate()) return;
+    
     // Build WhatsApp message
-    const msg = `Name: ${formData.name}%0APhone: ${formData.phone}%0AMessage: ${formData.message}`;
-    window.open(`https://wa.me/917799099069?text=${msg}`, '_blank');
+    const msg = `Name: ${formData.name}\nPhone: ${formData.phone}\nMessage: ${formData.message}`;
+    window.open(`https://wa.me/917799099069?text=${encodeURIComponent(msg)}`, '_blank');
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
   };
@@ -128,8 +158,9 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder={t.contact.namePlaceholder}
                   required
-                  className="w-full px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/20 text-white placeholder-gray-400 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-white/10 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)]"
+                  className={`w-full px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border ${errors.name ? 'border-red-500/80 focus:border-red-500' : 'border-white/20 focus:border-gold-400'} text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-white/10 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)]`}
                 />
+                {errors.name && <p className="text-red-400 text-xs mt-1.5 ml-1">{errors.name}</p>}
               </div>
 
               <div>
@@ -144,8 +175,9 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder={t.contact.phonePlaceholder}
                   required
-                  className="w-full px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/20 text-white placeholder-gray-400 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-white/10 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)]"
+                  className={`w-full px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border ${errors.phone ? 'border-red-500/80 focus:border-red-500' : 'border-white/20 focus:border-gold-400'} text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-white/10 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)]`}
                 />
+                {errors.phone && <p className="text-red-400 text-xs mt-1.5 ml-1">{errors.phone}</p>}
               </div>
 
               <div>
