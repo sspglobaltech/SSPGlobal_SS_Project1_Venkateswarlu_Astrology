@@ -12,11 +12,11 @@ export default function BookingModal({ isOpen, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const msg = `Name: ${formData.name}%0APhone: ${formData.phone}%0AQuery: ${formData.query}%0AIntent: Book Sacred Consultation`;
-    window.open(`https://wa.me/917799099069?text=${msg}`, '_blank');
+    // Excel export logic will be added here later
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
+      setFormData({ name: '', phone: '', query: '' });
       onClose();
     }, 2000);
   };

@@ -195,7 +195,7 @@ function ServiceCard({ service, index, className = '' }) {
   );
 }
 
-export default function Services() {
+export default function Services({ onOpenBookingModal }) {
   const { language, t } = useLanguage();
   const [sectionRef, isVisible] = useScrollAnimation(0.1);
 
@@ -258,12 +258,12 @@ export default function Services() {
         </div>
 
         <div className="mt-20 text-center">
-          <a href="#contact" className="glow-button inline-flex items-center gap-3 text-lg sm:text-xl font-bold !py-5 !px-10 shadow-[0_0_30px_rgba(234,179,8,0.4)] hover:shadow-[0_0_40px_rgba(234,179,8,0.6)] transition-all">
+          <button onClick={onOpenBookingModal} className="cursor-pointer glow-button inline-flex items-center gap-3 text-lg sm:text-xl font-bold !py-5 !px-10 shadow-[0_0_30px_rgba(234,179,8,0.4)] hover:shadow-[0_0_40px_rgba(234,179,8,0.6)] transition-all">
             <span className="relative z-10">{sectionCopy.cta}</span>
             <svg className="relative z-10 h-6 w-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </button>
         </div>
       </div>
     </section>

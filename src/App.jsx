@@ -30,7 +30,7 @@ function App() {
             <Hero onOpenBookingModal={() => setIsBookingModalOpen(true)} />
             <About />
             <Qualifications />
-            <Services />
+            <Services onOpenBookingModal={() => setIsBookingModalOpen(true)} />
             <Events />
             <Testimonials />
             <Contact />
