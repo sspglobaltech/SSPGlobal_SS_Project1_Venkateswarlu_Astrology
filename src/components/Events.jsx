@@ -74,6 +74,46 @@ export default function Events() {
       location: 'TIRUPATI',
       date: '2024',
       description: 'Participating in sacred rituals.'
+    },
+    {
+      id: 9,
+      image: '/assets/gallery-5.jpg',
+      title: 'DIVINE PRESENCE',
+      location: 'ADIYOGI',
+      date: '2024',
+      description: 'In deep meditation at the majestic Adiyogi Shiva statue.'
+    },
+    {
+      id: 10,
+      image: '/assets/gallery-6.jpg',
+      title: 'ASTROLOGY SESSION',
+      location: 'CLASSROOM',
+      date: '2024',
+      description: 'Guiding and teaching students in a dedicated session.'
+    },
+    {
+      id: 11,
+      image: '/assets/gallery-7.jpg',
+      title: 'SACRED GATEWAY',
+      location: 'DHYANALINGA',
+      date: '2024',
+      description: 'Standing before the powerful snake archway of Dhyanalinga.'
+    },
+    {
+      id: 12,
+      image: '/assets/gallery-8.jpg',
+      title: 'RESEARCH & PUBLICATIONS',
+      location: 'RESEARCH CENTER',
+      date: '2024',
+      description: 'A distinguished visit to the academic research library.'
+    },
+    {
+      id: 13,
+      image: '/assets/gallery-9.jpg',
+      title: 'TEMPLE BLESSINGS',
+      location: 'SHIVA SHRINE',
+      date: '2024',
+      description: 'Offering prayers at a historic and grand Shiva temple.'
     }
   ];
 

@@ -159,7 +159,7 @@ function QualificationCard({ item, index, onOpenModal }) {
       >
         {/* Front Face */}
         <div 
-          className="absolute inset-0 w-full h-full flex flex-col items-center justify-start rounded-2xl px-6 pt-10 pb-12 bg-[rgba(8,15,35,0.4)] backdrop-blur-[12px] border border-[rgba(212,175,55,0.18)]"
+          className={`absolute inset-0 w-full h-full flex flex-col items-center justify-start rounded-2xl px-6 pt-10 pb-12 bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] transition-opacity duration-300 ${isFlipped ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
           style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
         >
           <QualificationCertifiedBadge />
@@ -185,15 +185,15 @@ function QualificationCard({ item, index, onOpenModal }) {
 
         {/* Back Face */}
         <div 
-          className="absolute inset-0 w-full h-full rounded-2xl border border-[rgba(212,175,55,0.3)] shadow-[0_0_30px_rgba(212,175,55,0.15)] overflow-hidden flex flex-col items-center justify-between py-6 px-4 bg-[#050B1E]"
+          className={`absolute inset-0 w-full h-full rounded-2xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] overflow-hidden flex flex-col items-center justify-between py-6 px-4 bg-white/10 backdrop-blur-xl transition-opacity duration-300 ${isFlipped ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
           style={{ 
             backfaceVisibility: 'hidden', 
             WebkitBackfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)' 
           }}
         >
-          {/* Subtle gold glow behind certificate */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.12),transparent_70%)] pointer-events-none" />
+          {/* Subtle glow behind certificate */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.15),transparent_70%)] pointer-events-none" />
           
           <div className="flex-1 w-full flex flex-col items-center justify-center relative z-10">
             {/* Small framed certificate image */}

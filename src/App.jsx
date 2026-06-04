@@ -13,18 +13,21 @@ import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import ShareFloat from './components/ShareFloat';
 import Events from './components/Events';
+import BookingModal from './components/BookingModal';
 
 function App() {
   const [showLoading, setShowLoading] = useState(true);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   return (
     <ThemeProvider>
       <LanguageProvider>
         {showLoading && <LoadingScreen onComplete={() => setShowLoading(false)} />}
+        <BookingModal isOpen={isBookingModalOpen} onClose={() => setIsBookingModalOpen(false)} />
         <div className={`cosmic-reference-shell min-h-screen transition-opacity duration-1000 ${showLoading ? 'opacity-0' : 'opacity-100'}`} style={{ transition: 'background-color 0.5s ease, opacity 1s ease' }}>
-          <Navbar />
+          <Navbar onOpenBookingModal={() => setIsBookingModalOpen(true)} />
           <main>
-            <Hero />
+            <Hero onOpenBookingModal={() => setIsBookingModalOpen(true)} />
             <About />
             <Qualifications />
             <Services />

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 
-export default function Navbar() {
+export default function Navbar({ onOpenBookingModal }) {
   const { language, toggleLanguage, t } = useLanguage();
   const { theme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
@@ -98,13 +98,13 @@ export default function Navbar() {
             </button>
 
             {/* Book Now CTA */}
-            <a
-              href="#contact"
-              className="hidden sm:inline-flex relative group overflow-hidden px-6 py-2.5 rounded-full font-heading font-bold text-sm tracking-wide text-[#02040A] bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 shadow-[0_4px_15px_rgba(212,175,55,0.4)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.6)] transition-all duration-500 hover:-translate-y-0.5 border border-white/20 hover:border-white/50"
+            <button
+              onClick={onOpenBookingModal}
+              className="hidden sm:inline-flex relative group overflow-hidden px-6 py-2.5 rounded-full font-heading font-bold text-sm tracking-wide text-[#02040A] bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 shadow-[0_4px_15px_rgba(212,175,55,0.4)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.6)] transition-all duration-500 hover:-translate-y-0.5 border border-white/20 hover:border-white/50 cursor-pointer"
             >
               <span className="relative z-10">{t.nav.bookNow}</span>
               <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-12 transition-all" />
-            </a>
+            </button>
 
             {/* Mobile menu button */}
             <button
@@ -140,13 +140,15 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#contact"
-              onClick={() => setMobileOpen(false)}
-              className="block text-center mt-4 w-full relative group overflow-hidden px-6 py-3 rounded-xl font-heading font-bold tracking-wide text-[#02040A] bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 shadow-[0_4px_15px_rgba(212,175,55,0.4)]"
+            <button
+              onClick={() => {
+                setMobileOpen(false);
+                onOpenBookingModal();
+              }}
+              className="block text-center mt-4 w-full relative group overflow-hidden px-6 py-3 rounded-xl font-heading font-bold tracking-wide text-[#02040A] bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 shadow-[0_4px_15px_rgba(212,175,55,0.4)] cursor-pointer"
             >
               <span className="relative z-10">{t.nav.bookNow}</span>
-            </a>
+            </button>
           </div>
         </div>
       </div>

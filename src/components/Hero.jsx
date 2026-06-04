@@ -135,7 +135,7 @@ function FloatingShloka({ text, style }) {
   );
 }
 
-export default function Hero() {
+export default function Hero({ onOpenBookingModal }) {
   const { t, language } = useLanguage();
   const heroRef = useRef(null);
   
@@ -364,13 +364,13 @@ export default function Hero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-slide-up" style={{ animationDelay: '0.5s' }}>
-              <a
-                href="#contact"
+              <button
+                onClick={onOpenBookingModal}
                 id="hero-book-consultation"
                 className="group relative overflow-hidden flex items-center justify-center gap-3 px-8 py-4 rounded-full w-full sm:w-auto text-base sm:text-lg whitespace-nowrap font-heading font-bold transition-all duration-500 hover:-translate-y-1 
                 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 text-[#02040A] border-2 border-gold-200/50 hover:border-gold-100
                 shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_35px_rgba(212,175,55,0.6)]
-                z-10"
+                z-10 cursor-pointer"
               >
                 {/* Antique gold glass overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-gold-200/20 via-white/10 to-gold-200/20 opacity-100 mix-blend-overlay"></div>
@@ -383,7 +383,7 @@ export default function Hero() {
                   </svg>
                   {t.hero.cta1}
                 </span>
-              </a>
+              </button>
 
               <a
                 href="https://wa.me/917799099069"

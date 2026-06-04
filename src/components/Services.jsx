@@ -168,7 +168,7 @@ function ServiceCard({ service, index, className = '' }) {
       } ${className}`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
-      <article className="group relative h-full flex flex-col rounded-[28px] bg-[#0A1128]/60 backdrop-blur-2xl border border-gold-500/20 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.8)] hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.4)] hover:border-gold-500/60 hover:-translate-y-3 hover:scale-[1.02] transition-all duration-500 overflow-hidden">
+      <article className="group relative h-full flex flex-col rounded-[28px] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.4)] hover:border-gold-500/60 hover:-translate-y-3 hover:scale-[1.02] transition-all duration-500 overflow-hidden">
         {/* Shimmer Animation */}
         <div className="qualification-card-shimmer z-10" />
         

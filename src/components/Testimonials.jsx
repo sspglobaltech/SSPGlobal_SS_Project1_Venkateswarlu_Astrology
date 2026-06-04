@@ -1,4 +1,3 @@
-import { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import SectionHeading from './SectionHeading';
@@ -32,31 +31,7 @@ function StarRating({ rating }) {
 export default function Testimonials() {
   const { t } = useLanguage();
   const [sectionRef, isVisible] = useScrollAnimation(0.1);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-
   const items = t.testimonials.items;
-
-  const goTo = useCallback((index) => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex(index);
-    setTimeout(() => setIsAnimating(false), 500);
-  }, [isAnimating]);
-
-  const next = useCallback(() => {
-    goTo((currentIndex + 1) % items.length);
-  }, [currentIndex, items.length, goTo]);
-
-  const prev = useCallback(() => {
-    goTo((currentIndex - 1 + items.length) % items.length);
-  }, [currentIndex, items.length, goTo]);
-
-  // Auto-advance
-  useEffect(() => {
-    const timer = setInterval(next, 5000);
-    return () => clearInterval(timer);
-  }, [next]);
 
   return (
     <section id="testimonials" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#02040A] via-[#050712] to-[#0A1128]">
@@ -85,87 +60,99 @@ export default function Testimonials() {
             {t.testimonials.subtitle}
           </p>
         </div>
+      </div>
 
-        {/* Testimonial Carousel */}
-        <div className="max-w-4xl mx-auto">
-          {/* Main testimonial */}
-          <div className="relative group">
-            
-            {/* Ultra-Premium Glassmorphism Card */}
-            <div className="rounded-[32px] p-8 sm:p-12 relative overflow-hidden bg-[rgba(8,15,35,0.22)] backdrop-blur-[24px] border border-[rgba(212,175,55,0.18)] shadow-[0_8px_40px_rgba(0,0,0,0.35),0_0_25px_rgba(212,175,55,0.06),inset_0_1px_0_rgba(255,255,255,0.08)] transition-all duration-300 ease-out group-hover:-translate-y-[6px] group-hover:shadow-[0_12px_45px_rgba(0,0,0,0.45),0_0_40px_rgba(212,175,55,0.08),inset_0_1px_0_rgba(255,255,255,0.1)]">
-              
-              {/* Glass Reflection Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-40 pointer-events-none" />
-              
-              {/* Soft Golden Ambient Glow on Hover */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[#D4AF37]/5 blur-[80px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              {/* Large Transparent Left Quote Mark */}
-              <div className="absolute -top-4 left-6 text-[180px] text-white/5 font-serif leading-none select-none pointer-events-none">
-                &ldquo;
-              </div>
-
-
-
-              {/* Content */}
-              <div
-                className={`relative z-10 transition-all duration-500 ${
-                  isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-                }`}
-              >
-                <StarRating rating={items[currentIndex].rating} />
-                
-                {/* Premium Typography for Review */}
-                <p className="text-lg sm:text-xl text-[#F8F9FA] leading-loose mt-8 mb-10 font-light italic tracking-wide">
-                  &ldquo;{items[currentIndex].text}&rdquo;
-                </p>
-
-                <div className="flex items-center gap-5">
-                  {/* Luxury Circular Badge Avatar */}
-                  <div className="w-16 h-16 rounded-full bg-[rgba(255,255,255,0.06)] backdrop-blur-[12px] border border-[rgba(212,175,55,0.25)] shadow-[0_4px_15px_rgba(0,0,0,0.2)] flex items-center justify-center text-[#D4AF37] font-serif font-bold text-2xl drop-shadow-[0_0_5px_rgba(212,175,55,0.5)]">
-                    {items[currentIndex].name.charAt(0)}
+      {/* Infinite Marquee Testimonials - Full Width */}
+      <div 
+        className="relative w-full overflow-hidden py-10 group mt-8 z-10"
+        style={{ 
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+          maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' 
+        }}
+      >
+        {/* Scrolling tracks container */}
+        <div className="flex w-max">
+            {/* Track 1 */}
+            <div className="flex gap-6 sm:gap-8 pr-6 sm:pr-8 animate-marquee group-hover:[animation-play-state:paused]">
+              {items.map((item, index) => (
+                <div 
+                  key={`t1-${index}`} 
+                  className="w-[320px] sm:w-[450px] shrink-0 rounded-[32px] p-8 sm:p-10 relative overflow-hidden bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_15px_45px_0_rgba(255,255,255,0.2)] flex flex-col"
+                >
+                  <div className="absolute -top-6 left-4 text-[120px] text-white/10 font-serif leading-none select-none pointer-events-none">
+                    &ldquo;
                   </div>
-                  <div>
-                    {/* Royal Gold Client Name */}
-                    <div className="font-serif text-xl font-semibold text-[#D4AF37] drop-shadow-[0_0_8px_rgba(212,175,55,0.3)] tracking-wide">
-                      {items[currentIndex].name}
-                    </div>
-                    {/* Minimalist Location */}
-                    <div className="text-sm text-white/50 flex items-center gap-1.5 mt-1 font-light tracking-wide uppercase">
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      {items[currentIndex].location}
+
+                  <div className="relative z-10 flex-1 flex flex-col">
+                    <StarRating rating={item.rating} />
+                    
+                    <p className="text-sm sm:text-[15px] text-white/90 leading-relaxed mt-6 mb-8 font-light italic tracking-wide flex-1">
+                      &ldquo;{item.text}&rdquo;
+                    </p>
+
+                    <div className="flex items-center gap-4 mt-auto">
+                      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 shadow-[0_4px_15px_rgba(0,0,0,0.1)] flex items-center justify-center text-[#D4AF37] font-serif font-bold text-xl drop-shadow-[0_0_5px_rgba(212,175,55,0.5)] shrink-0">
+                        {item.name.charAt(0)}
+                      </div>
+                      <div>
+                        <div className="font-serif text-[17px] font-semibold text-[#D4AF37] tracking-wide">
+                          {item.name}
+                        </div>
+                        <div className="text-xs text-white/60 flex items-center gap-1.5 mt-0.5 font-light tracking-wide uppercase">
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          {item.location}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          </div>
-
-          {/* Professional Navigation Controls */}
-          <div className="flex items-center justify-center gap-8 mt-12">
-            {/* Minimalist Bars Pagination */}
-            <div className="flex items-center justify-center flex-wrap gap-2 sm:gap-3">
-              {items.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => goTo(i)}
-                  className="group py-4 flex items-center"
-                  aria-label={`Go to testimonial ${i + 1}`}
+            
+            {/* Track 2 (Duplicate for seamless loop) */}
+            <div className="flex gap-6 sm:gap-8 pr-6 sm:pr-8 animate-marquee group-hover:[animation-play-state:paused]" aria-hidden="true">
+              {items.map((item, index) => (
+                <div 
+                  key={`t2-${index}`} 
+                  className="w-[320px] sm:w-[450px] shrink-0 rounded-[32px] p-8 sm:p-10 relative overflow-hidden bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_15px_45px_0_rgba(255,255,255,0.2)] flex flex-col"
                 >
-                  <div className={`h-[2px] rounded-full transition-all duration-500 ${
-                    i === currentIndex
-                      ? 'w-10 bg-gradient-to-r from-[#D4AF37] to-[#F5E6B8] shadow-[0_0_10px_rgba(212,175,55,0.5)]'
-                      : 'w-4 bg-white/20 group-hover:bg-white/50'
-                  }`} />
-                </button>
+                  <div className="absolute -top-6 left-4 text-[120px] text-white/10 font-serif leading-none select-none pointer-events-none">
+                    &ldquo;
+                  </div>
+
+                  <div className="relative z-10 flex-1 flex flex-col">
+                    <StarRating rating={item.rating} />
+                    
+                    <p className="text-sm sm:text-[15px] text-white/90 leading-relaxed mt-6 mb-8 font-light italic tracking-wide flex-1">
+                      &ldquo;{item.text}&rdquo;
+                    </p>
+
+                    <div className="flex items-center gap-4 mt-auto">
+                      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 shadow-[0_4px_15px_rgba(0,0,0,0.1)] flex items-center justify-center text-[#D4AF37] font-serif font-bold text-xl drop-shadow-[0_0_5px_rgba(212,175,55,0.5)] shrink-0">
+                        {item.name.charAt(0)}
+                      </div>
+                      <div>
+                        <div className="font-serif text-[17px] font-semibold text-[#D4AF37] tracking-wide">
+                          {item.name}
+                        </div>
+                        <div className="text-xs text-white/60 flex items-center gap-1.5 mt-0.5 font-light tracking-wide uppercase">
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          {item.location}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 }

@@ -23,16 +23,7 @@ export default function Contact() {
   };
 
   const contactMethods = [
-    {
-      icon: (
-        <svg className="w-7 h-7 sm:w-8 sm:h-8 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-        </svg>
-      ),
-      title: t.contact.callText,
-      value: t.contact.phone,
-      href: `tel:${t.contact.phone.replace(/\s/g, '')}`,
-    },
+
     {
       icon: (
         <svg className="w-7 h-7 sm:w-8 sm:h-8 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
@@ -40,19 +31,10 @@ export default function Contact() {
         </svg>
       ),
       title: t.contact.whatsappText,
-      value: t.contact.phone,
+      value: t.contact.whatsappAction,
       href: 'https://wa.me/917799099069',
     },
-    {
-      icon: (
-        <svg className="w-7 h-7 sm:w-8 sm:h-8 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-        </svg>
-      ),
-      title: t.contact.emailText,
-      value: t.contact.email,
-      href: `mailto:${t.contact.email}`,
-    },
+
     {
       icon: (
         <svg className="w-7 h-7 sm:w-8 sm:h-8 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
@@ -103,10 +85,10 @@ export default function Contact() {
                 href={method.href}
                 target={method.href.startsWith('http') ? '_blank' : undefined}
                 rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="group flex items-center gap-6 p-5 rounded-2xl glass-card border border-gold-500/20 hover:border-gold-500/50 hover:shadow-[0_10px_30px_-10px_rgba(212,175,55,0.4)] transition-all duration-500"
+                className="group flex items-center gap-6 p-5 rounded-[24px] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] hover:border-gold-500/60 hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.4)] transition-all duration-500"
               >
-                <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-2xl bg-[#0A1128]/80 border border-gold-500/30 group-hover:border-gold-400 group-hover:scale-110 transition-all duration-500 shadow-[0_0_20px_rgba(212,175,55,0.15)] group-hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] shrink-0 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold-500/20 via-transparent to-transparent opacity-60" />
+                <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-2xl bg-white/20 border border-white/30 group-hover:border-gold-400 group-hover:scale-110 transition-all duration-500 shadow-[0_4px_15px_rgba(0,0,0,0.1)] shrink-0 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-60" />
                   {method.icon}
                 </div>
                 <div className="flex-1">
@@ -120,7 +102,7 @@ export default function Contact() {
             <div className="rounded-xl overflow-hidden border border-gold-500/10 mt-6">
               <iframe
                 title="Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243647.3170479863!2d78.24323179640122!3d17.412608593492476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                src="https://maps.google.com/maps?q=Tirupati,+Andhra+Pradesh&output=embed"
                 width="100%"
                 height="200"
                 style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(0.8) contrast(1.2)' }}
@@ -133,7 +115,7 @@ export default function Contact() {
 
           {/* Contact Form */}
           <div className="lg:col-span-3">
-            <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-8 space-y-6">
+            <form onSubmit={handleSubmit} className="bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] rounded-[32px] p-8 space-y-6">
               <div>
                 <label htmlFor="contact-name" className="block text-sm font-medium text-gray-300 mb-2">
                   {t.contact.nameLabel}
@@ -146,7 +128,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder={t.contact.namePlaceholder}
                   required
-                  className="w-full px-5 py-4 rounded-xl bg-[#0A1128]/40 backdrop-blur-md border border-gold-500/20 text-white placeholder-gray-400 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-[#0A1128]/60 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]"
+                  className="w-full px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/20 text-white placeholder-gray-400 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-white/10 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)]"
                 />
               </div>
 
@@ -162,7 +144,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder={t.contact.phonePlaceholder}
                   required
-                  className="w-full px-5 py-4 rounded-xl bg-[#0A1128]/40 backdrop-blur-md border border-gold-500/20 text-white placeholder-gray-400 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-[#0A1128]/60 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]"
+                  className="w-full px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/20 text-white placeholder-gray-400 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-white/10 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)]"
                 />
               </div>
 
@@ -178,8 +160,18 @@ export default function Contact() {
                   placeholder={t.contact.messagePlaceholder}
                   rows={5}
                   required
-                  className="w-full px-5 py-4 rounded-xl bg-[#0A1128]/40 backdrop-blur-md border border-gold-500/20 text-white placeholder-gray-400 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-[#0A1128]/60 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] resize-none"
+                  className="w-full px-5 py-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/20 text-white placeholder-gray-400 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:bg-white/10 transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)] resize-none"
                 />
+              </div>
+
+              {/* Special Offer Banner */}
+              <div className="bg-gold-500/10 border border-gold-500/20 rounded-xl p-4 flex items-start gap-3 shadow-[inset_0_0_20px_rgba(212,175,55,0.05)] animate-pulse-slow">
+                <svg className="w-6 h-6 text-gold-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className="text-sm sm:text-base text-gray-200 leading-snug font-medium">
+                  {t.contact.offerText}
+                </p>
               </div>
 
               <button

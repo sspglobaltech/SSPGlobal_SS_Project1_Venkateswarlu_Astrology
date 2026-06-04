@@ -67,6 +67,7 @@ export default {
         'orbit': 'orbit 15s linear infinite',
         'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'float-slow': 'float 8s ease-in-out infinite',
+        'marquee': 'marquee 40s linear infinite',
       },
       keyframes: {
         float: {
@@ -108,6 +109,10 @@ export default {
         pulseGlow: {
           '0%, 100%': { opacity: '1', transform: 'scale(1)', boxShadow: '0 0 20px rgba(16, 185, 129, 0.5)' },
           '50%': { opacity: '.8', transform: 'scale(1.05)', boxShadow: '0 0 30px rgba(16, 185, 129, 0.8)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
         }
       },
       backgroundImage: {
