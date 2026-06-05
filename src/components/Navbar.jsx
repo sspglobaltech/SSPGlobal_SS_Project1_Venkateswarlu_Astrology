@@ -9,7 +9,10 @@ export default function Navbar({ onOpenBookingModal }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+      setMobileOpen(false); // Auto-hide menu on scroll
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -27,16 +30,16 @@ export default function Navbar({ onOpenBookingModal }) {
     <nav
       id="main-navbar"
       className={`fixed left-0 right-0 z-[100] mx-4 sm:mx-6 lg:mx-auto max-w-7xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] border ${
-        scrolled
-          ? 'top-4 py-2 rounded-full border-gold-500/40 shadow-[0_15px_40px_-10px_rgba(0,0,0,0.7),0_0_20px_rgba(212,175,55,0.2)]'
+        scrolled || mobileOpen
+          ? 'top-4 py-2 rounded-[2rem] border-gold-500/40 shadow-[0_15px_40px_-10px_rgba(0,0,0,0.7),0_0_20px_rgba(212,175,55,0.2)]'
           : 'top-6 py-4 rounded-[2.5rem] border-gold-500/20 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5),0_0_15px_rgba(212,175,55,0.1)]'
       }`}
       style={{
-        background: scrolled 
-          ? 'rgba(5, 8, 22, 0.65)' 
+        background: scrolled || mobileOpen
+          ? 'rgba(5, 8, 22, 0.85)' 
           : 'linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(5, 8, 22, 0.15) 100%)',
-        backdropFilter: scrolled ? 'blur(24px)' : 'blur(20px)',
-        WebkitBackdropFilter: scrolled ? 'blur(24px)' : 'blur(20px)',
+        backdropFilter: scrolled || mobileOpen ? 'blur(24px)' : 'blur(20px)',
+        WebkitBackdropFilter: scrolled || mobileOpen ? 'blur(24px)' : 'blur(20px)',
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,11 +50,11 @@ export default function Navbar({ onOpenBookingModal }) {
             <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 border border-gold-500/40 group-hover:border-gold-400 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
               <img src="/assets/acharya_logo.jpg" alt="Acharya Venkateswarlu Logo" className="w-full h-full object-cover" />
             </div>
-            <div className="hidden sm:block transition-all duration-500 group-hover:translate-x-1">
-              <span className="font-heading text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300 drop-shadow-[0_2px_10px_rgba(212,175,55,0.4)] tracking-wide">
+            <div className="block transition-all duration-500 group-hover:translate-x-1">
+              <span className="font-heading text-[14px] sm:text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300 drop-shadow-[0_2px_10px_rgba(212,175,55,0.4)] tracking-wide">
                 {t.nav.brandName}
               </span>
-              <span className="block text-[10px] tracking-[0.2em] uppercase text-gray-400 group-hover:text-gold-200/80 transition-colors duration-500">
+              <span className="block text-[8px] sm:text-[10px] tracking-[0.2em] uppercase text-gray-400 group-hover:text-gold-200/80 transition-colors duration-500 mt-0.5 sm:mt-0">
                 {t.nav.brandSubtitle}
               </span>
             </div>
@@ -126,10 +129,10 @@ export default function Navbar({ onOpenBookingModal }) {
         {/* Mobile Menu */}
         <div
           className={`lg:hidden overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            mobileOpen ? 'max-h-96 mt-4 opacity-100' : 'max-h-0 opacity-0'
+            mobileOpen ? 'max-h-[500px] mt-4 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <div className="bg-[rgba(5,8,22,0.8)] backdrop-blur-3xl rounded-[2rem] p-5 space-y-1 border border-gold-500/30 shadow-[0_15px_40px_-10px_rgba(0,0,0,0.7)]">
+          <div className="pt-4 pb-2 px-2 sm:px-5 space-y-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
