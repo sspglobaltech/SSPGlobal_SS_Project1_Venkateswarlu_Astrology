@@ -4,16 +4,39 @@ import { useLanguage } from '../context/LanguageContext';
 export default function WhatsAppModal({ isOpen, onClose }) {
   const { t } = useLanguage();
   const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const displayName = name.trim() ? name : '________';
-    const text = `Hi. Am ${displayName}. I want to know more details about your consultation and services.`;
-    window.open(`https://wa.me/917799099069?text=${encodeURIComponent(text)}`, '_blank');
-    onClose();
-    setName('');
+    setIsSubmitting(true);
+    
+    try {
+      const scriptUrl = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+      if (scriptUrl) {
+        const url = new URL(scriptUrl);
+        url.searchParams.append('Name', name);
+        url.searchParams.append('Phone', phone);
+        url.searchParams.append('Query', 'WhatsApp Consultation Request');
+        
+        await fetch(url.toString(), {
+          method: 'GET',
+          mode: 'no-cors',
+        });
+      }
+    } catch (error) {
+      console.error('Error saving to database:', error);
+    } finally {
+      setIsSubmitting(false);
+      const displayName = name.trim() ? name : '________';
+      const text = `Hi. Am ${displayName}. I want to know more details about your consultation and services.`;
+      window.open(`https://wa.me/917799099069?text=${encodeURIComponent(text)}`, '_blank');
+      onClose();
+      setName('');
+      setPhone('');
+    }
   };
 
   return (
@@ -25,7 +48,57 @@ export default function WhatsAppModal({ isOpen, onClose }) {
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-sm bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.15)] rounded-[32px] p-8 animate-slide-up">
+      <div className="relative w-full max-w-sm bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.15)] rounded-[32px] p-8 animate-slide-up overflow-hidden">
+        
+        {/* Premium Om Loading Overlay */}
+        {isSubmitting && (
+          <div className="absolute inset-0 z-50 backdrop-blur-xl bg-[#02040A]/85 flex flex-col items-center justify-center transition-all duration-500">
+            <div className="relative flex items-center justify-center w-56 h-56">
+              {/* Core glow */}
+              <div className="absolute inset-0 bg-gold-500/20 rounded-full blur-[50px] animate-pulse"></div>
+              
+              <svg viewBox="0 0 100 100" className="w-full h-full relative z-10 drop-shadow-[0_0_20px_rgba(212,175,55,0.8)]">
+                <defs>
+                  <linearGradient id="premium-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#FDE047" />
+                    <stop offset="25%" stopColor="#D4AF37" />
+                    <stop offset="50%" stopColor="#FFF7D6" />
+                    <stop offset="75%" stopColor="#AA7C11" />
+                    <stop offset="100%" stopColor="#E6C252" />
+                  </linearGradient>
+                  <filter id="premium-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="2.5" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+                
+                {/* Spinning Mandala Rings */}
+                <circle cx="50" cy="50" r="46" fill="none" stroke="url(#premium-gold)" strokeWidth="0.5" strokeDasharray="1 3" className="origin-center animate-[spin_20s_linear_infinite]" opacity="0.6" />
+                <circle cx="50" cy="50" r="42" fill="none" stroke="url(#premium-gold)" strokeWidth="1.5" strokeDasharray="12 6 2 6" className="origin-center animate-[spin_15s_linear_infinite_reverse]" opacity="0.8" />
+                <circle cx="50" cy="50" r="37" fill="none" stroke="url(#premium-gold)" strokeWidth="0.5" strokeDasharray="20 10" className="origin-center animate-[spin_25s_linear_infinite]" opacity="0.5" />
+                
+                {/* The Golden Om */}
+                <text 
+                  x="50" 
+                  y="68" 
+                  fontFamily="Georgia, serif" 
+                  fontSize="48" 
+                  fontWeight="bold"
+                  textAnchor="middle" 
+                  fill="url(#premium-gold)" 
+                  filter="url(#premium-glow)"
+                  className="animate-pulse"
+                >
+                  ॐ
+                </text>
+              </svg>
+            </div>
+            <p className="mt-6 font-heading text-transparent bg-clip-text bg-gradient-to-r from-gold-200 via-gold-400 to-gold-200 text-lg tracking-[0.3em] animate-pulse">
+              DIVINE CONNECTION...
+            </p>
+          </div>
+        )}
+
         {/* Close button */}
         <button 
           onClick={onClose}
@@ -43,7 +116,7 @@ export default function WhatsAppModal({ isOpen, onClose }) {
           WhatsApp
         </h2>
         <p className="text-sm text-gray-300 mb-6">
-          Connect directly via WhatsApp
+          Please fill in your details below. Our team will get back to you within 24 hours to guide you further.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -59,15 +132,32 @@ export default function WhatsAppModal({ isOpen, onClose }) {
               className={`w-full px-5 py-3.5 rounded-xl bg-white/5 backdrop-blur-md border border-white/20 focus:border-emerald-400 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)]`}
             />
           </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1.5">Your Phone</label>
+            <input
+              type="tel"
+              name="phone"
+              required
+              pattern="[0-9]{10}"
+              title="Please enter a valid 10-digit phone number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="Enter your phone number"
+              className={`w-full px-5 py-3.5 rounded-xl bg-white/5 backdrop-blur-md border border-white/20 focus:border-emerald-400 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)]`}
+            />
+          </div>
           <button
             type="submit"
-            className="w-full relative overflow-hidden flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl font-heading font-bold transition-all duration-500 hover:-translate-y-0.5 bg-gradient-to-r from-emerald-500 via-emerald-400 to-emerald-500 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] border border-emerald-300/30"
+            disabled={isSubmitting}
+            className="w-full relative overflow-hidden flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl font-heading font-bold transition-all duration-500 hover:-translate-y-0.5 bg-gradient-to-r from-emerald-500 via-emerald-400 to-emerald-500 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] border border-emerald-300/30 disabled:opacity-70 disabled:hover:translate-y-0"
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
-              Continue to WhatsApp
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
+              {isSubmitting ? 'Processing...' : 'Continue to WhatsApp'}
+              {!isSubmitting && (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              )}
             </span>
           </button>
         </form>
