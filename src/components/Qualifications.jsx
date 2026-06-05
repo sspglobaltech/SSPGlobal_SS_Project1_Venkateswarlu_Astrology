@@ -237,13 +237,19 @@ function CertificateModal({ cert, onClose }) {
   const dragState = useRef({ isDown: false, startX: 0, startY: 0, scrollLeft: 0, scrollTop: 0, hasDragged: false });
 
   const handleZoomIn = () => {
-    setScale(prev => Math.min(3, prev + 0.25));
+    setScale(prev => Math.min(4, prev + 0.5));
     setIsFitToScreen(false);
   };
   
   const handleZoomOut = () => {
-    setScale(prev => Math.max(0.5, prev - 0.25));
-    setIsFitToScreen(false);
+    setScale(prev => {
+      const newScale = Math.max(0.5, prev - 0.5);
+      if (newScale <= 1) {
+        setIsFitToScreen(true);
+        return 1;
+      }
+      return newScale;
+    });
   };
   
   const handleFitToScreen = () => {
@@ -251,124 +257,108 @@ function CertificateModal({ cert, onClose }) {
     setIsFitToScreen(true);
   };
 
-  const handleMouseDown = (e) => {
+  const handlePointerDown = (e) => {
     if (!scrollContainerRef.current) return;
     setIsDragging(true);
+    const clientX = e.type.includes('touch') ? e.touches[0].pageX : e.pageX;
+    const clientY = e.type.includes('touch') ? e.touches[0].pageY : e.pageY;
+    
     dragState.current = {
       isDown: true,
-      startX: e.pageX - scrollContainerRef.current.offsetLeft,
-      startY: e.pageY - scrollContainerRef.current.offsetTop,
+      startX: clientX - scrollContainerRef.current.offsetLeft,
+      startY: clientY - scrollContainerRef.current.offsetTop,
       scrollLeft: scrollContainerRef.current.scrollLeft,
       scrollTop: scrollContainerRef.current.scrollTop,
       hasDragged: false
     };
   };
 
-  const handleMouseLeave = () => {
+  const handlePointerUpOrLeave = () => {
     setIsDragging(false);
     dragState.current.isDown = false;
   };
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    dragState.current.isDown = false;
-  };
-
-  const handleMouseMove = (e) => {
+  const handlePointerMove = (e) => {
     if (!dragState.current.isDown || !scrollContainerRef.current) return;
-    e.preventDefault();
     dragState.current.hasDragged = true;
-    const x = e.pageX - scrollContainerRef.current.offsetLeft;
-    const y = e.pageY - scrollContainerRef.current.offsetTop;
+    const clientX = e.type.includes('touch') ? e.touches[0].pageX : e.pageX;
+    const clientY = e.type.includes('touch') ? e.touches[0].pageY : e.pageY;
+    
+    const x = clientX - scrollContainerRef.current.offsetLeft;
+    const y = clientY - scrollContainerRef.current.offsetTop;
     const walkX = (x - dragState.current.startX) * 1.5;
     const walkY = (y - dragState.current.startY) * 1.5;
     scrollContainerRef.current.scrollLeft = dragState.current.scrollLeft - walkX;
     scrollContainerRef.current.scrollTop = dragState.current.scrollTop - walkY;
   };
 
-  const handleContainerClick = (e) => {
-    if (dragState.current.hasDragged) {
-      dragState.current.hasDragged = false;
-      return;
-    }
-    onClose();
-  };
-
   return (
     <div 
-      className="fixed inset-0 z-[100] flex items-center justify-center transition-opacity select-none" 
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 select-none" 
       style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}
+      onClick={onClose}
     >
-      {/* Scrollable Modal Container */}
       <div 
-        ref={scrollContainerRef}
-        className={`w-full h-full overflow-auto flex items-start justify-center p-2 sm:p-4 pb-28 custom-scrollbar touch-pan-x touch-pan-y ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`} 
-        onClick={handleContainerClick}
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
+        className="relative w-full max-w-5xl h-full max-h-[90vh] bg-spiritual-dark border border-gold-500/30 rounded-2xl shadow-2xl p-4 sm:p-8 flex flex-col mx-auto transition-all duration-300" 
+        onClick={(e) => e.stopPropagation()}
       >
-        
-        {/* Frame Design */}
-        <div 
-          className="relative w-auto bg-spiritual-dark border border-gold-500/30 rounded-2xl shadow-2xl p-4 sm:p-8 text-center transition-transform duration-300 origin-top mt-8 sm:mt-12 flex flex-col" 
-          onClick={(e) => e.stopPropagation()}
-          style={{ 
-            transform: `scale(${scale})`,
-            ...(isFitToScreen ? { maxHeight: '85vh', maxWidth: '90vw' } : { maxWidth: 'none' })
-          }}
+        {/* Close Button */}
+        <button
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 text-gray-400 hover:text-gold-400 bg-black/40 hover:bg-black/60 p-2 rounded-full backdrop-blur-md transition-all border border-white/10"
+          onClick={onClose}
+          title="Close"
         >
-          {/* Close Button */}
-          <button
-            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 text-gray-400 hover:text-gold-400 bg-black/40 hover:bg-black/60 p-2 rounded-full backdrop-blur-md transition-all border border-white/10"
-            onClick={onClose}
-            title="Close"
-          >
-            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          
-          {/* Header */}
-          <div className="mb-4 sm:mb-6 mt-4 sm:mt-0 flex-shrink-0">
-            <h3 className="font-heading text-xl sm:text-2xl font-bold text-gold-300">{cert.title}</h3>
-            <p className="text-gray-400 text-sm sm:text-base">{cert.issuer}</p>
-          </div>
-
-          {/* Image Container with Original Styling */}
-          <div className="relative mx-auto rounded-xl border-4 border-gold-500/20 shadow-inner overflow-hidden bg-spiritual-slate/50 flex items-center justify-center flex-1">
-            <img
-              src={cert.certificateImage || "/assets/certificate_mockup_1776496466745.png"}
-              alt={`${cert.title} Certificate`}
-              draggable={false}
-              onContextMenu={(e) => e.preventDefault()}
-              className="min-h-[200px] select-none"
-              style={isFitToScreen ? {
-                maxHeight: '100%',
-                maxWidth: '100%',
-                width: 'auto',
-                height: 'auto',
-                objectFit: 'contain'
-              } : {
-                maxHeight: 'none',
-                maxWidth: 'none',
-                width: 'auto',
-                height: 'auto',
-                objectFit: 'contain'
-              }}
-            />
-          </div>
+          <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        
+        {/* Header */}
+        <div className="mb-4 sm:mb-6 flex-shrink-0 text-center pr-8 sm:pr-0">
+          <h3 className="font-heading text-xl sm:text-2xl font-bold text-gold-300">{cert.title}</h3>
+          <p className="text-gray-400 text-sm sm:text-base">{cert.issuer}</p>
         </div>
-      </div>
 
-      {/* Zoom Controls */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[110] flex items-center gap-2 sm:gap-4 px-3 sm:px-6 py-2 sm:py-3 bg-black/70 backdrop-blur-md border border-white/10 rounded-full shadow-2xl text-xs sm:text-sm" onClick={e => e.stopPropagation()}>
-        <button onClick={handleZoomIn} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1">➕<span className="hidden sm:inline"> Zoom In</span></button>
-        <div className="w-px h-4 bg-white/20"></div>
-        <button onClick={handleZoomOut} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1">➖<span className="hidden sm:inline"> Zoom Out</span></button>
-        <div className="w-px h-4 bg-white/20"></div>
-        <button onClick={handleFitToScreen} className={`px-1 sm:px-2 py-1 transition-colors flex items-center gap-1 ${isFitToScreen ? 'text-gold-400' : 'text-white hover:text-gold-400'}`}>🔍<span className="hidden sm:inline"> Fit to Screen</span></button>
+        {/* Scrollable Image Container */}
+        <div 
+          ref={scrollContainerRef}
+          className={`relative w-full flex-1 rounded-xl border border-gold-500/20 shadow-inner bg-spiritual-slate/30 overflow-auto custom-scrollbar flex ${isFitToScreen ? 'items-center justify-center' : 'items-start justify-start'} ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+          onMouseDown={handlePointerDown}
+          onMouseLeave={handlePointerUpOrLeave}
+          onMouseUp={handlePointerUpOrLeave}
+          onMouseMove={handlePointerMove}
+          onTouchStart={handlePointerDown}
+          onTouchEnd={handlePointerUpOrLeave}
+          onTouchMove={handlePointerMove}
+        >
+          <img
+            src={cert.certificateImage || "/assets/certificate_mockup_1776496466745.png"}
+            alt={`${cert.title} Certificate`}
+            draggable={false}
+            onContextMenu={(e) => e.preventDefault()}
+            className="select-none transition-all duration-300 ease-out origin-top-left"
+            style={isFitToScreen ? {
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain'
+            } : {
+              width: `${1200 * scale}px`,
+              maxWidth: 'none',
+              height: 'auto',
+              minHeight: '100%',
+              objectFit: 'contain'
+            }}
+          />
+        </div>
+
+        {/* Zoom Controls */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[110] flex items-center gap-2 sm:gap-4 px-3 sm:px-6 py-2 sm:py-3 bg-black/80 backdrop-blur-md border border-gold-500/30 rounded-full shadow-2xl text-xs sm:text-sm">
+          <button onClick={handleZoomIn} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1" title="Zoom In">➕<span className="hidden sm:inline"> Zoom In</span></button>
+          <div className="w-px h-4 bg-white/20"></div>
+          <button onClick={handleZoomOut} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1" title="Zoom Out">➖<span className="hidden sm:inline"> Zoom Out</span></button>
+          <div className="w-px h-4 bg-white/20"></div>
+          <button onClick={handleFitToScreen} className={`px-1 sm:px-2 py-1 transition-colors flex items-center gap-1 ${isFitToScreen ? 'text-gold-400' : 'text-white hover:text-gold-400'}`} title="Fit to Screen">🔍<span className="hidden sm:inline"> Fit to Screen</span></button>
+        </div>
       </div>
     </div>
   );
