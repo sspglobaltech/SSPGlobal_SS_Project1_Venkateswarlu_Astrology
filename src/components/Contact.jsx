@@ -73,35 +73,7 @@ export default function Contact({ onOpenWhatsAppModal }) {
     }, 3000);
   };
 
-  const contactMethods = [
 
-    {
-      icon: (
-        <svg className="w-7 h-7 sm:w-8 sm:h-8 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-      ),
-      title: t.contact.whatsappText,
-      value: t.contact.whatsappAction,
-      href: '#',
-      onClick: (e) => {
-        e.preventDefault();
-        onOpenWhatsAppModal();
-      }
-    },
-
-    {
-      icon: (
-        <svg className="w-7 h-7 sm:w-8 sm:h-8 text-gold-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-        </svg>
-      ),
-      title: t.contact.locationText,
-      value: t.contact.address,
-      href: 'https://maps.google.com/?q=Tirupati,Andhra+Pradesh',
-    },
-  ];
 
   return (
     <section id="contact" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#02040A] via-[#050712] to-[#02040A]">
@@ -131,42 +103,67 @@ export default function Contact({ onOpenWhatsAppModal }) {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-10">
-          {/* Contact Methods */}
-          <div className="lg:col-span-2 space-y-4">
-            {contactMethods.map((method, i) => (
-              <a
-                key={i}
-                href={method.href}
-                onClick={method.onClick}
-                target={method.href !== '#' && method.href.startsWith('http') ? '_blank' : undefined}
-                rel={method.href !== '#' && method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="group flex items-center gap-6 p-5 rounded-[24px] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] hover:border-gold-500/60 hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.4)] transition-all duration-500"
-              >
-                <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-2xl bg-white/20 border border-white/30 group-hover:border-gold-400 group-hover:scale-110 transition-all duration-500 shadow-[0_4px_15px_rgba(0,0,0,0.1)] shrink-0 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-60" />
-                  {method.icon}
-                </div>
-                <div className="flex-1">
-                  <div className="text-xs sm:text-sm text-gray-300 uppercase tracking-widest font-semibold mb-1 group-hover:text-gold-300 transition-colors">{method.title}</div>
-                  <div className="text-base sm:text-lg text-gold-400 font-bold tracking-wide break-all sm:break-normal drop-shadow-sm">{method.value}</div>
-                </div>
-              </a>
-            ))}
-
-            {/* Map placeholder */}
-            <div className="rounded-xl overflow-hidden border border-gold-500/10 mt-6">
-              <iframe
-                title="Location"
-                src="https://maps.google.com/maps?q=Tirupati,+Andhra+Pradesh&output=embed"
-                width="100%"
-                height="200"
-                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(0.8) contrast(1.2)' }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+        <div className="grid lg:grid-cols-5 gap-10 lg:items-stretch">
+          {/* Consultation Information Panel */}
+          <div className="lg:col-span-2 gap-6 relative flex flex-col h-full">
+            {/* Background Temple Silhouette */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden rounded-[24px]">
+               {/* Optional temple silhouette image if available in assets, else just uses the gradient styling below */}
+               <div className="absolute inset-0 bg-[url('/assets/temple_silhouette.png')] bg-cover bg-bottom opacity-5 mix-blend-screen" />
             </div>
+
+
+
+            {/* CARD 2: Consultation Center */}
+            <div className="relative z-10 p-6 sm:p-8 rounded-[24px] bg-[rgba(10,14,35,0.6)] backdrop-blur-[16px] border border-gold-500/20 shadow-[0_15px_40px_rgba(0,0,0,0.4),inset_0_0_20px_rgba(212,175,55,0.05)] hover:border-gold-500/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)] transition-all duration-500 overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-full blur-[40px] -mr-10 -mt-10 group-hover:bg-gold-500/20 transition-all duration-700 pointer-events-none z-20" />
+              
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-saffron-500 flex items-center justify-center text-[#02040A] shadow-[0_0_15px_rgba(212,175,55,0.5)]">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <h3 className="font-heading text-xl text-gold-300 font-bold tracking-wide">Consultation Center</h3>
+              </div>
+              
+              <div className="ml-16">
+                <p className="text-gray-200 font-medium text-base mb-1">Tirupati, Andhra Pradesh, India</p>
+                <p className="text-gray-400 text-sm italic">Serving clients across India and Worldwide.</p>
+              </div>
+            </div>
+
+            {/* CARD 3: Premium Map Card */}
+            <div className="relative z-10 rounded-[24px] bg-[rgba(10,14,35,0.6)] backdrop-blur-[16px] border border-gold-500/20 p-2 shadow-[0_15px_40px_rgba(0,0,0,0.4)] hover:border-gold-500/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)] transition-all duration-500 overflow-hidden group flex-1 flex flex-col min-h-[300px]">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-full blur-[40px] -mr-10 -mt-10 group-hover:bg-gold-500/20 transition-all duration-700 pointer-events-none z-20" />
+              <div className="rounded-[18px] overflow-hidden relative flex-1 z-10">
+                <iframe
+                  title="Location"
+                  src="https://maps.google.com/maps?q=Tirupati,+Andhra+Pradesh&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, filter: 'grayscale(100%) invert(95%) contrast(1.1) brightness(0.85) sepia(20%) hue-rotate(180deg)' }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105"
+                ></iframe>
+                <div className="absolute inset-0 bg-[#02040A]/30 pointer-events-none mix-blend-multiply" />
+                <div className="absolute inset-0 bg-gold-500/5 pointer-events-none mix-blend-overlay" />
+              </div>
+              <a 
+                href="https://maps.google.com/?q=Tirupati,Andhra+Pradesh" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-gold-500/90 text-[#02040A] font-semibold text-xs tracking-wide shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md hover:bg-gold-400 hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
+              >
+                <span>Get Directions</span>
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </a>
+            </div>
+
+
           </div>
 
           {/* Contact Form */}
@@ -224,8 +221,8 @@ export default function Contact({ onOpenWhatsAppModal }) {
 
               {/* Special Offer Banner */}
               <div className="bg-gold-500/10 border border-gold-500/20 rounded-xl p-4 flex items-start gap-3 shadow-[inset_0_0_20px_rgba(212,175,55,0.05)] animate-pulse-slow">
-                <svg className="w-6 h-6 text-gold-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg className="w-5 h-5 text-gold-400 shrink-0 mt-[2px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <p className="text-sm sm:text-base text-gray-200 leading-snug font-medium">
                   {t.contact.offerText}
@@ -250,9 +247,6 @@ export default function Contact({ onOpenWhatsAppModal }) {
                     </>
                   ) : (
                     <>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
                       {t.contact.submitBtn}
                     </>
                   )}
