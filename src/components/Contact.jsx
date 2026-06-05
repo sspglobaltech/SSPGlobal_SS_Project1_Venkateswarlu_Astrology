@@ -3,12 +3,13 @@ import { useLanguage } from '../context/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import SectionHeading from './SectionHeading';
 
-export default function Contact() {
+export default function Contact({ onOpenWhatsAppModal }) {
   const { t } = useLanguage();
   const [sectionRef, isVisible] = useScrollAnimation(0.1);
   const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
   const [errors, setErrors] = useState({ name: '', phone: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -41,15 +42,35 @@ export default function Contact() {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
+    setIsSubmitting(true);
     
-    // Build WhatsApp message
-    const msg = `Name: ${formData.name}\nPhone: ${formData.phone}\nMessage: ${formData.message}`;
-    window.open(`https://wa.me/917799099069?text=${encodeURIComponent(msg)}`, '_blank');
+    try {
+      const scriptUrl = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+      if (scriptUrl) {
+        const url = new URL(scriptUrl);
+        url.searchParams.append('Name', formData.name);
+        url.searchParams.append('Phone', formData.phone);
+        url.searchParams.append('Query', formData.message);
+        
+        await fetch(url.toString(), {
+          method: 'GET',
+          mode: 'no-cors',
+        });
+      }
+    } catch (error) {
+      console.error('Error saving to sheets:', error);
+    }
+    
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setIsSubmitting(false);
+    
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({ name: '', phone: '', message: '' });
+    }, 3000);
   };
 
   const contactMethods = [
@@ -62,7 +83,11 @@ export default function Contact() {
       ),
       title: t.contact.whatsappText,
       value: t.contact.whatsappAction,
-      href: 'https://wa.me/917799099069',
+      href: '#',
+      onClick: (e) => {
+        e.preventDefault();
+        onOpenWhatsAppModal();
+      }
     },
 
     {
@@ -74,7 +99,7 @@ export default function Contact() {
       ),
       title: t.contact.locationText,
       value: t.contact.address,
-      href: 'https://maps.google.com/?q=Hyderabad,Telangana',
+      href: 'https://maps.google.com/?q=Tirupati,Andhra+Pradesh',
     },
   ];
 
@@ -113,8 +138,9 @@ export default function Contact() {
               <a
                 key={i}
                 href={method.href}
-                target={method.href.startsWith('http') ? '_blank' : undefined}
-                rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                onClick={method.onClick}
+                target={method.href !== '#' && method.href.startsWith('http') ? '_blank' : undefined}
+                rel={method.href !== '#' && method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="group flex items-center gap-6 p-5 rounded-[24px] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] hover:border-gold-500/60 hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.4)] transition-all duration-500"
               >
                 <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-2xl bg-white/20 border border-white/30 group-hover:border-gold-400 group-hover:scale-110 transition-all duration-500 shadow-[0_4px_15px_rgba(0,0,0,0.1)] shrink-0 overflow-hidden">
@@ -209,10 +235,13 @@ export default function Contact() {
               <button
                 type="submit"
                 id="contact-submit"
+                disabled={isSubmitting}
                 className="w-full glow-button text-lg !py-4"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
-                  {submitted ? (
+                  {isSubmitting ? (
+                    "Sending..."
+                  ) : submitted ? (
                     <>
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

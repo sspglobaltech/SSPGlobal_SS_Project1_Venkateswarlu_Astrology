@@ -252,7 +252,7 @@ const translations = {
       messageLabel: 'Your Message',
       messagePlaceholder: 'Tell us about your query...',
       offerText: 'Please fill in your details below. Our team will get back to you within 24 hours to guide you further.',
-      submitBtn: 'Send Message',
+      submitBtn: 'Book Consultation',
       callText: 'Call Now',
       whatsappText: 'WhatsApp',
       whatsappAction: 'Click to chat',
@@ -260,7 +260,7 @@ const translations = {
       locationText: 'Location',
       phone: '+91 77990 99069',
       email: 'astrologervenkateswarlu1@gmail.com',
-      address: 'Hyderabad, Telangana, India',
+      address: 'Tirupati, Andhra Pradesh, India',
     },
     // Share
     share: {
@@ -534,7 +534,7 @@ const translations = {
       messageLabel: 'మీ సందేశం',
       messagePlaceholder: 'మీ ప్రశ్న గురించి చెప్పండి...',
       offerText: 'దయచేసి మీ వివరాలను నమోదు చేయండి. తదుపరి మార్గదర్శకత్వం కోసం మా బృందం 24 గంటల్లో మిమ్మల్ని సంప్రదిస్తుంది.',
-      submitBtn: 'సందేశం పంపండి',
+      submitBtn: 'సంప్రదింపు బుక్ చేయండి',
       callText: 'ఇప్పుడు కాల్ చేయండి',
       whatsappText: 'వాట్సాప్',
       whatsappAction: 'చాట్ చేయడానికి క్లిక్ చేయండి',
@@ -542,7 +542,7 @@ const translations = {
       locationText: 'ప్రదేశం',
       phone: '+91 77990 99069',
       email: 'astrologervenkateswarlu1@gmail.com',
-      address: 'హైదరాబాద్, తెలంగాణ, ఇండియా',
+      address: 'తిరుపతి, ఆంధ్రప్రదేశ్, ఇండియా',
     },
     // Share
     share: {

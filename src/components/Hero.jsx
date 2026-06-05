@@ -135,7 +135,7 @@ function FloatingShloka({ text, style }) {
   );
 }
 
-export default function Hero({ onOpenBookingModal }) {
+export default function Hero({ onOpenBookingModal, onOpenWhatsAppModal }) {
   const { t, language } = useLanguage();
   const heroRef = useRef(null);
   
@@ -386,9 +386,11 @@ export default function Hero({ onOpenBookingModal }) {
               </button>
 
               <a
-                href="https://wa.me/917799099069"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onOpenWhatsAppModal();
+                }}
                 id="hero-whatsapp"
                 className="group relative overflow-hidden flex items-center justify-center gap-3 px-8 py-4 rounded-full w-full sm:w-auto text-base sm:text-lg whitespace-nowrap font-heading font-semibold transition-all duration-500 hover:-translate-y-1
                 bg-black/30 backdrop-blur-xl border border-gold-500/20 hover:border-emerald-500/40 text-gold-50

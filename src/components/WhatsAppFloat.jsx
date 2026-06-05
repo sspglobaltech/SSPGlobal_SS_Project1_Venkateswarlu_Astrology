@@ -1,9 +1,11 @@
-export default function WhatsAppFloat() {
+export default function WhatsAppFloat({ onOpenWhatsAppModal }) {
   return (
     <a
-      href="https://wa.me/917799099069"
-      target="_blank"
-      rel="noopener noreferrer"
+      href="#"
+      onClick={(e) => {
+        e.preventDefault();
+        onOpenWhatsAppModal();
+      }}
       className="whatsapp-float"
       id="whatsapp-float-btn"
       aria-label="Chat on WhatsApp"
