@@ -50,8 +50,8 @@ export default function Navbar({ onOpenBookingModal }) {
             <div className="relative shrink-0 w-9 h-9 sm:w-12 sm:h-12 rounded-full overflow-hidden flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 border border-gold-500/40 group-hover:border-gold-400 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
               <img src="/assets/acharya_logo.jpg" alt="Acharya Venkateswarlu Logo" className="w-full h-full object-cover" />
             </div>
-            <div className="block transition-all duration-500 group-hover:translate-x-1 max-w-[130px] sm:max-w-none">
-              <span className="block font-heading text-[11px] leading-snug sm:text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300 drop-shadow-[0_2px_10px_rgba(212,175,55,0.4)] tracking-wide truncate">
+            <div className="block transition-all duration-500 group-hover:translate-x-1 sm:max-w-none">
+              <span className="block font-heading text-[11px] leading-tight sm:text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300 drop-shadow-[0_2px_10px_rgba(212,175,55,0.4)] tracking-wide whitespace-normal sm:whitespace-nowrap max-w-[150px] sm:max-w-none">
                 {t.nav.brandName}
               </span>
               <span className="block text-[7px] sm:text-[10px] tracking-widest sm:tracking-[0.2em] uppercase text-gray-400 group-hover:text-gold-200/80 transition-colors duration-500 mt-0.5 sm:mt-0">
