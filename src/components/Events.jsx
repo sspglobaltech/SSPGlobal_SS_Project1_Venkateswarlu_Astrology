@@ -139,11 +139,6 @@ export default function Events() {
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#D4AF37]/5 rounded-full blur-[120px] mix-blend-screen" />
         <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 rounded-full blur-[100px] mix-blend-screen" />
         
-        {/* Subtle Om Watermark */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#D4AF37] opacity-[0.03] text-[800px] font-serif leading-none select-none">
-          ॐ
-        </div>
-
         {/* Temple Silhouette using stylized CSS gradient */}
         <div className="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-[#020510] to-transparent opacity-80" />
       </div>
@@ -167,72 +162,29 @@ export default function Events() {
 
         {/* Premium Slideshow Container */}
         <div 
-          className="relative max-w-5xl mx-auto h-[500px] md:h-[650px] rounded-[24px] overflow-hidden border border-[#D4AF37]/30 shadow-[0_20px_50px_rgba(212,175,55,0.15)] bg-black/50 backdrop-blur-sm group"
+          className="relative max-w-5xl mx-auto h-[500px] md:h-[650px] group flex items-center justify-center w-full"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Subtle golden glow around the active image */}
-          <div className="absolute inset-0 shadow-[inset_0_0_80px_rgba(212,175,55,0.15)] pointer-events-none z-10" />
-
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             <motion.div
               key={activeEvent.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.2, ease: "easeInOut" }}
-              className="absolute inset-0 w-full h-full"
+              transition={{ duration: 1.8, ease: "easeInOut" }}
+              className="absolute inset-0 w-full h-full flex items-center justify-center"
             >
-              <motion.img
-                src={activeEvent.image}
-                alt={activeEvent.title}
-                initial={{ scale: 1.02 }}
-                animate={{ scale: 1.06 }}
-                transition={{ duration: 6, ease: "linear" }}
-                className="w-full h-full object-cover bg-black"
-                loading="lazy"
-              />
+              <div className="relative h-full w-auto max-w-full rounded-[24px] border border-[#D4AF37]/30 shadow-[0_20px_50px_rgba(212,175,55,0.15),inset_0_0_80px_rgba(212,175,55,0.15)] bg-[#050B1E]/80 backdrop-blur-sm overflow-hidden flex items-center justify-center">
+                <img
+                  src={activeEvent.image}
+                  alt={activeEvent.title}
+                  className="h-full w-auto max-w-full object-contain block"
+                  loading="lazy"
+                />
+              </div>
             </motion.div>
           </AnimatePresence>
-
-          {/* Gradient Overlay for Text Readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050B1E]/90 via-[#050B1E]/40 to-transparent pointer-events-none z-20" />
-
-          {/* Content Overlay */}
-          <div className="absolute bottom-0 inset-x-0 p-8 md:p-12 z-30 flex flex-col md:flex-row md:items-end justify-between gap-6">
-            {/* Bottom Left: Title & Description */}
-            <div className="flex-1">
-              <motion.div
-                key={`text-${activeEvent.id}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold text-[#D4AF37]">
-                    {activeEvent.location}
-                  </span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]/50" />
-                  <span className="text-[10px] md:text-xs text-white/60 font-light">
-                    {activeEvent.date}
-                  </span>
-                </div>
-                <h3 className="text-2xl md:text-4xl font-heading font-bold text-white mb-2 leading-tight drop-shadow-md">
-                  {activeEvent.title}
-                </h3>
-                <p className="text-white/80 font-light text-sm md:text-lg max-w-2xl drop-shadow-sm">
-                  {activeEvent.description}
-                </p>
-              </motion.div>
-            </div>
-
-            {/* Bottom Right: Index */}
-            <div className="flex items-center gap-4">
-              <div className="text-[#D4AF37] font-serif tracking-widest text-lg md:text-xl font-medium drop-shadow-md">
-                {String(activeIndex + 1).padStart(2, '0')} <span className="text-white/40 text-sm md:text-base mx-1">/</span> {String(eventsData.length).padStart(2, '0')}
-              </div>
-            </div>
-          </div>
 
           {/* Navigation Controls */}
           <button 
