@@ -84,14 +84,6 @@ export default function Events() {
       description: 'In deep meditation at the majestic Adiyogi Shiva statue.'
     },
     {
-      id: 10,
-      image: '/assets/gallery-6.jpg',
-      title: 'ASTROLOGY SESSION',
-      location: 'CLASSROOM',
-      date: '2024',
-      description: 'Guiding and teaching students in a dedicated session.'
-    },
-    {
       id: 11,
       image: '/assets/gallery-7.jpg',
       title: 'SACRED GATEWAY',
