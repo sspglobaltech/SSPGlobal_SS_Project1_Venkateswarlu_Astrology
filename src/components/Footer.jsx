@@ -49,7 +49,7 @@ export default function Footer({ onOpenWhatsAppModal }) {
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
-              Hereditary astrologer with 15+ years of experience guiding lives through ancient Jyotisha wisdom.
+              {t.footer.description}
             </p>
             {/* Social Links */}
             <div className="flex gap-3">
@@ -139,8 +139,8 @@ export default function Footer({ onOpenWhatsAppModal }) {
       {/* Disclaimer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 mt-8">
         <p className="text-sm text-gold-500/60 text-center max-w-4xl mx-auto leading-relaxed border border-gold-500/10 bg-gold-500/5 p-4 rounded-lg">
-          <strong className="text-gold-400">Disclaimer: </strong>
-          {t.footer.disclaimer || 'Astrology requires faith and is an interpretative art based on ancient scriptures. The readings provided are indicative and for spiritual guidance only. They should not substitute for professional medical, legal, or financial advice. Results interpretation may vary.'}
+          <strong className="text-gold-400">{t.footer.disclaimerTitle}</strong>
+          {t.footer.disclaimer}
         </p>
       </div>
 

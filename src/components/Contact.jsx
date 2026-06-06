@@ -125,12 +125,12 @@ export default function Contact({ onOpenWhatsAppModal }) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <h3 className="font-heading text-xl text-gold-300 font-bold tracking-wide">Consultation Center</h3>
+                <h3 className="font-heading text-xl text-gold-300 font-bold tracking-wide">{t.contact.consultationCenter}</h3>
               </div>
               
               <div className="ml-16">
-                <p className="text-gray-200 font-medium text-base mb-1">Tirupati, Andhra Pradesh, India</p>
-                <p className="text-gray-400 text-sm italic">Serving clients across India and Worldwide.</p>
+                <p className="text-gray-200 font-medium text-base mb-1">{t.contact.locationDetail}</p>
+                <p className="text-gray-400 text-sm italic">{t.contact.servingClients}</p>
               </div>
             </div>
 

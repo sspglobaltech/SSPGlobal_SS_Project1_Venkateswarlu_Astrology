@@ -261,6 +261,9 @@ const translations = {
       phone: '+91 77990 99069',
       email: 'astrologervenkateswarlu1@gmail.com',
       address: 'Tirupati, Andhra Pradesh, India',
+      consultationCenter: 'Consultation Center',
+      locationDetail: 'Tirupati, Andhra Pradesh, India',
+      servingClients: 'Serving clients across India and Worldwide.',
     },
     // Share
     share: {
@@ -283,6 +286,9 @@ const translations = {
       services: 'Services',
       followUs: 'Follow Us',
       designedBy: 'Crafted with ✨ spiritual essence',
+      description: 'Hereditary astrologer with 15+ years of experience guiding lives through ancient Jyotisha wisdom.',
+      disclaimer: 'Astrology requires faith and is an interpretative art based on ancient scriptures. The readings provided are indicative and for spiritual guidance only. They should not substitute for professional medical, legal, or financial advice. Results interpretation may vary.',
+      disclaimerTitle: 'Disclaimer: ',
     },
   },
   te: {
@@ -543,6 +549,9 @@ const translations = {
       phone: '+91 77990 99069',
       email: 'astrologervenkateswarlu1@gmail.com',
       address: 'తిరుపతి, ఆంధ్రప్రదేశ్, ఇండియా',
+      consultationCenter: 'సంప్రదింపు కేంద్రం',
+      locationDetail: 'తిరుపతి, ఆంధ్రప్రదేశ్, ఇండియా',
+      servingClients: 'భారతదేశం మరియు ప్రపంచవ్యాప్తంగా ఖాతాదారులకు సేవలు అందిస్తున్నాము.',
     },
     // Share
     share: {
@@ -565,6 +574,9 @@ const translations = {
       services: 'సేవలు',
       followUs: 'మమ్ములను ఫాలో అవ్వండి',
       designedBy: '✨ ఆధ్యాత్మిక సారంతో రూపొందించబడింది',
+      description: 'ప్రాచీన జ్యోతిష శాస్త్ర జ్ఞానంతో జీవితాలను మార్గదర్శనం చేస్తూ 15+ సంవత్సరాల అనుభవం ఉన్న వంశపారంపర్య జ్యోతిష్కులు.',
+      disclaimer: 'జ్యోతిషశాస్త్రానికి విశ్వాసం అవసరం మరియు ఇది ప్రాచీన గ్రంథాలపై ఆధారపడిన వివరణాత్మక కళ. అందించబడిన అంచనాలు సూచనాత్మకమైనవి మరియు ఆధ్యాత్మిక మార్గదర్శకత్వం కోసం మాత్రమే. ఇవి వృత్తిపరమైన వైద్య, చట్టపరమైన లేదా ఆర్థిక సలహాలకు ప్రత్యామ్నాయం కాకూడదు. ఫలితాల వివరణ మారవచ్చు.',
+      disclaimerTitle: 'గమనిక: ',
     },
   },
 };
