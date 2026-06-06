@@ -45,16 +45,16 @@ export default function Navbar({ onOpenBookingModal }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 group relative">
+          <a href="#home" className="flex items-center gap-2 sm:gap-3 group relative">
             <div className="absolute inset-0 bg-gold-500/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <div className="relative shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 border border-gold-500/40 group-hover:border-gold-400 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+            <div className="relative shrink-0 w-9 h-9 sm:w-12 sm:h-12 rounded-full overflow-hidden flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 border border-gold-500/40 group-hover:border-gold-400 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
               <img src="/assets/acharya_logo.jpg" alt="Acharya Venkateswarlu Logo" className="w-full h-full object-cover" />
             </div>
-            <div className="block transition-all duration-500 group-hover:translate-x-1">
-              <span className="block font-heading text-[13px] leading-tight sm:text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300 drop-shadow-[0_2px_10px_rgba(212,175,55,0.4)] tracking-wide">
+            <div className="block transition-all duration-500 group-hover:translate-x-1 max-w-[130px] sm:max-w-none">
+              <span className="block font-heading text-[11px] leading-snug sm:text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300 drop-shadow-[0_2px_10px_rgba(212,175,55,0.4)] tracking-wide truncate">
                 {t.nav.brandName}
               </span>
-              <span className="block text-[8px] sm:text-[10px] tracking-[0.2em] uppercase text-gray-400 group-hover:text-gold-200/80 transition-colors duration-500 mt-0.5 sm:mt-0">
+              <span className="block text-[7px] sm:text-[10px] tracking-widest sm:tracking-[0.2em] uppercase text-gray-400 group-hover:text-gold-200/80 transition-colors duration-500 mt-0.5 sm:mt-0">
                 {t.nav.brandSubtitle}
               </span>
             </div>

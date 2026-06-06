@@ -316,7 +316,7 @@ export default function Hero({ onOpenBookingModal, onOpenWhatsAppModal }) {
       </div>
 
       {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 sm:pt-36 lg:pt-40 pb-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-40 sm:pt-44 lg:pt-48 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           {/* Text Content */}
