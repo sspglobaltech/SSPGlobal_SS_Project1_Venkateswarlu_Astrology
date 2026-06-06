@@ -92,14 +92,6 @@ export default function Events() {
       description: 'Standing before the powerful snake archway of Dhyanalinga.'
     },
     {
-      id: 12,
-      image: '/assets/gallery-8.jpg',
-      title: 'RESEARCH & PUBLICATIONS',
-      location: 'RESEARCH CENTER',
-      date: '2024',
-      description: 'A distinguished visit to the academic research library.'
-    },
-    {
       id: 13,
       image: '/assets/gallery-9.jpg',
       title: 'TEMPLE BLESSINGS',
