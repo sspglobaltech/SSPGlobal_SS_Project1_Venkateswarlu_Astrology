@@ -234,41 +234,16 @@ export default function Events() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative max-w-5xl w-full max-h-[90vh] flex flex-col md:flex-row bg-[#050B1E] rounded-3xl overflow-hidden border border-[#D4AF37]/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)]"
+              className="relative max-w-5xl w-full max-h-[90vh] flex bg-black rounded-3xl overflow-hidden border border-[#D4AF37]/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)]"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Image Section */}
-              <div className="w-full md:w-2/3 bg-black relative flex items-center justify-center min-h-[300px] md:min-h-[500px]">
+              <div className="w-full bg-black relative flex items-center justify-center min-h-[300px] md:min-h-[600px] max-h-[90vh]">
                 <img 
                   src={selectedEvent.image} 
                   alt={selectedEvent.title}
-                  className="w-full h-full object-contain md:object-cover"
+                  className="w-full h-full max-h-[90vh] object-contain"
                 />
-              </div>
-
-              {/* Info Section */}
-              <div className="w-full md:w-1/3 p-8 flex flex-col justify-center relative">
-                {/* Mandala Corner Decoration Removed */}
-
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs uppercase tracking-[0.2em] font-bold text-[#D4AF37]">
-                    {selectedEvent.location}
-                  </span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]/40" />
-                  <span className="text-xs text-white/50 font-light">
-                    {selectedEvent.date}
-                  </span>
-                </div>
-
-                <h2 className="text-3xl font-heading font-bold text-white mb-6 leading-tight">
-                  {selectedEvent.title}
-                </h2>
-                
-                <div className="w-12 h-px bg-[#D4AF37]/40 mb-6" />
-
-                <p className="text-white/70 leading-relaxed font-light text-lg">
-                  {selectedEvent.description}
-                </p>
               </div>
             </motion.div>
           </motion.div>
