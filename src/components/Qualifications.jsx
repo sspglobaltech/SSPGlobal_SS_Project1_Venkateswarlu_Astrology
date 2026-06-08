@@ -357,12 +357,14 @@ function CertificateModal({ cert, onClose }) {
         </div>
 
         {/* Zoom Controls */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[110] flex items-center gap-2 sm:gap-4 px-3 sm:px-6 py-2 sm:py-3 bg-black/80 backdrop-blur-md border border-gold-500/30 rounded-full shadow-2xl text-xs sm:text-sm">
-          <button onClick={handleZoomIn} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1" title="Zoom In">➕<span className="hidden sm:inline"> Zoom In</span></button>
-          <div className="w-px h-4 bg-white/20"></div>
-          <button onClick={handleZoomOut} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1" title="Zoom Out">➖<span className="hidden sm:inline"> Zoom Out</span></button>
-          <div className="w-px h-4 bg-white/20"></div>
-          <button onClick={handleFitToScreen} className={`px-1 sm:px-2 py-1 transition-colors flex items-center gap-1 ${isFitToScreen ? 'text-gold-400' : 'text-white hover:text-gold-400'}`} title="Fit to Screen">🔍<span className="hidden sm:inline"> Fit to Screen</span></button>
+        <div className="mt-4 flex justify-center items-center flex-shrink-0 w-full z-[110]">
+          <div className="flex items-center gap-2 sm:gap-4 px-3 sm:px-6 py-2 sm:py-3 bg-black/40 backdrop-blur-md border border-gold-500/30 rounded-full shadow-2xl text-xs sm:text-sm">
+            <button onClick={handleZoomIn} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1" title="Zoom In">➕<span className="hidden sm:inline"> Zoom In</span></button>
+            <div className="w-px h-4 bg-white/20"></div>
+            <button onClick={handleZoomOut} className="text-white hover:text-gold-400 px-1 sm:px-2 py-1 transition-colors flex items-center gap-1" title="Zoom Out">➖<span className="hidden sm:inline"> Zoom Out</span></button>
+            <div className="w-px h-4 bg-white/20"></div>
+            <button onClick={handleFitToScreen} className={`px-1 sm:px-2 py-1 transition-colors flex items-center gap-1 ${isFitToScreen ? 'text-gold-400' : 'text-white hover:text-gold-400'}`} title="Fit to Screen">🔍<span className="hidden sm:inline"> Fit to Screen</span></button>
+          </div>
         </div>
       </div>
     </div>

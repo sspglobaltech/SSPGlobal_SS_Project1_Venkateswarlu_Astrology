@@ -86,7 +86,7 @@ const translations = {
           certificateImage: '/assets/diploma_jyotisha_vastu_certificate.jpg',
         },
         {
-          title: 'M.A. (Phalitha Jyotisha)',
+          title: 'M.A.\n(Phalitha Jyotisha)',
           issuer: 'Post Graduate Degree',
           icon: '🎓',
           certificateImage: '/assets/ma_phalitha_jyotisha_certificate.jpg',
