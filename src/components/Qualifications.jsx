@@ -90,15 +90,14 @@ export default function Qualifications() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         <div
           ref={sectionRef}
-          className={`mx-auto mb-16 max-w-4xl text-center transition-all duration-1000 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-          }`}
+          className={`mx-auto mb-16 max-w-4xl text-center transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+            }`}
         >
-          <SectionHeading 
-            title={t.qualifications.title} 
-            subtitle={t.qualifications.sectionTag} 
+          <SectionHeading
+            title={t.qualifications.title}
+            subtitle={t.qualifications.sectionTag}
           />
-          
+
           <p className="mx-auto max-w-2xl text-lg sm:text-xl leading-8 text-white/80 font-light drop-shadow-sm mt-4">
             {t.qualifications.subtitle}
           </p>
@@ -150,7 +149,7 @@ function QualificationCard({ item, index, onOpenModal }) {
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
     >
-      <div 
+      <div
         className="relative h-full w-full text-center transition-transform duration-[800ms] ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:-translate-y-2 sm:hover:scale-[1.02] hover:shadow-[0_15px_50px_rgba(212,175,55,0.18),0_0_35px_rgba(212,175,55,0.12)] hover:z-20 rounded-2xl"
         style={{
           transformStyle: 'preserve-3d',
@@ -162,13 +161,16 @@ function QualificationCard({ item, index, onOpenModal }) {
           className={`absolute inset-0 w-full h-full flex flex-col items-center justify-start rounded-2xl px-6 pt-10 pb-12 bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] transition-opacity duration-300 ${isFlipped ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
           style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
         >
+          {/* Inner Golden Boundary */}
+          <div className="absolute inset-2 border border-[#D4AF37]/50 rounded-xl pointer-events-none" />
+
           <QualificationCertifiedBadge />
 
           <div className="mb-6 transition-transform duration-300 sm:group-hover:scale-110 relative z-10">
             <QualificationIconBadge icon={item.icon} />
           </div>
 
-          <h3 className="qualification-card-title text-[#D4AF37] font-serif font-semibold text-lg tracking-wide mb-4">
+          <h3 className="qualification-card-title text-[#D4AF37] font-serif font-semibold text-lg tracking-wide mb-4 whitespace-pre-line">
             {item.title}
           </h3>
 
@@ -192,22 +194,25 @@ function QualificationCard({ item, index, onOpenModal }) {
             transform: 'rotateY(180deg)' 
           }}
         >
+          {/* Inner Golden Boundary */}
+          <div className="absolute inset-2 border border-[#D4AF37]/50 rounded-xl pointer-events-none z-0" />
+
           {/* Subtle glow behind certificate */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.15),transparent_70%)] pointer-events-none" />
-          
+
           <div className="flex-1 w-full flex flex-col items-center justify-center relative z-10">
             {/* Small framed certificate image */}
             <div className="w-full h-[130px] flex-shrink-0 border border-[#D4AF37]/40 p-1.5 rounded-md mb-4 bg-white/5 backdrop-blur-sm shadow-inner flex items-center justify-center overflow-hidden">
-              <img 
-                src={item.certificateImage || "/assets/certificate_mockup_1776496466745.png"} 
-                alt="Certificate" 
+              <img
+                src={item.certificateImage || "/assets/certificate_mockup_1776496466745.png"}
+                alt="Certificate"
                 className="w-full h-full object-contain drop-shadow-md opacity-90 select-none"
                 draggable={false}
                 onContextMenu={(e) => e.preventDefault()}
               />
             </div>
-            
-            <h4 className="text-[#D4AF37] font-serif font-semibold text-sm mb-1 tracking-wide leading-tight px-2 text-center line-clamp-2">
+
+            <h4 className="text-[#D4AF37] font-serif font-semibold text-sm mb-1 tracking-wide leading-tight px-2 text-center line-clamp-2 whitespace-pre-line">
               {item.title}
             </h4>
             <p className="text-white/80 text-[10px] tracking-wider uppercase text-center px-2 line-clamp-2">
@@ -215,7 +220,7 @@ function QualificationCard({ item, index, onOpenModal }) {
             </p>
           </div>
 
-          <button 
+          <button
             onClick={handleViewClick}
             className="relative z-20 mt-3 px-5 py-2 rounded-full bg-[rgba(212,175,55,0.1)] border border-[#D4AF37]/60 text-[#D4AF37] text-xs font-medium tracking-wide hover:bg-[#D4AF37] hover:text-[#050B1E] transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] flex items-center justify-center gap-2 w-full max-w-[200px]"
           >
@@ -231,7 +236,7 @@ function QualificationCard({ item, index, onOpenModal }) {
 function CertificateModal({ cert, onClose }) {
   const [scale, setScale] = useState(1);
   const [isFitToScreen, setIsFitToScreen] = useState(true);
-  
+
   const scrollContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const dragState = useRef({ isDown: false, startX: 0, startY: 0, scrollLeft: 0, scrollTop: 0, hasDragged: false });
@@ -240,7 +245,7 @@ function CertificateModal({ cert, onClose }) {
     setScale(prev => Math.min(4, prev + 0.5));
     setIsFitToScreen(false);
   };
-  
+
   const handleZoomOut = () => {
     setScale(prev => {
       const newScale = Math.max(0.5, prev - 0.5);
@@ -251,7 +256,7 @@ function CertificateModal({ cert, onClose }) {
       return newScale;
     });
   };
-  
+
   const handleFitToScreen = () => {
     setScale(1);
     setIsFitToScreen(true);
@@ -262,7 +267,7 @@ function CertificateModal({ cert, onClose }) {
     setIsDragging(true);
     const clientX = e.type.includes('touch') ? e.touches[0].pageX : e.pageX;
     const clientY = e.type.includes('touch') ? e.touches[0].pageY : e.pageY;
-    
+
     dragState.current = {
       isDown: true,
       startX: clientX - scrollContainerRef.current.offsetLeft,
@@ -283,7 +288,7 @@ function CertificateModal({ cert, onClose }) {
     dragState.current.hasDragged = true;
     const clientX = e.type.includes('touch') ? e.touches[0].pageX : e.pageX;
     const clientY = e.type.includes('touch') ? e.touches[0].pageY : e.pageY;
-    
+
     const x = clientX - scrollContainerRef.current.offsetLeft;
     const y = clientY - scrollContainerRef.current.offsetTop;
     const walkX = (x - dragState.current.startX) * 1.5;
@@ -293,13 +298,13 @@ function CertificateModal({ cert, onClose }) {
   };
 
   return (
-    <div 
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 select-none" 
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 select-none"
       style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}
       onClick={onClose}
     >
-      <div 
-        className="relative w-full max-w-5xl h-full max-h-[90vh] bg-spiritual-dark border border-gold-500/30 rounded-2xl shadow-2xl p-4 sm:p-8 flex flex-col mx-auto transition-all duration-300" 
+      <div
+        className="relative w-full max-w-5xl h-full max-h-[90vh] bg-spiritual-dark border border-gold-500/30 rounded-2xl shadow-2xl p-4 sm:p-8 flex flex-col mx-auto transition-all duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -312,7 +317,7 @@ function CertificateModal({ cert, onClose }) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        
+
         {/* Header */}
         <div className="mb-4 sm:mb-6 flex-shrink-0 text-center pr-8 sm:pr-0">
           <h3 className="font-heading text-xl sm:text-2xl font-bold text-gold-300">{cert.title}</h3>
@@ -320,7 +325,7 @@ function CertificateModal({ cert, onClose }) {
         </div>
 
         {/* Scrollable Image Container */}
-        <div 
+        <div
           ref={scrollContainerRef}
           className={`relative w-full flex-1 rounded-xl border border-gold-500/20 shadow-inner bg-spiritual-slate/30 overflow-auto custom-scrollbar flex ${isFitToScreen ? 'items-center justify-center' : 'items-start justify-start'} ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
           onMouseDown={handlePointerDown}

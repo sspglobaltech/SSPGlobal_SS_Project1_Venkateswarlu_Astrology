@@ -12,7 +12,7 @@ function ServiceIcon({ title }) {
 
   switch (title) {
     case 'Horoscope Reading':
-    case 'జాతక చదవడం':
+    case 'జాతక పరిశీలన':
       return (
         <svg {...common}>
           <rect x="3" y="3" width="18" height="18" rx="1" strokeWidth="1.2" />
@@ -22,7 +22,7 @@ function ServiceIcon({ title }) {
         </svg>
       );
     case 'Marriage Matching':
-    case 'వివాహ అనుకూలత':
+    case 'వివాహ పొంతన':
       return (
         <img
           src="/marriage-matching-icon.png"
@@ -36,19 +36,19 @@ function ServiceIcon({ title }) {
         <svg {...common} viewBox="0 0 48 48" strokeWidth="2.5">
           {/* Stairs - with a gap below feet */}
           <path strokeLinecap="round" strokeLinejoin="round" d="M6 43h11v-6h11v-6h11v-6h6" />
-          
+
           {/* Person Head */}
           <circle cx="22" cy="10" r="4" />
-          
+
           {/* Person Body */}
           <path strokeLinecap="round" strokeLinejoin="round" d="M22 14v12" />
-          
+
           {/* Legs */}
           {/* Back leg */}
           <path strokeLinecap="round" strokeLinejoin="round" d="M22 26l-5 8" />
           {/* Front leg */}
           <path strokeLinecap="round" strokeLinejoin="round" d="M22 26l6-4v6" />
-          
+
           {/* Arms */}
           {/* Front arm */}
           <path strokeLinecap="round" strokeLinejoin="round" d="M22 16l6 3" />
@@ -81,14 +81,14 @@ function ServiceIcon({ title }) {
 
           {/* Cobra Profile Body */}
           <path strokeWidth="1.2" strokeLinejoin="round" fill="#0a1122" d="M10 18 v-6 c0-3 -2-4 -2-6 c0-3 3-4 6-4 c2 0 3 1 3 3 c0 1 -2 2 -3 2 c-1 0 -2 1 -2 3 v8 z" />
-          
+
           {/* Main Front Coil */}
           <ellipse cx="12" cy="18" rx="6" ry="2.5" strokeWidth="1.2" fill="#0a1122" />
           <path strokeWidth="1.2" strokeLinecap="round" d="M7 18c0 1.2 2 2 5 2s5-.8 5-2" />
-          
+
           {/* Snake Eye */}
           <circle cx="14" cy="4.5" r="0.6" fill="currentColor" />
-          
+
           {/* Snake Tongue */}
           <path strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" d="M17 5.5h1.5l1-1M18.5 5.5l1 1" />
         </svg>
@@ -99,24 +99,24 @@ function ServiceIcon({ title }) {
         <svg {...common} viewBox="0 0 48 48" strokeWidth="2.5">
           {/* Pot Rim */}
           <rect x="12" y="22" width="24" height="4" rx="2" strokeLinejoin="round" />
-          
+
           {/* Pot Body */}
           <path strokeLinecap="round" strokeLinejoin="round" d="M14 26 C4 32, 10 46, 20 46 h8 C38 46, 44 32, 34 26" />
-          
+
           {/* Coconut Top */}
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 22 C19 8, 24 2, 24 2 C24 8, 29 22, 29 22" />
-          
+
           {/* Left Mango Leaves */}
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 14 Q14 8 8 10 Q14 14 19 18" />
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 18 Q12 16 4 20 Q10 22 14 22" />
-          
+
           {/* Right Mango Leaves */}
           <path strokeLinecap="round" strokeLinejoin="round" d="M29 14 Q34 8 40 10 Q34 14 29 18" />
           <path strokeLinecap="round" strokeLinejoin="round" d="M29 18 Q36 16 44 20 Q38 22 34 22" />
-          
+
           {/* Swastika */}
           <path strokeLinecap="round" strokeLinejoin="round" d="M24 31 v8 M20 35 h8 M24 31 h4 M24 39 h-4 M28 35 v4 M20 35 v-4" />
-          
+
           {/* Swastika Dots */}
           <circle cx="21.5" cy="32.5" r="1.5" fill="currentColor" stroke="none" />
           <circle cx="26.5" cy="32.5" r="1.5" fill="currentColor" stroke="none" />
@@ -132,12 +132,12 @@ function ServiceIcon({ title }) {
           <circle cx="13" cy="28" r="4" />
           {/* Left person body */}
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 44v-3c0-4.4 3.6-8 8-8c1.5 0 3 .4 4 1.2" />
-          
+
           {/* Right person head */}
           <circle cx="35" cy="28" r="4" />
           {/* Right person body */}
           <path strokeLinecap="round" strokeLinejoin="round" d="M43 44v-3c0-4.4-3.6-8-8-8c-1.5 0-3 .4-4 1.2" />
-          
+
           {/* Chat bubble - well above */}
           <rect x="15" y="2" width="18" height="12" rx="3" strokeLinejoin="round" />
           <path strokeLinejoin="round" fill="#0a1122" d="M21 14l3 5 3-5" />
@@ -145,6 +145,50 @@ function ServiceIcon({ title }) {
           <circle cx="20" cy="8" r="1.2" fill="currentColor" />
           <circle cx="24" cy="8" r="1.2" fill="currentColor" />
           <circle cx="28" cy="8" r="1.2" fill="currentColor" />
+        </svg>
+      );
+    case 'Vibrational Numerology':
+    case 'సంఖ్యా శాస్త్రం':
+      return (
+        <svg {...common}>
+          {/* Zodiac Wheel Outer Rings */}
+          <circle cx="12" cy="12" r="11" strokeWidth="0.8" opacity="0.3" />
+          <circle cx="12" cy="12" r="9" strokeWidth="1" opacity="0.5" />
+          
+          {/* 12 Zodiac Compartments (ticks) */}
+          <circle cx="12" cy="12" r="10" strokeWidth="2" strokeDasharray="0.5 4.736" opacity="0.3" />
+          
+          {/* Inscribed Pentagram (Star) */}
+          <path strokeWidth="1" strokeLinejoin="round" opacity="0.7" fill="none" d="M 12 3 L 17.29 19.28 L 3.44 9.22 L 20.56 9.22 L 6.71 19.28 Z" />
+          
+          {/* Outer Mystical Numbers (in gaps between triangles) */}
+          <text x="16.4" y="7.1" textAnchor="middle" fontSize="3.5" fontWeight="600" fill="currentColor" stroke="none" fontFamily="serif">9</text>
+          <text x="19.1" y="15.5" textAnchor="middle" fontSize="3.5" fontWeight="600" fill="currentColor" stroke="none" fontFamily="serif">7</text>
+          <text x="12" y="20.7" textAnchor="middle" fontSize="3.5" fontWeight="600" fill="currentColor" stroke="none" fontFamily="serif">6</text>
+          <text x="4.9" y="15.5" textAnchor="middle" fontSize="3.5" fontWeight="600" fill="currentColor" stroke="none" fontFamily="serif">8</text>
+          <text x="7.6" y="7.1" textAnchor="middle" fontSize="3.5" fontWeight="600" fill="currentColor" stroke="none" fontFamily="serif">3</text>
+          
+          {/* Inner Mystical Numbers */}
+          <text x="12" y="10.6" textAnchor="middle" fontSize="2" fontWeight="400" fill="currentColor" opacity="0.8" stroke="none" fontFamily="serif">1</text>
+          <text x="13.7" y="11.8" textAnchor="middle" fontSize="2" fontWeight="400" fill="currentColor" opacity="0.8" stroke="none" fontFamily="serif">3</text>
+          <text x="13.0" y="13.8" textAnchor="middle" fontSize="2" fontWeight="400" fill="currentColor" opacity="0.8" stroke="none" fontFamily="serif">5</text>
+          <text x="11.0" y="13.8" textAnchor="middle" fontSize="2" fontWeight="400" fill="currentColor" opacity="0.8" stroke="none" fontFamily="serif">2</text>
+          <text x="10.3" y="11.8" textAnchor="middle" fontSize="2" fontWeight="400" fill="currentColor" opacity="0.8" stroke="none" fontFamily="serif">4</text>
+        </svg>
+      );
+    case 'Horary\nQuestion':
+    case 'ప్రశ్న శాస్త్రం':
+      return (
+        <svg {...common}>
+          {/* Subtle Zodiac Wheel */}
+          <circle cx="12" cy="12" r="10" strokeWidth="1" strokeDasharray="3 3" opacity="0.4" />
+          <circle cx="12" cy="12" r="11" strokeWidth="1" opacity="0.3" />
+          <path strokeWidth="1" strokeLinecap="round" opacity="0.5" d="M12 1v2M12 21v2M1 12h2M21 12h2" />
+          <path strokeWidth="1" strokeLinecap="round" opacity="0.3" d="M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M4.22 19.78l1.42-1.42M18.36 4.22l1.42 1.42" />
+
+          {/* Question Mark */}
+          <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3v1" />
+          <circle cx="12" cy="16" r="1.2" fill="currentColor" stroke="none" />
         </svg>
       );
     default:
@@ -163,24 +207,23 @@ function ServiceCard({ service, index, className = '' }) {
   return (
     <div
       ref={cardRef}
-      className={`h-full transition-all duration-1000 ease-out ${
-        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-      } ${className}`}
+      className={`h-full flex flex-col transition-all duration-1000 ease-out ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+        } ${className}`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
-      <article className="group relative h-full flex flex-col rounded-[28px] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.4)] hover:border-gold-500/60 hover:-translate-y-3 hover:scale-[1.02] transition-all duration-500 overflow-hidden">
+      <article className="group relative flex-1 flex flex-col w-full rounded-[28px] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] hover:shadow-[0_20px_50px_-12px_rgba(212,175,55,0.4)] hover:border-gold-500/60 hover:-translate-y-3 hover:scale-[1.02] transition-all duration-500 overflow-hidden">
         {/* Shimmer Animation */}
         <div className="qualification-card-shimmer z-10" />
-        
+
         {/* Sacred Glow */}
         <div className="absolute -inset-4 bg-gradient-to-br from-gold-500/20 to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-        <div className="relative z-20 flex flex-col h-full p-8 sm:p-10">
+        <div className="relative z-20 flex-1 flex flex-col p-8 sm:p-10">
           <div className="mb-8 relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-2xl bg-gradient-to-br from-gold-500/20 to-transparent border border-gold-500/30 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 ease-out shadow-[0_0_20px_rgba(234,179,8,0.15)] group-hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] text-gold-400 shrink-0">
             <ServiceIcon title={service.title} />
           </div>
 
-          <h3 className="font-heading text-2xl sm:text-[1.6rem] tracking-wide font-bold bg-gradient-to-r from-gold-400 to-saffron-400 bg-clip-text text-transparent mb-5 transition-all duration-300 drop-shadow-sm">
+          <h3 className="font-heading text-2xl sm:text-[1.6rem] tracking-wide font-bold bg-gradient-to-r from-gold-400 to-saffron-400 bg-clip-text text-transparent mb-5 transition-all duration-300 drop-shadow-sm whitespace-pre-line">
             {service.title}
           </h3>
 
@@ -201,15 +244,15 @@ export default function Services({ onOpenBookingModal }) {
 
   const sectionCopy = language === 'te'
     ? {
-        title: 'మా దివ్య జ్యోతిష సేవలు',
-        subtitle: 'ప్రాచీన వేద జ్ఞానం మరియు గ్రహ దర్శనంతో మీ జీవితానికి మార్గదర్శనం',
-        cta: 'సంప్రదింపు బుక్ చేయండి',
-      }
+      title: 'మా దివ్య జ్యోతిష సేవలు',
+      subtitle: 'ప్రాచీన వేద జ్ఞానం మరియు గ్రహ దర్శనంతో మీ జీవితానికి మార్గదర్శనం',
+      cta: 'సంప్రదింపు బుక్ చేయండి',
+    }
     : {
-        title: 'OUR DIVINE ASTROLOGY SERVICES',
-        subtitle: 'Guiding your life through ancient Vedic wisdom and cosmic insights',
-        cta: 'Book Sacred Consultation',
-      };
+      title: 'OUR DIVINE ASTROLOGY SERVICES',
+      subtitle: 'Guiding your life through ancient Vedic wisdom and cosmic insights',
+      cta: 'Book Sacred Consultation',
+    };
 
   return (
     <section id="services" className="relative overflow-hidden py-24 sm:py-32 bg-gradient-to-b from-[#0A1128] via-[#050712] to-[#02040A]">
@@ -224,37 +267,27 @@ export default function Services({ onOpenBookingModal }) {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         <div
           ref={sectionRef}
-          className={`mx-auto mb-20 max-w-4xl text-center transition-all duration-1000 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-          }`}
+          className={`mx-auto mb-20 max-w-4xl text-center transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+            }`}
         >
-          <SectionHeading 
-            title={sectionCopy.title} 
-            subtitle={t.services.sectionTag} 
+          <SectionHeading
+            title={sectionCopy.title}
+            subtitle={t.services.sectionTag}
           />
-          
+
           <p className="mx-auto max-w-2xl text-lg sm:text-xl leading-8 text-white/80 font-light drop-shadow-sm mt-4">
             {sectionCopy.subtitle}
           </p>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {t.services.items.map((service, index) => {
-            // Center the 7th item on lg screens (3 columns) and sm screens (2 columns)
-            const isSeventhItem = index === 6;
-            const alignmentClasses = isSeventhItem 
-              ? 'sm:col-span-2 lg:col-span-1 lg:col-start-2 sm:max-w-md sm:mx-auto lg:max-w-none lg:mx-0 w-full' 
-              : '';
-
-            return (
-              <ServiceCard 
-                key={service.title} 
-                service={service} 
-                index={index} 
-                className={alignmentClasses}
-              />
-            );
-          })}
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+          {t.services.items.map((service, index) => (
+            <ServiceCard
+              key={service.title}
+              service={service}
+              index={index}
+            />
+          ))}
         </div>
 
         <div className="mt-20 text-center">

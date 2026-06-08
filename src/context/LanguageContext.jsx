@@ -56,13 +56,13 @@ const translations = {
       subtitle: 'Recognized by premier institutions for excellence in Jyotisha Shastra',
       items: [
         {
-          title: 'Jothisha Mani',
+          title: 'Jothisha\nMani',
           issuer: 'Thiru Guruvarul Jothisha Welfare Association',
           icon: '🏆',
           certificateImage: '/assets/jothisha_mani_certificate.jpg',
         },
         {
-          title: 'Jyotish Visharada',
+          title: 'Jyotish\nVisharada',
           issuer: 'NS Live Astro Company',
           icon: '🌟',
           certificateImage: '/assets/jyothish_visharada_certificate.jpg',
@@ -92,7 +92,7 @@ const translations = {
           certificateImage: '/assets/ma_phalitha_jyotisha_certificate.jpg',
         },
         {
-          title: 'Jyotisha Acharya',
+          title: 'Jyotisha\nAcharya',
           issuer: 'National Sanskrit University',
           icon: '⭐',
           certificateImage: '/assets/jyotisha_acharya_certificate.jpg',
@@ -134,6 +134,16 @@ const translations = {
           title: 'Muhurtham Fixing',
           description: 'Auspicious timing selection for weddings, griha pravesh, business inaugurations, and other important life events.',
           icon: '🌿',
+        },
+        {
+          title: 'Vibrational Numerology',
+          description: 'Child Name, Business Name suggested based on Vibrational Numerology.',
+          icon: '🔢',
+        },
+        {
+          title: 'Horary\nQuestion',
+          description: 'The result of the question will be stated based on the time.',
+          icon: '⏱️',
         },
         {
           title: 'Personal Consultation',
@@ -287,7 +297,7 @@ const translations = {
       followUs: 'Follow Us',
       designedBy: 'Crafted with ✨ spiritual essence',
       description: 'Hereditary astrologer with 15+ years of experience guiding lives through ancient Jyotisha wisdom.',
-      disclaimer: 'Astrology requires faith and is an interpretative art based on ancient scriptures. The readings provided are indicative and for spiritual guidance only. They should not substitute for professional medical, legal, or financial advice. Results interpretation may vary.',
+      disclaimer: 'Astrology requires faith and is an interpretative art based on ancient scriptures. The readings provided are indicative and for spiritual guidance only. They should not substitute for professional medical, legal, or financial advice. Results interpretation may vary. By using these services, you acknowledge that astrology is subject to interpretation and agree that you are fully responsible for your own life choices and actions.',
       disclaimerTitle: 'Disclaimer: ',
     },
   },
@@ -325,7 +335,7 @@ const translations = {
       profileTitle: 'వంశపారంపర్య జ్యోతిష్కులు',
       profileSubtitle: 'జ్యోతిష ఆచార్య',
       description: 'జ్యోతిష శాస్త్రం మా కుటుంబంలో తరతరాలుగా ఆచరించబడుతోంది, మా పూజ్యులైన పూర్వీకులు మరియు తాతలు నుండి అందించబడింది. జ్యోతిష శాస్త్రం యొక్క ఈ పవిత్ర జ్ఞానం ప్రతి తరంలో సంరక్షించబడి మరియు మెరుగుపరచబడింది, వేద జ్యోతిషం యొక్క కాలాతీత జ్ఞానాన్ని ఆధునిక విశ్లేషణ విధానాలతో కలుపుతూ.',
-      description2: '15 సంవత్సరాలకు పైగా అంకితభావంతో ఆచరిస్తూ, జ్యోతిష్కులు ఆచార్య వేంకటేశ్వర్లు వేలాది కుటుంబాలను మరియు వ్యక్తులను జీవితంలోని అతి ముఖ్యమైన నిర్ణయాలలో - వివాహ అనుకూలత మరియు వృత్తి ఎంపికల నుండి గ్రహ దోషాల పరిష్కారం మరియు వాస్తు సంప్రదింపుల వరకు - మార్గదర్శనం చేశారు.',
+      description2: '15 సంవత్సరాలకు పైగా అంకితభావంతో ఆచరిస్తూ, జ్యోతిష్కులు ఆచార్య వేంకటేశ్వర్లు వేలాది కుటుంబాలను మరియు వ్యక్తులను జీవితంలోని అతి ముఖ్యమైన నిర్ణయాలలో - వివాహ పొంతన మరియు వృత్తి ఎంపికల నుండి గ్రహ దోషాల పరిష్కారం మరియు వాస్తు సంప్రదింపుల వరకు - మార్గదర్శనం చేశారు.',
       stat1Title: '15+',
       stat1Label: 'సంవత్సరాల అనుభవం',
       stat2Title: '10000+',
@@ -394,12 +404,12 @@ const translations = {
       subtitle: 'మీ జీవితంలోని ప్రతి అంశాన్ని మార్గదర్శనం చేయడానికి సమగ్ర వేద జ్యోతిష సేవలు',
       items: [
         {
-          title: 'జాతక చదవడం',
+          title: 'జాతక పరిశీలన',
           description: 'వేద సూత్రాల ఆధారంగా గ్రహ ప్రభావాలు, బలాలు మరియు జీవిత మార్గ మార్గదర్శనాన్ని వెల్లడించే మీ జన్మ చార్ట్ యొక్క వివరమైన విశ్లేషణ.',
           icon: '🔮',
         },
         {
-          title: 'వివాహ అనుకూలత',
+          title: 'వివాహ పొంతన',
           description: 'భావి జంటలకు అనుకూలత మరియు సామరస్య ఐక్యతను నిర్ధారించే గుణ మిళన విశ్లేషణతో సాంప్రదాయ కుండలి అనుకూలత.',
           icon: '💍',
         },
@@ -424,6 +434,16 @@ const translations = {
           icon: '🌿',
         },
         {
+          title: 'సంఖ్యా శాస్త్రం',
+          description: 'సంఖ్యా శాస్త్రం ఆధారంగా పిల్లల పేర్లు, వ్యాపార పేర్లు సూచించబడతాయి.',
+          icon: '🔢',
+        },
+        {
+          title: 'ప్రశ్న శాస్త్రం',
+          description: 'అడిగిన సమయం ఆధారంగా ప్రశ్నకు ఫలితం చెప్పబడుతుంది.',
+          icon: '⏱️',
+        },
+        {
           title: 'వ్యక్తిగత సంప్రదింపు',
           description: 'ఆరోగ్యం, సంబంధాలు, ఆర్ధికం మరియు ఆధ్యాత్మిక వృద్ధితో సహా నిర్దిష్ట జీవిత ఆందోళనల కోసం ఒంటరి సంప్రదింపు.',
           icon: '🙏',
@@ -445,7 +465,7 @@ const translations = {
         {
           name: 'లక్ష్మి దేవి',
           location: 'విజయవాడ',
-          text: 'మా అమ్మాయి వివాహ అనుకూలత కోసం వేంకటేశ్వర్లు గారిని సంప్రదించాము. ఆయన సమగ్ర విశ్లేషణ మరియు ఖచ్చితమైన అంచనాలు మాకు పూర్తి విశ్వాసాన్ని ఇచ్చాయి.',
+          text: 'మా అమ్మాయి వివాహ పొంతన కోసం వేంకటేశ్వర్లు గారిని సంప్రదించాము. ఆయన సమగ్ర విశ్లేషణ మరియు ఖచ్చితమైన అంచనాలు మాకు పూర్తి విశ్వాసాన్ని ఇచ్చాయి.',
           rating: 5,
         },
         {
@@ -499,7 +519,7 @@ const translations = {
         {
           name: 'రాధా కృష్ణ',
           location: 'కర్నూలు',
-          text: 'ఆయన వివాహ అనుకూలత సేవలకు మేము చాలా కృతజ్ఞులము. ఆయన కేవలం పాయింట్లను మాత్రమే చూడలేదు, దీర్ఘకాలిక అనుకూలత కోసం చార్టులను లోతుగా విశ్లేషించారు.',
+          text: 'ఆయన వివాహ పొంతన సేవలకు మేము చాలా కృతజ్ఞులము. ఆయన కేవలం పాయింట్లను మాత్రమే చూడలేదు, దీర్ఘకాలిక అనుకూలత కోసం చార్టులను లోతుగా విశ్లేషించారు.',
           rating: 5,
         },
         {
@@ -575,7 +595,7 @@ const translations = {
       followUs: 'మమ్ములను ఫాలో అవ్వండి',
       designedBy: '✨ ఆధ్యాత్మిక సారంతో రూపొందించబడింది',
       description: 'ప్రాచీన జ్యోతిష శాస్త్ర జ్ఞానంతో జీవితాలను మార్గదర్శనం చేస్తూ 15+ సంవత్సరాల అనుభవం ఉన్న వంశపారంపర్య జ్యోతిష్కులు.',
-      disclaimer: 'జ్యోతిషశాస్త్రానికి విశ్వాసం అవసరం మరియు ఇది ప్రాచీన గ్రంథాలపై ఆధారపడిన వివరణాత్మక కళ. అందించబడిన అంచనాలు సూచనాత్మకమైనవి మరియు ఆధ్యాత్మిక మార్గదర్శకత్వం కోసం మాత్రమే. ఇవి వృత్తిపరమైన వైద్య, చట్టపరమైన లేదా ఆర్థిక సలహాలకు ప్రత్యామ్నాయం కాకూడదు. ఫలితాల వివరణ మారవచ్చు.',
+      disclaimer: 'జ్యోతిషశాస్త్రానికి విశ్వాసం అవసరం మరియు ఇది ప్రాచీన గ్రంథాలపై ఆధారపడిన వివరణాత్మక కళ. అందించబడిన అంచనాలు సూచనాత్మకమైనవి మరియు ఆధ్యాత్మిక మార్గదర్శకత్వం కోసం మాత్రమే. ఇవి వృత్తిపరమైన వైద్య, చట్టపరమైన లేదా ఆర్థిక సలహాలకు ప్రత్యామ్నాయం కాకూడదు. ఫలితాల వివరణ మారవచ్చు. ఈ సేవలను ఉపయోగించడం ద్వారా, జ్యోతిష్యం వివరణకు లోబడి ఉంటుందని మీరు అంగీకరిస్తున్నారు మరియు మీ స్వంత జీవిత ఎంపికలు మరియు చర్యలకు మీరే పూర్తి బాధ్యత వహిస్తారని అంగీకరిస్తున్నారు.',
       disclaimerTitle: 'గమనిక: ',
     },
   },
